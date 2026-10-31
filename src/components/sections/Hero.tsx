@@ -101,7 +101,7 @@ function Portrait({ className }: { className?: string }) {
             alt={profileImage.alt}
             width={760}
             height={760}
-            className="relative aspect-square w-full object-cover object-[center_top] grayscale transition-all duration-500 hover:grayscale-0"
+            className="relative aspect-4/5 w-full object-cover object-[center_top] grayscale transition-all duration-500 hover:grayscale-0"
           />
         </picture>
       </div>

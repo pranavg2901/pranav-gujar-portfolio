@@ -32,7 +32,7 @@ export function About() {
                 width={760}
                 height={760}
                 loading="lazy"
-                className="relative aspect-square w-full object-cover object-[center_top] grayscale transition-all duration-500 hover:grayscale-0"
+                className="relative aspect-4/5 w-full object-cover object-[center_top] grayscale transition-all duration-500 hover:grayscale-0"
               />
             </picture>
 
