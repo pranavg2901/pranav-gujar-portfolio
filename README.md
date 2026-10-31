@@ -88,8 +88,12 @@ message, which is the usual fate of a static-site form wired to nothing.
 ## Deployment
 
 Pushing to `main` runs `.github/workflows/deploy.yml`, which builds and publishes
-to GitHub Pages. Set **Settings → Pages → Source** to **GitHub Actions** once;
-it is not enabled yet.
+to GitHub Pages, which is configured with **Settings → Pages → Source** set to
+**GitHub Actions**.
+
+Note that the repository has to stay public. Private repositories bill Actions
+minutes and cannot use Pages on the free plan, which blocks the deploy at the
+first step with a billing error rather than anything to do with the build.
 
 Two things this setup gets right that are easy to miss:
 
@@ -109,10 +113,17 @@ Animations are an `IntersectionObserver` and a CSS transition
 libraries that would have supplied those two things cost 56MB on disk and
 roughly 40kB gzipped in the bundle, for a fade and seven glyphs.
 
+## Known limitation
+
+Deep links such as `/projects/agentcv` are served by `404.html` and resolved by
+the router, so they render correctly but respond with HTTP 404. GitHub Pages
+has no server-side rewrite, so this cannot be fixed there. It does not affect
+visitors; it only means crawlers may skip the case-study routes. Moving to a
+host with rewrites, or switching to a hash router, would return a true 200.
+
 ## Outstanding
 
 - Project screenshots. Add `image: { src, alt }` to a project in
-  `content/projects.ts` and it becomes the card background behind a scrim, and
-  the case-study sidebar image. No other change is needed.
+  `content/projects.ts` and the card picks it up. No other change is needed.
 - Retrospectives for EIGENN and AlgoPy. AgentCV has one; the others are blank
   because only the person who built them can write that honestly.
