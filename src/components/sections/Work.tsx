@@ -15,7 +15,7 @@ export function Work() {
         index="01"
         eyebrow="Selected work"
         title="Projects"
-        note="Three systems where the hard part was a constraint rather than a feature."
+        note="Three systems I built and run. In each one, the hard part was a limit to work within, not a feature to add."
       />
 
       <div>
@@ -42,7 +42,17 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   const restTags = project.tags.filter((tag) => !tag.emphasis)
 
   return (
-    <article className="group relative isolate -mx-5 border-t border-line px-5 transition-colors duration-300 last:border-b hover:bg-sunken sm:-mx-8 sm:px-8">
+    <article className="group relative isolate -mx-5 border-t border-line px-5 last:border-b sm:-mx-8 sm:px-8">
+      {/* Hover feedback is this 2px rule drawing itself across the top of the
+          card, not a tint behind the whole thing. Repainting a full-width
+          block on hover is a lot of movement for "this is a link", and it
+          washed the copy out; a line that travels is quieter and points at
+          the card you are on. */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute top-0 left-0 z-20 h-0.5 w-0 bg-accent-bright transition-[width] duration-500 ease-out group-hover:w-full"
+      />
+
       {project.study && (
         <Link
           to={`/projects/${project.slug}`}

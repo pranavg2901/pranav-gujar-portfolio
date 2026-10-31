@@ -17,7 +17,7 @@ export const site = {
   seo: {
     title: 'Pranav Gujar — Software Engineer',
     description:
-      'I build production Python backends, data pipelines and AI workflows, and run them end to end.',
+      'I build Python backends, data pipelines and AI workflows, and run them end to end.',
     url: 'https://pranavg2901.github.io/',
   },
 
@@ -62,7 +62,7 @@ export const site = {
   closing: {
     eyebrow: 'Open to opportunities',
     headline: 'Let’s talk',
-    note: 'I am looking for a full-time backend engineering or applied AI role. If you are hiring, I would be glad to walk you through any of the work above.',
+    note: 'I am looking for a full-time backend or applied AI role. If you are hiring, I am happy to walk you through any of the work above.',
   },
 
   /**

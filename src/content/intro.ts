@@ -23,7 +23,7 @@ export const intro: {
 
   paragraph: [
     {
-      text: 'I build production Python systems — APIs, data pipelines and AI workflows — and take them from requirements through deployment and the support calls afterwards. Currently at ',
+      text: 'I build Python systems that run in production — APIs, data pipelines and AI workflows — and take them from the first requirement through to deployment and the support calls after. Currently at ',
     },
     { text: 'Blueport Solutions', strong: true },
     { text: ', where I own a multi-tenant SaaS platform end to end.' },

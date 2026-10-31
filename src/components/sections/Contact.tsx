@@ -12,7 +12,7 @@ export function Contact() {
         index="05"
         eyebrow="Contact"
         title="Get in touch"
-        note="I am looking for a full-time backend engineering or applied AI role. The fastest way to reach me is email."
+        note="I am looking for a full-time backend or applied AI role. Email is the fastest way to reach me."
       />
 
       <div className="grid gap-12 border-t border-line pt-12 lg:grid-cols-2 lg:gap-20">
@@ -83,7 +83,7 @@ function ContactForm() {
         open={status === 'sent'}
         onClose={reset}
         title="Message sent"
-        message="Thanks for getting in touch — it has landed in my inbox and I will reply shortly."
+        message="Thanks for writing. It is in my inbox and I will reply soon."
         action="Back to the site"
       />
 
