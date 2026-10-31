@@ -55,13 +55,20 @@ export const site = {
   },
 
   /**
-   * Web3Forms submits straight from the browser to one fixed inbox, so the
-   * access key is public by design. Put it in .env as VITE_WEB3FORMS_KEY.
-   * Without a key the form falls back to opening a pre-filled email instead,
-   * so the page is never broken — it just takes one more click.
+   * Web3Forms submits straight from the browser to one fixed inbox.
+   *
+   * The access key lives here rather than in an environment variable on
+   * purpose. It is public by design — it can only ever deliver to the single
+   * address it was issued for, and Vite inlines it into the bundle either
+   * way, so an env var hides nothing and adds a step that fails silently if
+   * CI forgets to pass it. VITE_WEB3FORMS_KEY still overrides it if the key
+   * ever needs rotating without a code change.
+   *
+   * With no key at all the form falls back to opening a pre-filled email, so
+   * the page is never broken; it just costs the visitor one more click.
    */
   contactForm: {
     endpoint: 'https://api.web3forms.com/submit',
-    accessKey: import.meta.env.VITE_WEB3FORMS_KEY ?? '',
+    accessKey: import.meta.env.VITE_WEB3FORMS_KEY ?? '79f8c094-9cf5-43ee-a7be-2c19f38f2dfd',
   },
 } as const
