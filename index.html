@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pranav Gujar — Software Engineer</title>
+    <meta
+      name="description"
+      content="Pranav Gujar, software engineer in Pune. I build production Python backends, data pipelines and AI workflows, and run them end to end."
+    />
+    <meta name="author" content="Pranav Gujar" />
+    <link rel="icon" href="/pranav-gujar-portfolio/favicon.png" type="image/png" />
+    <link rel="canonical" href="https://pranavg2901.github.io/pranav-gujar-portfolio/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Pranav Gujar — Software Engineer" />
+    <meta
+      property="og:description"
+      content="Backend systems and applied AI. Python, FastAPI, LangGraph, Postgres — shipped and supported in production."
+    />
+    <meta property="og:url" content="https://pranavg2901.github.io/pranav-gujar-portfolio/" />
+    <meta property="og:image" content="https://pranavg2901.github.io/pranav-gujar-portfolio/images/pranav-gujar.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      // Runs before first paint: marks that scripting is available (Reveal uses
+      // it to gate its hidden starting state) and applies the saved theme so
+      // the page never flashes the wrong one.
+      ;(() => {
+        document.documentElement.classList.add('js')
+        try {
+          const saved = localStorage.getItem('theme')
+          const dark = saved
+            ? saved === 'dark'
+            : window.matchMedia('(prefers-color-scheme: dark)').matches
+          document.documentElement.classList.toggle('dark', dark)
+        } catch {}
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
