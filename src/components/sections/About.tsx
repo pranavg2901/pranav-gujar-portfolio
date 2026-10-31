@@ -5,21 +5,23 @@ import { site } from '@/content/site'
 import { withBase } from '@/lib/paths'
 
 /**
- * The hero carries the portrait from lg up, which used to leave this section
- * with an empty left column on desktop. The prose now runs full width and the
- * facts sit beneath it as a ruled strip — the same device as the metrics band,
- * so it reads as part of the same system rather than as leftover space.
+ * Heading on the left, prose on the right.
+ *
+ * Previously the title and the paragraphs both ran down the left edge and the
+ * right half of the section was empty, which read as unfinished. Splitting
+ * them fills the width and gives the heading something to sit against, and
+ * the heading sticks while the text scrolls past it.
  */
 export function About() {
   return (
     <section id="about" className="py-20 md:py-28">
-      <SectionHeading index="02" eyebrow={about.eyebrow} title={about.title} />
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,24rem)_1fr] lg:gap-20">
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <SectionHeading index="02" eyebrow={about.eyebrow} title={about.title} />
 
-      <div className="grid gap-10 lg:grid-cols-[200px_1fr] lg:gap-16">
-        {/* Below lg the hero hides the portrait, so it appears here instead —
-            exactly one photo is on screen at any width. */}
-        <Reveal className="lg:hidden">
-          <div className="relative w-40">
+          {/* The hero carries the portrait from lg up, so it appears here only
+              on the narrower layouts where the hero hides it. */}
+          <div className="relative -mt-6 w-36 lg:hidden">
             <span
               aria-hidden
               className="absolute -top-2 -left-2 size-14 border-t-2 border-l-2 border-accent-bright"
@@ -36,33 +38,19 @@ export function About() {
               />
             </picture>
           </div>
-        </Reveal>
+        </div>
 
-        <Reveal className="lg:col-span-2">
-          <div className="max-w-[68ch]">
+        <Reveal>
+          <div className="max-w-[62ch]">
             {about.paragraphs.map((paragraph) => (
               <p
                 key={paragraph.slice(0, 40)}
-                className="mb-6 text-[16.5px] leading-[1.8] text-muted last:mb-0 md:text-[17.5px]"
+                className="mb-7 text-[17px] leading-[1.8] text-muted last:mb-0 md:text-[18px]"
               >
                 {paragraph}
               </p>
             ))}
           </div>
-
-          <dl className="mt-12 grid border-t border-line sm:grid-cols-2 lg:grid-cols-4">
-            {about.facts.map((fact) => (
-              <div
-                key={fact.label}
-                className="border-b border-line py-6 sm:border-r sm:px-6 sm:first:pl-0 lg:last:border-r-0 lg:last:pr-0"
-              >
-                <dt className="font-mono text-[10.5px] tracking-[0.18em] text-accent uppercase">
-                  {fact.label}
-                </dt>
-                <dd className="mt-2.5 text-[15px] leading-snug text-ink">{fact.value}</dd>
-              </div>
-            ))}
-          </dl>
         </Reveal>
       </div>
     </section>

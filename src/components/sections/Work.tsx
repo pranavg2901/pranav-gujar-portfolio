@@ -18,7 +18,7 @@ export function Work() {
         note="Three systems where the hard part was a constraint rather than a feature."
       />
 
-      <div className="border-t border-line">
+      <div>
         {projects.map((project, index) => (
           <Reveal key={project.slug} delay={index * 60}>
             <ProjectCard project={project} index={index + 1} />
@@ -42,7 +42,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   const restTags = project.tags.filter((tag) => !tag.emphasis)
 
   return (
-    <article className="group relative isolate border-b border-line transition-colors duration-300 hover:bg-raised">
+    <article className="group relative isolate -mx-5 border-t border-line px-5 transition-colors duration-300 last:border-b hover:bg-sunken sm:-mx-8 sm:px-8">
       {project.study && (
         <Link
           to={`/projects/${project.slug}`}

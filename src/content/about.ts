@@ -6,8 +6,6 @@ export const about: {
   eyebrow: string
   title: string
   paragraphs: string[]
-  /** Short factual pairs shown beside the photo. */
-  facts: { label: string; value: string }[]
 } = {
   eyebrow: 'About',
   title: 'Who is writing this',
@@ -18,10 +16,4 @@ export const about: {
     'I also run what I ship. Deployments, SSL, logging, the 2am page — being on the hook for the thing in production is what taught me which shortcuts are affordable and which are not.',
   ],
 
-  facts: [
-    { label: 'Based in', value: 'Pune, India' },
-    { label: 'Focus', value: 'Backend systems, applied AI' },
-    { label: 'Primary stack', value: 'Python, PostgreSQL, Docker' },
-    { label: 'Education', value: 'MBA Business Analytics, BSc Computer Science' },
-  ],
 }

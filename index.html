@@ -40,10 +40,9 @@
       ;(() => {
         document.documentElement.classList.add('js')
         try {
-          const saved = localStorage.getItem('theme')
-          const dark = saved
-            ? saved === 'dark'
-            : window.matchMedia('(prefers-color-scheme: dark)').matches
+          // Light is the default. Dark is applied only when the visitor has
+          // chosen it, rather than following the operating system.
+          const dark = localStorage.getItem('theme') === 'dark'
           document.documentElement.classList.toggle('dark', dark)
         } catch {}
       })()

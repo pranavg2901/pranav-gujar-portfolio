@@ -122,3 +122,93 @@
   text-transform: uppercase;
   color: var(--accent);
 }
+
+@layer components {
+  /* Confirmation dialog. The ring and tick are stroke-dashoffset animations,
+     so they draw rather than fade — and cost nothing to composite. */
+  .dialog-backdrop {
+    animation: dialog-fade 0.2s ease-out both;
+  }
+
+  .dialog-panel {
+    animation: dialog-rise 0.34s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  .mark-ring {
+    stroke-dasharray: 214;
+    stroke-dashoffset: 214;
+    animation: draw 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) 0.1s both;
+  }
+
+  .mark-tick {
+    stroke-dasharray: 46;
+    stroke-dashoffset: 46;
+    /* Starts as the ring finishes, so the eye follows one continuous move. */
+    animation: draw 0.3s cubic-bezier(0.22, 0.61, 0.36, 1) 0.52s both;
+  }
+
+  @keyframes dialog-fade {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes dialog-rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px) scale(0.96);
+    }
+  }
+
+  @keyframes draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .toast-item {
+    animation: toast-in 0.26s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  @keyframes toast-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .toast-item {
+      animation-duration: 0.01ms !important;
+    }
+  }
+
+  /* Countdown bar. Duration and play state are set inline by the dialog so
+     the same keyframes serve any timeout and can be frozen on hover. */
+  .dialog-timer {
+    animation-name: drain;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes drain {
+    from {
+      transform: scaleX(1);
+    }
+    to {
+      transform: scaleX(0);
+    }
+  }
+
+  /* With reduced motion the dialog still appears and the mark is still drawn
+     — it simply arrives finished rather than animating into place. */
+  @media (prefers-reduced-motion: reduce) {
+    .dialog-backdrop,
+    .dialog-panel,
+    .mark-ring,
+    .mark-tick {
+      animation-duration: 0.01ms !important;
+      animation-delay: 0ms !important;
+    }
+  }
+}

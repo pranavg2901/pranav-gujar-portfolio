@@ -47,6 +47,17 @@ export const site = {
     { label: 'LinkedIn', href: 'https://linkedin.com/in/pranavpgujar', external: true },
   ] satisfies Link[],
 
+  /**
+   * Confirmations for actions that otherwise give no feedback. Keyed by the
+   * kind of link, so every Resume button on the page says the same thing.
+   */
+  toasts: {
+    resume: 'Resume downloading — thanks for taking a look.',
+    github: 'Opening GitHub in a new tab.',
+    linkedin: 'Opening LinkedIn in a new tab.',
+    email: 'Opening your email app.',
+  },
+
   /** The closing band above the footer links. */
   closing: {
     eyebrow: 'Open to opportunities',
@@ -69,6 +80,10 @@ export const site = {
    */
   contactForm: {
     endpoint: 'https://api.web3forms.com/submit',
-    accessKey: import.meta.env.VITE_WEB3FORMS_KEY ?? '79f8c094-9cf5-43ee-a7be-2c19f38f2dfd',
+    // `||`, not `??`. An unset GitHub Actions variable expands to an empty
+    // string rather than undefined, and `??` only falls back on null or
+    // undefined — so CI was building with an empty key and the live form was
+    // silently falling back to a mailto draft while local builds worked.
+    accessKey: import.meta.env.VITE_WEB3FORMS_KEY || '79f8c094-9cf5-43ee-a7be-2c19f38f2dfd',
   },
 } as const

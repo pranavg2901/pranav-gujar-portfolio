@@ -1,6 +1,7 @@
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { Button } from '@/components/ui/Button'
 import { Reveal } from '@/components/ui/Reveal'
+import { SuccessDialog } from '@/components/ui/SuccessDialog'
 import { useContactForm } from '@/hooks/useContactForm'
 import { site } from '@/content/site'
 
@@ -73,10 +74,19 @@ function Row({
 }
 
 function ContactForm() {
-  const { fields, setField, submit, status, error } = useContactForm()
+  const { fields, setField, submit, reset, status, error } = useContactForm()
   const busy = status === 'submitting'
 
   return (
+    <>
+      <SuccessDialog
+        open={status === 'sent'}
+        onClose={reset}
+        title="Message sent"
+        message="Thanks for getting in touch — it has landed in my inbox and I will reply shortly."
+        action="Back to the site"
+      />
+
     <form onSubmit={submit} className="flex flex-col gap-5">
       {/* Honeypot. Hidden from people and from assistive tech, but a naive
           bot fills every field it finds. Checked in useContactForm. */}
@@ -119,7 +129,6 @@ function ContactForm() {
         </Button>
 
         <p aria-live="polite" className="font-mono text-[12px] tracking-[0.08em]">
-          {status === 'sent' && <span className="text-accent">Sent — I will reply shortly.</span>}
           {status === 'handoff' && (
             <span className="text-muted">Opening your email app with the message ready.</span>
           )}
@@ -127,6 +136,7 @@ function ContactForm() {
         </p>
       </div>
     </form>
+    </>
   )
 }
 

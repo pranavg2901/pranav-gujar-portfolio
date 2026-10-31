@@ -107,5 +107,11 @@ export function useContactForm() {
     [fields],
   )
 
-  return { fields, setField, submit, status, error }
+  /** Dismisses the confirmation and returns the form to its resting state. */
+  const reset = useCallback(() => {
+    setStatus('idle')
+    setError(null)
+  }, [])
+
+  return { fields, setField, submit, reset, status, error }
 }
