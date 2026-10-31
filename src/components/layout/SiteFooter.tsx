@@ -46,6 +46,9 @@ export function SiteFooter() {
           </div>
         </div>
 
+        {/* rel="me" on the profile links marks them as the same person's
+            other accounts, which is what lets a search engine tie the
+            identities together. */}
         <div className="flex flex-wrap items-center justify-between gap-x-10 gap-y-5 border-t border-line py-7 font-mono text-[12px] tracking-[0.12em] uppercase">
           <ul className="flex flex-wrap gap-7">
             {site.social.map((link) => (
@@ -53,7 +56,7 @@ export function SiteFooter() {
                 <a
                   href={link.href}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="me noreferrer"
                   className="text-muted transition-colors hover:text-accent"
                 >
                   {link.label}

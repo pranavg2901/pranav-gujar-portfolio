@@ -55,6 +55,7 @@ contrast badly in light mode.
 ```
 public/            favicon, social card, fonts, resume PDF, profile images
 scripts/           favicon.py     — favicon set, from one font glyph
+                   structured-data.mjs — the JSON-LD a search engine reads
                    og-card.py     — the 1200x630 social card
                    spa-fallback.mjs — writes dist/404.html after a build
                    prerender.mjs  — a real page per case study, + sitemap
@@ -112,6 +113,23 @@ Two things this setup gets right that are easy to miss:
 - The same script writes `sitemap.xml` and `robots.txt`, taking the domain
   from the canonical link in the built `index.html` so it is not a second
   place to keep the URL.
+
+## SEO
+
+None of this is visible on the page.
+
+- The home page's title, description and structured data are written at build
+  time from `content/site.ts`, so there is one place to change them. The copy
+  in `index.html` is what the dev server shows.
+- `scripts/structured-data.mjs` emits schema.org JSON-LD: a `ProfilePage` and
+  `Person` on the home page, and `TechArticle` + `SoftwareSourceCode` +
+  `BreadcrumbList` on each case study. The `Person.sameAs` list and the
+  `rel="me"` links in the footer are what tell a search engine that this site,
+  the GitHub account and the LinkedIn profile are one person — which only
+  works fully once those profiles link back here.
+- The title leads with the name. The search that matters is someone typing
+  "Pranav Gujar" after reading the resume; ranking for "backend engineer" is
+  not a realistic target for a personal site and is not what it is tuned for.
 
 ## Dependencies
 

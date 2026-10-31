@@ -15,10 +15,47 @@ export const site = {
   tagline: 'Backend / AI',
 
   seo: {
-    title: 'Pranav Gujar — Software Engineer',
+    // Name first: the search that matters most is someone typing "Pranav
+    // Gujar" after seeing the resume or the LinkedIn profile, and the page
+    // has to be the obvious first result for it. The role terms follow, for
+    // the searches where the name is not known yet.
+    title: 'Pranav Gujar — Python Backend & AI Engineer | Pune, India',
     description:
-      'I build Python backends, data pipelines and AI workflows, and run them end to end.',
+      'Pranav Gujar is a software engineer in Pune with 2.5+ years building production Python systems — FastAPI, Django, PostgreSQL, LangGraph and RAG pipelines on AWS. Open to full-time backend and applied AI roles.',
     url: 'https://pranavg2901.github.io/',
+
+    /** Used in the structured data a search engine reads. */
+    jobTitle: 'Software Engineer — Backend Systems & Applied AI',
+    locality: 'Pune',
+    region: 'Maharashtra',
+    country: 'IN',
+    employer: 'Blueport Solutions',
+    alumniOf: 'Savitribai Phule Pune University',
+    /** What this person works on, in the words someone would search for. */
+    knowsAbout: [
+      'Python',
+      'Backend development',
+      'FastAPI',
+      'Django',
+      'Django REST Framework',
+      'Flask',
+      'REST API design',
+      'PostgreSQL',
+      'Redis',
+      'MongoDB',
+      'Applied AI',
+      'LangGraph',
+      'Retrieval-Augmented Generation',
+      'Large language model applications',
+      'ONNX',
+      'Docker',
+      'AWS',
+      'CI/CD',
+      'Distributed systems',
+      'Temporal',
+      'RabbitMQ',
+    ],
+    seeking: 'Full-time backend engineering or applied AI role',
   },
 
   /** Anchors in the one-page layout. Order here is the order in the header. */
@@ -84,6 +121,10 @@ export const site = {
     // string rather than undefined, and `??` only falls back on null or
     // undefined — so CI was building with an empty key and the live form was
     // silently falling back to a mailto draft while local builds worked.
-    accessKey: import.meta.env.VITE_WEB3FORMS_KEY || '79f8c094-9cf5-43ee-a7be-2c19f38f2dfd',
+    // `import.meta.env` is read through a fallback so this module can also be
+    // imported by the Node build scripts, which have no such object. Vite
+    // still replaces it with a real object in the bundle.
+    accessKey:
+      (import.meta.env ?? {}).VITE_WEB3FORMS_KEY || '79f8c094-9cf5-43ee-a7be-2c19f38f2dfd',
   },
 } as const

@@ -19,7 +19,8 @@ export const intro: {
    * The "2.5+" figure leads the metrics strip immediately below instead.
    */
   headline: { lead: 'Software', accent: 'Engineer' },
-  headlineLabel: 'Pranav Gujar — Software Engineer, 2.5 years in production',
+  headlineLabel:
+    'Pranav Gujar — Software Engineer, backend systems and applied AI, Pune, India',
 
   paragraph: [
     {

@@ -17,6 +17,8 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { projects } from '../src/content/projects.ts'
+import { site } from '../src/content/site.ts'
+import { caseStudyGraph, homeGraph } from './structured-data.mjs'
 
 const dist = resolve(import.meta.dirname, '..', 'dist')
 
@@ -29,6 +31,20 @@ if (!origin) throw new Error('prerender: no canonical link found in dist/index.h
 
 const escape = (value) =>
   value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+
+/**
+ * Swaps in the JSON-LD for a page. The source file ships an empty object in
+ * that slot, so a page that somehow missed this step carries nothing rather
+ * than another page's data.
+ */
+function setStructuredData(html, graph) {
+  const pattern = /(<script type="application\/ld\+json" data-structured-data>)[^<]*(<\/script>)/
+  if (!pattern.test(html)) throw new Error('prerender: no structured-data slot in the template')
+  // Escaping "<" keeps a stray closing tag inside the data from ending the
+  // script element early.
+  const json = JSON.stringify(graph).replace(/</g, '\u003c')
+  return html.replace(pattern, `$1${json}$2`)
+}
 
 /** Replaces the content of one meta tag, matched by its name or property. */
 function setMeta(html, attribute, key, value) {
@@ -43,6 +59,21 @@ function setMeta(html, attribute, key, value) {
   const second = html.replace(multiline, `$1${escape(value)}$2`)
   if (second === html) throw new Error(`prerender: could not set ${attribute}="${key}"`)
   return second
+}
+
+// The home page's own title and description are written here rather than
+// left to index.html, so src/content/site.ts stays the only place they are
+// decided. index.html keeps a copy for the dev server.
+{
+  let home = template
+  home = home.replace(/<title>[^<]*<\/title>/, `<title>${escape(site.seo.title)}</title>`)
+  home = setMeta(home, 'name', 'description', site.seo.description)
+  home = setMeta(home, 'property', 'og:title', site.seo.title)
+  home = setMeta(home, 'property', 'og:description', site.seo.description)
+  home = setStructuredData(home, homeGraph())
+  await writeFile(resolve(dist, 'index.html'), home)
+  // 404.html is a copy of the home page, so it has to be rewritten too.
+  await writeFile(resolve(dist, '404.html'), home)
 }
 
 const studies = projects.filter((project) => project.study)
@@ -63,6 +94,7 @@ for (const project of studies) {
   html = setMeta(html, 'property', 'og:description', description)
   html = setMeta(html, 'property', 'og:url', url)
   html = setMeta(html, 'property', 'og:type', 'article')
+  html = setStructuredData(html, caseStudyGraph(project, url))
 
   const directory = resolve(dist, 'projects', project.slug)
   await mkdir(directory, { recursive: true })
@@ -95,5 +127,5 @@ await writeFile(
 )
 
 console.log(
-  `prerender: ${studies.length} case-study pages, sitemap.xml and robots.txt written`,
+  `prerender: ${studies.length} case-study pages, structured data, sitemap.xml and robots.txt written`,
 )
