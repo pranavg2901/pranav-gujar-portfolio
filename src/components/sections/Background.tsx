@@ -5,7 +5,7 @@ import type { Credential } from '@/types/content'
 
 export function Background() {
   return (
-    <section id="background" className="py-16 md:py-20">
+    <section id="background" className="py-20 md:py-28">
       <SectionHeading eyebrow="Background" title="Education and certification" />
 
       <div className="grid gap-10 md:grid-cols-2">
@@ -22,8 +22,8 @@ function Group({ title, items }: { title: string; items: Credential[] }) {
       <h3 className="mb-3 font-mono text-[12px] tracking-[0.1em] text-faint uppercase">{title}</h3>
       <ul className="flex flex-col gap-3">
         {items.map((item) => (
-          <li key={item.title} className="rounded-xl border border-line bg-raised p-4">
-            <p className="text-[15.5px] font-semibold text-ink">{item.title}</p>
+          <li key={item.title} className="rounded-2xl border border-line bg-raised p-6 transition-colors hover:border-line-strong">
+            <p className="text-[17px] font-semibold tracking-[-0.015em] text-ink">{item.title}</p>
             <p className="mt-1 text-[13.5px] text-faint">
               {item.issuer} &middot; {item.period}
             </p>

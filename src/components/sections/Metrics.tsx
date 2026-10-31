@@ -1,25 +1,37 @@
 import { Container } from '@/components/ui/Container'
+import { Reveal } from '@/components/ui/Reveal'
 import { metrics } from '@/content/metrics'
 
 /**
- * A full-bleed band on a raised surface. It is the only place the page breaks
- * out of the container, which is what stops the sections blurring into one
- * another on a long scroll.
+ * A full-bleed dark band, the only place the page leaves its container. The
+ * section that follows rides up over it with a large top radius, which is what
+ * stops a long scroll reading as one continuous column.
+ *
+ * Every number here is traceable to one project; see content/metrics.ts.
  */
 export function Metrics() {
   return (
-    <div className="border-y border-line bg-raised">
+    <div className="bg-panel pt-16 pb-28 md:pb-32">
       <Container>
-        <dl className="grid grid-cols-2 gap-x-5 gap-y-6 py-8 sm:grid-cols-3 lg:grid-cols-5">
-          {metrics.map((metric) => (
-            <div key={metric.caption}>
-              <dt className="text-[26px] font-semibold tracking-[-0.02em] text-ink">
-                {metric.value}
-              </dt>
-              <dd className="mt-1 text-[12.5px] leading-snug text-faint">{metric.caption}</dd>
-            </div>
-          ))}
-        </dl>
+        <Reveal>
+          <dl className="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 lg:grid-cols-5 lg:gap-x-4">
+            {metrics.map((metric, index) => (
+              <div
+                key={metric.caption}
+                className={
+                  index === 0
+                    ? 'lg:px-6'
+                    : 'lg:border-l lg:border-panel-line lg:px-6'
+                }
+              >
+                <dt className="text-stat font-semibold whitespace-nowrap text-accent-soft">{metric.value}</dt>
+                <dd className="mt-3 max-w-[22ch] text-[14px] leading-snug text-panel-muted">
+                  {metric.caption}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
       </Container>
     </div>
   )

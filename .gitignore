@@ -38,3 +38,9 @@ _mockup/
 
 # typescript build info
 *.tsbuildinfo
+
+# design reference screenshots (not ours to publish)
+images/
+
+# local preview harness
+_preview/

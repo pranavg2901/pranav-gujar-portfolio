@@ -8,10 +8,10 @@ export function Tag({ label, emphasis = false }: { label: string; emphasis?: boo
   return (
     <span
       className={cn(
-        'rounded-[5px] px-2.5 py-1 text-[11.5px] leading-none',
+        'rounded-full px-3.5 py-1.5 text-[12px] leading-none',
         emphasis
           ? 'bg-accent-wash font-medium text-accent'
-          : 'bg-sunken text-muted',
+          : 'border border-line text-muted',
       )}
     >
       {label}

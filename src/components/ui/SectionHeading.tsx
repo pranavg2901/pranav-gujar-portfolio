@@ -1,24 +1,51 @@
 import type { ReactNode } from 'react'
+import { cn } from '@/lib/cn'
+import { Reveal } from '@/components/ui/Reveal'
 
 /**
- * The repeating masthead: a mono eyebrow, a title, and an optional line that
- * frames what follows. The eyebrow carries the only colour, which is what keeps
- * the section starts legible without a rule or a box.
+ * The repeating masthead: a clay mono eyebrow, a large title, and an optional
+ * line framing what follows. The eyebrow carries the only colour, which keeps
+ * section starts legible without rules or boxes.
  */
 export function SectionHeading({
   eyebrow,
   title,
   note,
+  align = 'left',
+  tone = 'page',
 }: {
   eyebrow: string
-  title: string
+  title: ReactNode
   note?: ReactNode
+  align?: 'left' | 'center'
+  tone?: 'page' | 'dark'
 }) {
+  const centred = align === 'center'
+
   return (
-    <header className="mb-8">
-      <p className="eyebrow mb-3 uppercase">{eyebrow}</p>
-      <h2 className="text-[28px] font-semibold tracking-[-0.025em] text-ink">{title}</h2>
-      {note && <p className="mt-3 max-w-[58ch] text-[15.5px] text-muted">{note}</p>}
-    </header>
+    <Reveal>
+      <header className={cn('mb-12', centred && 'text-center')}>
+        <p className={cn('eyebrow mb-5 uppercase', centred && 'rule-both')}>{eyebrow}</p>
+        <h2
+          className={cn(
+            'text-display font-semibold',
+            tone === 'dark' ? 'text-panel-ink' : 'text-ink',
+          )}
+        >
+          {title}
+        </h2>
+        {note && (
+          <p
+            className={cn(
+              'mt-5 max-w-[56ch] text-[17px] leading-relaxed',
+              centred && 'mx-auto',
+              tone === 'dark' ? 'text-panel-muted' : 'text-muted',
+            )}
+          >
+            {note}
+          </p>
+        )}
+      </header>
+    </Reveal>
   )
 }

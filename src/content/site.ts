@@ -46,6 +46,13 @@ export const site = {
     { label: 'LinkedIn', href: 'https://linkedin.com/in/pranavpgujar', external: true },
   ] satisfies Link[],
 
+  /** The closing band above the footer links. */
+  closing: {
+    eyebrow: 'Get in touch',
+    headline: 'Let’s talk',
+    note: 'Open to backend engineering and applied AI roles, and happy to talk through anything in the projects above.',
+  },
+
   /**
    * Web3Forms submits straight from the browser to one fixed inbox, so the
    * access key is public by design. Put it in .env as VITE_WEB3FORMS_KEY.

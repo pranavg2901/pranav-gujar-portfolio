@@ -50,17 +50,19 @@
 }
 
 /* Entrance transition driven by components/ui/Reveal.tsx. Gated on html.js so
-   the content is never hidden when scripting is unavailable. */
+   content is never hidden when scripting is unavailable. The travel is larger
+   than a typical fade (22px) because at this type scale a small move reads as
+   a rendering glitch rather than an intentional entrance. */
 @layer components {
   .reveal {
     transition:
-      opacity 0.4s cubic-bezier(0.22, 0.61, 0.36, 1),
-      translate 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+      opacity 0.62s cubic-bezier(0.22, 0.61, 0.36, 1),
+      translate 0.62s cubic-bezier(0.22, 0.61, 0.36, 1);
   }
 
   .js .reveal[data-reveal='pending'] {
     opacity: 0;
-    translate: 0 10px;
+    translate: 0 22px;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -68,5 +70,31 @@
       opacity: 1;
       translate: none;
     }
+  }
+}
+
+@layer components {
+  /* The organic portrait mask. Two radii sets (horizontal / vertical) are what
+     make it read as a drawn shape rather than a squashed ellipse. */
+  .blob {
+    border-radius: 56% 44% 47% 53% / 42% 39% 61% 58%;
+  }
+
+  /* A rule either side of a centred label, as in the footer eyebrow. */
+  .rule-both::before,
+  .rule-both::after {
+    content: '';
+    display: inline-block;
+    width: 2.5rem;
+    height: 1px;
+    vertical-align: middle;
+    background-color: currentColor;
+    opacity: 0.45;
+  }
+  .rule-both::before {
+    margin-right: 1rem;
+  }
+  .rule-both::after {
+    margin-left: 1rem;
   }
 }

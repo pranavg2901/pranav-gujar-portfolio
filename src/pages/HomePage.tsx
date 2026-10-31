@@ -15,13 +15,18 @@ export function HomePage() {
     <>
       <Hero />
       <Metrics />
-      <Container>
-        <Work />
-        <Experience />
-        <Skills />
-        <Background />
-        <Contact />
-      </Container>
+
+      {/* Rides up over the dark band on a large radius, so the two surfaces
+          overlap rather than butting together in a straight seam. */}
+      <div className="relative -mt-12 rounded-t-[2.5rem] bg-surface md:-mt-16 md:rounded-t-[3.5rem]">
+        <Container>
+          <Work />
+          <Experience />
+          <Skills />
+          <Background />
+          <Contact />
+        </Container>
+      </div>
     </>
   )
 }
