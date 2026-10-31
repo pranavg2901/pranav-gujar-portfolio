@@ -20,7 +20,6 @@ export const experience: Role[] = [
     product: {
       name: 'Sutram',
       href: 'https://sutram.blueportsolutions.in/',
-      image: { src: 'images/sutram.jpg', alt: 'The Sutram product site' },
     },
   },
   {

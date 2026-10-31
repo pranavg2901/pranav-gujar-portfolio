@@ -29,7 +29,6 @@ export const projects: Project[] = [
       { label: 'Docker' },
     ],
     links: [{ label: 'Live demo', href: 'https://agentcv-tf7z.onrender.com/', external: true }],
-    image: { src: 'images/agentcv.jpg', alt: 'The AgentCV landing page' },
     study: {
       premise:
         'A resume engine that assembles a tailored application in seconds and scores how well the role actually fits — every line traceable to something I wrote.',
@@ -178,7 +177,6 @@ export const projects: Project[] = [
     links: [
       { label: 'Live demo', href: 'https://algo-trading-lq8e.onrender.com/', external: true },
     ],
-    image: { src: 'images/algopy.jpg', alt: 'The AlgoPy screener landing page' },
     study: {
       premise:
         'End-of-day market data never changes, so the screener treats it as a build artifact rather than a live dependency.',

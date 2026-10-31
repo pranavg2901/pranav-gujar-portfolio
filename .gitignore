@@ -40,7 +40,9 @@ _mockup/
 *.tsbuildinfo
 
 # design reference screenshots (not ours to publish)
-images/
+# Anchored to the repo root: an unanchored "images/" also matched
+# public/images/, which silently kept every site image out of the build.
+/images/
 
 # local preview harness
 _preview/
