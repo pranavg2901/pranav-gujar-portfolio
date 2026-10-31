@@ -79,3 +79,23 @@ export function Moon(props: SVGProps<SVGSVGElement>) {
     </Glyph>
   )
 }
+
+/**
+ * The only moving icon. Shown while the contact form is submitting — a label
+ * change alone was too quiet, and people clicked Send a second time.
+ *
+ * The faint full ring keeps the shape stable while the bright quarter turns,
+ * so it reads as one object spinning rather than a flickering arc.
+ */
+export function Spinner({ className, ...props }: SVGProps<SVGSVGElement>) {
+  return (
+    <Glyph
+      className={`animate-spin motion-reduce:animate-none${className ? ` ${className}` : ''}`}
+      strokeWidth={2.5}
+      {...props}
+    >
+      <circle cx="12" cy="12" r="9" opacity="0.3" />
+      <path d="M12 3a9 9 0 0 1 9 9" />
+    </Glyph>
+  )
+}

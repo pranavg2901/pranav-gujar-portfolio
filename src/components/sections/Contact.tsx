@@ -1,5 +1,6 @@
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { Button } from '@/components/ui/Button'
+import { Spinner } from '@/components/ui/Icon'
 import { Reveal } from '@/components/ui/Reveal'
 import { SuccessDialog } from '@/components/ui/SuccessDialog'
 import { useContactForm } from '@/hooks/useContactForm'
@@ -124,11 +125,29 @@ function ContactForm() {
       />
 
       <div className="flex flex-wrap items-center gap-5">
-        <Button type="submit" disabled={busy} className="disabled:opacity-60">
-          {busy ? 'Sending' : 'Send message'}
+        {/* A spinner and a fixed width, not just a word change. Swapping
+            "Send message" for "Sending" moved the button's edges and was easy
+            to miss, so people pressed it again while the first request was
+            still in flight. The button is disabled throughout, but looking
+            disabled is the part that stops the second click. */}
+        <Button
+          type="submit"
+          disabled={busy}
+          aria-busy={busy}
+          className="min-w-[13rem] disabled:cursor-wait disabled:border-line-strong disabled:bg-transparent disabled:text-muted"
+        >
+          {busy ? (
+            <>
+              <Spinner className="size-4" />
+              Sending…
+            </>
+          ) : (
+            'Send message'
+          )}
         </Button>
 
         <p aria-live="polite" className="font-mono text-[12px] tracking-[0.08em]">
+          {busy && <span className="text-muted">Sending your message…</span>}
           {status === 'handoff' && (
             <span className="text-muted">Opening your email app with the message ready.</span>
           )}

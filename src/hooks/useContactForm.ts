@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { site } from '@/content/site'
 
 export type FormStatus = 'idle' | 'submitting' | 'sent' | 'handoff' | 'error'
@@ -15,6 +15,13 @@ const EMPTY: ContactFields = { name: '', email: '', message: '' }
 const TIMEOUT_MS = 15_000
 
 /**
+ * A request that answers in 120ms would otherwise flash the spinner and look
+ * like a glitch. Holding the sending state briefly makes the submit read as a
+ * step that happened rather than a flicker.
+ */
+const MIN_VISIBLE_MS = 550
+
+/**
  * Two paths, one form.
  *
  * With a Web3Forms access key the message posts straight to the inbox and the
@@ -26,10 +33,21 @@ const TIMEOUT_MS = 15_000
  * Note that the key is inlined at build time, so the deployed site only has it
  * if CI passes VITE_WEB3FORMS_KEY to the build. See .github/workflows.
  */
+/** Holds the sending state until it has been on screen long enough to read. */
+function settle(startedAt: number): Promise<void> {
+  const remaining = MIN_VISIBLE_MS - (Date.now() - startedAt)
+  return remaining > 0 ? new Promise((resolve) => setTimeout(resolve, remaining)) : Promise.resolve()
+}
+
 export function useContactForm() {
   const [fields, setFields] = useState<ContactFields>(EMPTY)
   const [status, setStatus] = useState<FormStatus>('idle')
   const [error, setError] = useState<string | null>(null)
+
+  // The button is disabled while a request is open, but a double-tap can fire
+  // both clicks before React re-renders. This is the guard that actually
+  // stops a second message being sent.
+  const inFlight = useRef(false)
 
   const setField = useCallback((key: keyof ContactFields, value: string) => {
     setFields((previous) => ({ ...previous, [key]: value }))
@@ -39,6 +57,7 @@ export function useContactForm() {
   const submit = useCallback(
     async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault()
+      if (inFlight.current) return
 
       // Honeypot: a field hidden from people but visible to naive bots. If it
       // has anything in it, accept silently rather than telling the bot why.
@@ -60,9 +79,11 @@ export function useContactForm() {
         return
       }
 
+      inFlight.current = true
       setStatus('submitting')
       setError(null)
 
+      const startedAt = Date.now()
       const abort = new AbortController()
       const timer = setTimeout(() => abort.abort(), TIMEOUT_MS)
 
@@ -93,15 +114,18 @@ export function useContactForm() {
           throw new Error(result?.message ?? `Request failed with ${response.status}`)
         }
 
+        await settle(startedAt)
         setFields(EMPTY)
         setStatus('sent')
       } catch {
         // Keep whatever they typed — losing a written message to a failed
         // request is the other outcome worth engineering against.
+        await settle(startedAt)
         setError(`Could not send that. Please email me directly at ${site.email}.`)
         setStatus('error')
       } finally {
         clearTimeout(timer)
+        inFlight.current = false
       }
     },
     [fields],
