@@ -108,7 +108,7 @@ export const projects: Project[] = [
       { label: 'ONNX' },
       { label: 'React' },
     ],
-    links: [],
+    links: [{ label: 'Live demo', href: 'https://demo.eigenn.in/', external: true }],
     study: {
       premise:
         'Grading is a decision about a person. The pipeline does the reading; a human signs the result.',
