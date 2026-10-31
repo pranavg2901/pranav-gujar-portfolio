@@ -20,7 +20,13 @@ export function CaseStudyPage() {
   if (!project?.study) return <NotFoundPage />
 
   const { study } = project
-  const next = projects.slice(index + 1).find((candidate) => candidate.study)
+
+  // Wraps around, so the last case study points back at the first instead of
+  // ending on nothing. AlgoPy sits last in the list and was the one page with
+  // no way forward — a reader who got that far had to use the back button.
+  const studies = projects.filter((candidate) => candidate.study)
+  const position = studies.findIndex((candidate) => candidate.slug === project.slug)
+  const next = studies.length > 1 ? studies[(position + 1) % studies.length] : undefined
 
   return (
     <article>
