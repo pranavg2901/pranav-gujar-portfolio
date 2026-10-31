@@ -1,18 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Pranav Gujar">
-  <rect width="64" height="64" rx="14" fill="#050505"/>
-  <!-- A P built from the same blueprint grid that sits behind the hero.
-       Generated from the cell map in scripts, so the SVG and the PNG
-       fallbacks cannot drift apart. -->
-  <rect x="11.90" y="6.70" width="9.0" height="9.0" rx="1.8" fill="#c3f53c"/>
-  <rect x="22.30" y="6.70" width="9.0" height="9.0" rx="1.8" fill="#c3f53c"/>
-  <rect x="32.70" y="6.70" width="9.0" height="9.0" rx="1.8" fill="#c3f53c"/>
-  <rect x="43.10" y="6.70" width="9.0" height="9.0" rx="1.8" fill="#c3f53c"/>
-  <rect x="11.90" y="17.10" width="9.0" height="9.0" rx="1.8" fill="#c3f53c"/>
-  <rect x="43.10" y="17.10" width="9.0" height="9.0" rx="1.8" fill="#c3f53c"/>
-  <rect x="11.90" y="27.50" width="9.0" height="9.0" rx="1.8" fill="#c3f53c"/>
-  <rect x="22.30" y="27.50" width="9.0" height="9.0" rx="1.8" fill="#c3f53c"/>
-  <rect x="32.70" y="27.50" width="9.0" height="9.0" rx="1.8" fill="#c3f53c"/>
-  <rect x="43.10" y="27.50" width="9.0" height="9.0" rx="1.8" fill="#c3f53c"/>
-  <rect x="11.90" y="37.90" width="9.0" height="9.0" rx="1.8" fill="#c3f53c"/>
-  <rect x="11.90" y="48.30" width="9.0" height="9.0" rx="1.8" fill="#c3f53c"/>
+  <!-- Lime field, black letter. A dark icon disappears against dark
+       browser chrome; this stays findable in any tab strip. Drawn from
+       primitives, so the SVG and the PNG fallbacks are identical. The
+       bowl sits high with a long stem beneath it, which is what reads as
+       an uppercase P rather than a lowercase one. -->
+  <rect width="64" height="64" rx="14" fill="#c3f53c"/>
+  <rect x="18" y="10" width="10" height="44" rx="1.5" fill="#050505"/>
+  <circle cx="33" cy="21" r="11" fill="#050505"/>
+  <circle cx="33" cy="21" r="4.6" fill="#c3f53c"/>
 </svg>
