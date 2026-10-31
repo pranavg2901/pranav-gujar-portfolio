@@ -7,8 +7,10 @@ export const about: {
   title: string
   paragraphs: string[]
 } = {
-  eyebrow: 'About',
-  title: 'Who is writing this',
+  eyebrow: 'Profile',
+  // Two short words. "Who is writing this" was arch for a hiring audience and
+  // wrapped to three lines of display type in the heading column.
+  title: 'About me',
 
   paragraphs: [
     'I am a software engineer in Pune working on backend systems and applied AI. Most of what I do is Python: HTTP APIs, data pipelines, background workers, and the retrieval and evaluation layers around language models.',

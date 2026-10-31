@@ -14,7 +14,7 @@ import { withBase } from '@/lib/paths'
  */
 export function About() {
   return (
-    <section id="about" className="py-20 md:py-28">
+    <section id="about" className="py-16 md:py-24">
       <div className="grid gap-8 lg:grid-cols-[minmax(0,24rem)_1fr] lg:gap-20">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SectionHeading index="02" eyebrow={about.eyebrow} title={about.title} />
@@ -41,11 +41,18 @@ export function About() {
         </div>
 
         <Reveal>
-          <div className="max-w-[62ch]">
-            {about.paragraphs.map((paragraph) => (
+          {/* The first paragraph is set larger and in full-contrast ink. Three
+              paragraphs at one size read as a wall; a lead gives the eye a
+              place to start and the rest somewhere to go. */}
+          <div className="max-w-[60ch] border-l-2 border-accent-bright pl-7 md:pl-9">
+            {about.paragraphs.map((paragraph, index) => (
               <p
                 key={paragraph.slice(0, 40)}
-                className="mb-7 text-[17px] leading-[1.8] text-muted last:mb-0 md:text-[18px]"
+                className={
+                  index === 0
+                    ? 'mb-7 text-[19px] leading-[1.65] font-medium text-ink md:text-[21px]'
+                    : 'mb-6 text-[16px] leading-[1.75] text-muted last:mb-0 md:text-[16.5px]'
+                }
               >
                 {paragraph}
               </p>
