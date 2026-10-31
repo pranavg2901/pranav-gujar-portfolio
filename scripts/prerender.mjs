@@ -48,7 +48,10 @@ function setMeta(html, attribute, key, value) {
 const studies = projects.filter((project) => project.study)
 
 for (const project of studies) {
-  const url = `${origin}projects/${project.slug}`
+  // Trailing slash: Pages serves these as directories and 301s the
+  // slash-less form to it, so the canonical has to name the URL that
+  // actually answers 200 rather than one that redirects.
+  const url = `${origin}projects/${project.slug}/`
   const title = `${project.name} — Case study — Pranav Gujar`
   const description = project.study.premise
 
@@ -69,7 +72,7 @@ for (const project of studies) {
 const today = new Date().toISOString().slice(0, 10)
 const urls = [
   { loc: origin, priority: '1.0' },
-  ...studies.map((project) => ({ loc: `${origin}projects/${project.slug}`, priority: '0.8' })),
+  ...studies.map((project) => ({ loc: `${origin}projects/${project.slug}/`, priority: '0.8' })),
 ]
 
 await writeFile(
