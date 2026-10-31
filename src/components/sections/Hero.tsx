@@ -6,26 +6,34 @@ import { withBase } from '@/lib/paths'
 
 export function Hero() {
   return (
-    <Container>
-      <div className="grid items-center gap-10 pt-14 pb-20 lg:grid-cols-[1fr_minmax(290px,37%)] lg:gap-14 lg:pt-20 lg:pb-28">
-        {/* Portrait first on mobile, last on desktop — ordered in CSS so the
-            markup is written once. */}
-        <Portrait className="order-first w-44 sm:w-56 lg:order-last lg:w-full" />
+    <header className="relative isolate overflow-hidden">
+      <div aria-hidden className="grid-field absolute inset-0 -z-10" />
+      <div
+        aria-hidden
+        className="bloom absolute -top-64 -right-40 -z-10 size-[620px] rounded-full"
+      />
 
-        <div>
-          <p className="eyebrow mb-5 uppercase">{intro.eyebrow}</p>
-
-          <h1 className="text-hero font-semibold text-balance text-ink">
-            <span className="block">{intro.headline.light}</span>
-            <span className="block text-accent">{intro.headline.accent}</span>
-          </h1>
-
-          <p className="mt-6 text-[17px] font-medium text-muted">
-            {site.role.replace('Software Engineer — ', '')}
-            <span className="text-faint"> · {site.location}</span>
+      <Container>
+        <div className="pt-16 pb-20 md:pt-24 md:pb-28">
+          <p className="eyebrow flex items-center gap-4">
+            <span aria-hidden className="h-px w-11 bg-accent" />
+            {intro.kicker}
           </p>
 
-          <p className="mt-5 max-w-[56ch] text-[17px] leading-[1.7] text-muted md:text-[18.5px]">
+          {/* Three display fragments read as one phrase visually but as noise
+              to a screen reader, so the accessible name is supplied once. */}
+          <h1 className="mt-7 text-hero font-extrabold uppercase">
+            <span className="sr-only">{intro.headlineLabel}</span>
+            <span aria-hidden className="block text-ink">
+              {intro.headline.lead}
+            </span>
+            <span aria-hidden className="block">
+              <span className="text-accent">{intro.headline.accent}</span>{' '}
+              <span className="stroke-type">{intro.headline.outline}</span>
+            </span>
+          </h1>
+
+          <p className="mt-9 max-w-[54ch] text-[16.5px] leading-[1.75] text-muted md:text-[17.5px]">
             {intro.paragraph.map((part, index) =>
               part.strong ? (
                 <strong key={index} className="font-semibold text-ink">
@@ -37,54 +45,52 @@ export function Hero() {
             )}
           </p>
 
-          <div className="mt-9 flex flex-wrap gap-3">
-            <ButtonLink href={withBase(site.resume.href)} external variant="solid">
-              {site.resume.label}
+          <div className="mt-10 flex flex-wrap">
+            <ButtonLink href="#work" variant="solid">
+              See the work
             </ButtonLink>
-            {site.social.map((link) => (
-              <ButtonLink key={link.label} href={link.href} external variant="outline">
-                {link.label}
-              </ButtonLink>
-            ))}
+            <ButtonLink href={withBase(site.resume.href)} external variant="outline">
+              Resume
+            </ButtonLink>
           </div>
 
-          <dl className="mt-11 grid gap-x-10 gap-y-2.5 border-t border-line pt-7 text-[13.5px] sm:grid-cols-2">
+          <dl className="mt-14 grid gap-x-12 gap-y-4 border-t border-line pt-8 font-mono text-[12.5px] sm:grid-cols-2">
             {intro.stack.map((line) => (
-              <div key={line.label} className="flex gap-3">
-                <dt className="w-[74px] shrink-0 font-medium text-ink">{line.label}</dt>
-                <dd className="text-faint">{line.items.join(' · ')}</dd>
+              <div key={line.label} className="flex gap-4">
+                <dt className="w-[82px] shrink-0 tracking-wider text-accent uppercase">
+                  {line.label}
+                </dt>
+                <dd className="text-faint">{line.items.join(' / ')}</dd>
               </div>
             ))}
           </dl>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </header>
   )
 }
 
-function Portrait({ className }: { className?: string }) {
-  const { profileImage } = site
+/**
+ * The scrolling tech strip. The list is rendered twice and the track travels
+ * exactly half its width, so the loop has no visible seam.
+ */
+export function Marquee() {
+  const items = [...intro.marquee, ...intro.marquee]
 
   return (
-    <div className={className}>
-      <div className="relative">
-        {/* An offset clay shape behind the photo, rotated the other way. It is
-            what stops the mask reading as a single floating blob. */}
-        <div
-          aria-hidden
-          className="blob absolute inset-0 translate-x-3 translate-y-4 rotate-6 bg-accent-wash"
-        />
-        <picture>
-          <source srcSet={withBase(profileImage.webp)} type="image/webp" />
-          <img
-            src={withBase(profileImage.jpg)}
-            alt={profileImage.alt}
-            width={760}
-            height={760}
-            className="blob relative aspect-square w-full object-cover object-[center_top]"
-          />
-        </picture>
-      </div>
+    <div className="overflow-hidden border-y border-line py-5">
+      <ul className="marquee-track flex w-max items-center">
+        {items.map((item, index) => (
+          <li
+            key={`${item}-${index}`}
+            aria-hidden={index >= intro.marquee.length}
+            className="flex items-center font-mono text-[13px] tracking-[0.14em] text-faint uppercase"
+          >
+            <span className="px-7">{item}</span>
+            <span className="size-1 rounded-full bg-accent-bright/50" />
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }

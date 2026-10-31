@@ -11,7 +11,8 @@ export const site = {
   email: 'pranavgujar2901@gmail.com',
 
   /** Shown beside the name in the header. Keep it to a few words. */
-  tagline: 'Software Engineer',
+  /** Shown beside the name in the header. Rendered in monospace. */
+  tagline: 'Backend / AI',
 
   seo: {
     title: 'Pranav Gujar — Software Engineer',
@@ -23,9 +24,9 @@ export const site = {
   /** Anchors in the one-page layout. Order here is the order in the header. */
   nav: [
     { id: 'work', label: 'Work' },
+    { id: 'about', label: 'About' },
     { id: 'experience', label: 'Experience' },
     { id: 'skills', label: 'Skills' },
-    { id: 'background', label: 'Background' },
     { id: 'contact', label: 'Contact' },
   ],
 
@@ -48,8 +49,8 @@ export const site = {
 
   /** The closing band above the footer links. */
   closing: {
-    eyebrow: 'Get in touch',
-    headline: 'Let’s talk',
+    eyebrow: 'Open to roles',
+    headline: 'Let’s build something',
     note: 'Open to backend engineering and applied AI roles, and happy to talk through anything in the projects above.',
   },
 

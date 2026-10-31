@@ -2,19 +2,23 @@ import type { StackLine, TextRun } from '@/types/content'
 
 /** The hero. Plain statements of fact — no slogan, no pitch. */
 export const intro: {
-  eyebrow: string
-  headline: { light: string; accent: string }
+  kicker: string
+  headline: { lead: string; accent: string; outline: string }
+  /** Read by screen readers in place of the three display fragments. */
+  headlineLabel: string
   paragraph: TextRun[]
   stack: StackLine[]
+  marquee: string[]
 } = {
-  /** Sits above the headline, in clay. Three words, no sentence. */
-  eyebrow: 'Backend · Applied AI · Production',
+  kicker: 'Pranav Gujar · Pune, India',
 
   /**
-   * Two lines, two colours. The split is what gives the headline its weight at
-   * this size — a single-colour block of 92px type reads as shouting.
+   * Three fragments, three treatments: solid, accent, outlined. The split is
+   * what carries the headline at this size — a single block of 100px type is
+   * just loud.
    */
-  headline: { light: 'Pranav Gujar', accent: 'Software Engineer' },
+  headline: { lead: 'Software', accent: 'Engineer', outline: '/ 2.5 yrs' },
+  headlineLabel: 'Pranav Gujar — Software Engineer, 2.5 years in production',
 
   paragraph: [
     {
@@ -24,11 +28,26 @@ export const intro: {
     { text: ', where I own a multi-tenant SaaS platform end to end.' },
   ],
 
-  /** Four labelled lines, so the stack is scannable in seconds. */
   stack: [
     { label: 'Backend', items: ['Python', 'FastAPI', 'Flask', 'Django REST'] },
     { label: 'Data', items: ['PostgreSQL', 'Redis', 'MongoDB', 'PgBouncer'] },
     { label: 'Applied AI', items: ['LangGraph', 'RAG', 'Hugging Face', 'ONNX'] },
     { label: 'Infra', items: ['Docker', 'AWS', 'Temporal', 'RabbitMQ', 'CI/CD'] },
+  ],
+
+  /** The scrolling strip under the hero. Keep it short enough to read. */
+  marquee: [
+    'Python',
+    'FastAPI',
+    'LangGraph',
+    'PostgreSQL',
+    'Redis',
+    'Temporal',
+    'RabbitMQ',
+    'Docker',
+    'AWS',
+    'ONNX',
+    'Pytest',
+    'GitHub Actions',
   ],
 }

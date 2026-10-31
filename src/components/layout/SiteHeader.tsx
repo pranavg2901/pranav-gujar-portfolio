@@ -34,14 +34,17 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-surface/85 backdrop-blur-md">
       <Container>
-        <div className="flex h-16 items-center justify-between gap-6">
-          <Link to="/" className="shrink-0 text-[15px] font-semibold tracking-[-0.01em] text-ink">
-            {site.name}
-            <span className="hidden font-normal text-faint sm:inline"> / {site.tagline}</span>
+        <div className="flex h-[72px] items-center justify-between gap-6">
+          <Link
+            to="/"
+            className="shrink-0 font-mono text-[14px] font-bold text-ink uppercase"
+          >
+            Pranav<span className="text-accent">_</span>Gujar
+            <span className="hidden text-faint sm:inline"> / {site.tagline}</span>
           </Link>
 
-          <nav aria-label="Sections" className="hidden md:block">
-            <ul className="flex items-center gap-7">
+          <nav aria-label="Sections" className="hidden lg:block">
+            <ul className="flex items-center gap-8">
               {site.nav.map((item) => (
                 <li key={item.id}>
                   <SectionLink
@@ -55,7 +58,7 @@ export function SiteHeader() {
             </ul>
           </nav>
 
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-3">
             <ThemeToggle />
             {/* Wrapped rather than given a `hidden` class: ButtonLink already
                 sets inline-flex, and two display utilities on one element are
@@ -64,8 +67,8 @@ export function SiteHeader() {
               <ButtonLink
                 href={withBase(site.resume.href)}
                 external
-                variant="solid"
-                className="px-3.5 py-2"
+                variant="outline"
+                className="px-5 py-3"
               >
                 Resume
               </ButtonLink>
@@ -75,7 +78,7 @@ export function SiteHeader() {
               onClick={() => setMenuOpen((open) => !open)}
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
-              className="grid size-9 place-items-center rounded-lg border border-line text-muted md:hidden"
+              className="grid size-10 place-items-center border border-line text-muted lg:hidden"
             >
               {menuOpen ? <Close className="size-4" /> : <Menu className="size-4" />}
             </button>
@@ -84,24 +87,24 @@ export function SiteHeader() {
       </Container>
 
       {menuOpen && (
-        <nav aria-label="Sections" className="border-t border-line bg-surface md:hidden">
+        <nav aria-label="Sections" className="border-t border-line bg-surface lg:hidden">
           <Container>
-            <ul className="flex flex-col py-2">
+            <ul className="flex flex-col py-3">
               {site.nav.map((item) => (
-                <li key={item.id} className="border-b border-line/60 last:border-b-0">
+                <li key={item.id} className="border-b border-line last:border-b-0">
                   <SectionLink
                     id={item.id}
                     label={item.label}
                     isHome={isHome}
                     isActive={false}
-                    className="block py-3 text-[15px]"
+                    className="block py-4"
                     onNavigate={() => setMenuOpen(false)}
                   />
                 </li>
               ))}
               {/* The header Resume button is hidden on phones, so the sheet
                   carries it — otherwise the resume is unreachable on mobile. */}
-              <li className="pt-3 pb-1">
+              <li className="pt-5 pb-2">
                 <ButtonLink href={withBase(site.resume.href)} external variant="solid">
                   {site.resume.label}
                 </ButtonLink>
@@ -135,8 +138,8 @@ function SectionLink({
   onNavigate?: () => void
 }) {
   const styles = cn(
-    'text-[14.5px] transition-colors duration-150 hover:text-ink',
-    isActive ? 'text-ink' : 'text-muted',
+    'font-mono text-[12.5px] tracking-[0.12em] uppercase transition-colors duration-200 hover:text-accent',
+    isActive ? 'text-accent' : 'text-muted',
     className,
   )
 

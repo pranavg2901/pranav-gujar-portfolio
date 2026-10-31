@@ -5,29 +5,27 @@
 
 @layer base {
   html {
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 5.5rem;
   }
 
   body {
     background-color: var(--surface);
     color: var(--ink);
     font-family: var(--font-sans);
-    font-size: 1rem;
-    line-height: 1.55;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
 
   ::selection {
-    background-color: var(--accent-wash);
-    color: var(--ink);
+    background-color: var(--accent-bright);
+    color: #0a0a0a;
   }
 
   :focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
+    outline: 2px solid var(--accent-bright);
+    outline-offset: 3px;
   }
 
-  /* Honour the OS setting — every entrance animation checks this too. */
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -41,28 +39,50 @@
   }
 }
 
-@utility eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  color: var(--accent);
-}
-
-/* Entrance transition driven by components/ui/Reveal.tsx. Gated on html.js so
-   content is never hidden when scripting is unavailable. The travel is larger
-   than a typical fade (22px) because at this type scale a small move reads as
-   a rendering glitch rather than an intentional entrance. */
 @layer components {
+  /* The blueprint grid behind the hero. Masked so it fades out rather than
+     stopping at a hard edge, which is what keeps it feeling like depth
+     instead of a texture tile. */
+  .grid-field {
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 85% 70% at 25% 0%, #000 0%, transparent 100%);
+  }
+
+  /* A soft accent bloom.
+     Built from a multi-stop radial gradient rather than `filter: blur()`.
+     A large blur filter has to be re-rasterised whenever anything on the page
+     paints — with the marquee animating, that was every frame, and it was
+     enough to pin the renderer. The gradient is free and looks the same. */
+  .bloom {
+    background: radial-gradient(
+      circle closest-side,
+      var(--accent-wash) 0%,
+      color-mix(in srgb, var(--accent-wash) 55%, transparent) 38%,
+      color-mix(in srgb, var(--accent-wash) 20%, transparent) 62%,
+      transparent 100%
+    );
+  }
+
+  /* Outlined display type, used for the secondary half of the hero headline. */
+  .stroke-type {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--line-strong);
+  }
+
+  /* Entrance transition, driven by components/ui/Reveal.tsx. Gated on html.js
+     so content is never hidden when scripting is unavailable. */
   .reveal {
     transition:
-      opacity 0.62s cubic-bezier(0.22, 0.61, 0.36, 1),
-      translate 0.62s cubic-bezier(0.22, 0.61, 0.36, 1);
+      opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+      translate 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
   }
 
   .js .reveal[data-reveal='pending'] {
     opacity: 0;
-    translate: 0 22px;
+    translate: 0 20px;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -71,30 +91,34 @@
       translate: none;
     }
   }
+
+  /* The tech strip under the hero. Duplicated content in the markup is what
+     makes the loop seamless; the animation only ever moves one copy's width. */
+  .marquee-track {
+    animation: marquee 38s linear infinite;
+    /* Keeps the strip on its own compositor layer, so it never repaints the
+       sections around it. */
+    will-change: transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+  }
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
 }
 
-@layer components {
-  /* The organic portrait mask. Two radii sets (horizontal / vertical) are what
-     make it read as a drawn shape rather than a squashed ellipse. */
-  .blob {
-    border-radius: 56% 44% 47% 53% / 42% 39% 61% 58%;
-  }
-
-  /* A rule either side of a centred label, as in the footer eyebrow. */
-  .rule-both::before,
-  .rule-both::after {
-    content: '';
-    display: inline-block;
-    width: 2.5rem;
-    height: 1px;
-    vertical-align: middle;
-    background-color: currentColor;
-    opacity: 0.45;
-  }
-  .rule-both::before {
-    margin-right: 1rem;
-  }
-  .rule-both::after {
-    margin-left: 1rem;
-  }
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
 }

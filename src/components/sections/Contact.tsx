@@ -6,45 +6,69 @@ import { site } from '@/content/site'
 
 export function Contact() {
   return (
-    <section id="contact" className="border-t border-line pt-16 md:pt-20">
-      <div className="grid gap-10 md:grid-cols-2 md:gap-14">
-        <div>
-          <SectionHeading
-            eyebrow="Contact"
-            title="Get in touch"
-            note="Open to backend engineering and applied AI roles, and happy to talk about anything in the projects above."
-          />
+    <section id="contact" className="py-20 md:py-28">
+      <SectionHeading
+        index="05"
+        eyebrow="Contact"
+        title="Get in touch"
+        note="Open to backend engineering and applied AI roles, and happy to talk about anything in the projects above."
+      />
 
-          <ul className="flex flex-col gap-2.5 text-[15px]">
-            <li>
-              <a
-                href={`mailto:${site.email}`}
-                className="font-medium text-accent hover:underline"
-              >
-                {site.email}
-              </a>
-            </li>
-            {site.social.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="font-medium text-accent hover:underline"
-                >
-                  {link.href.replace(/^https?:\/\//, '')}
-                </a>
-              </li>
-            ))}
-            <li className="text-faint">{site.location}</li>
-          </ul>
-        </div>
-
+      <div className="grid gap-12 border-t border-line pt-12 lg:grid-cols-2 lg:gap-20">
         <Reveal>
+          <dl className="flex flex-col">
+            <Row label="Email" value={site.email} href={`mailto:${site.email}`} />
+            {site.social.map((link) => (
+              <Row
+                key={link.href}
+                label={link.label}
+                value={link.href.replace(/^https?:\/\//, '')}
+                href={link.href}
+                external
+              />
+            ))}
+            <Row label="Location" value={site.location} />
+          </dl>
+        </Reveal>
+
+        <Reveal delay={60}>
           <ContactForm />
         </Reveal>
       </div>
     </section>
+  )
+}
+
+function Row({
+  label,
+  value,
+  href,
+  external = false,
+}: {
+  label: string
+  value: string
+  href?: string
+  external?: boolean
+}) {
+  return (
+    <div className="flex flex-wrap items-baseline gap-x-6 gap-y-1 border-b border-line py-5">
+      <dt className="w-24 shrink-0 font-mono text-[11px] tracking-[0.16em] text-faint uppercase">
+        {label}
+      </dt>
+      <dd className="text-[16px]">
+        {href ? (
+          <a
+            href={href}
+            {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}
+            className="text-accent hover:underline"
+          >
+            {value}
+          </a>
+        ) : (
+          <span className="text-muted">{value}</span>
+        )}
+      </dd>
+    </div>
   )
 }
 
@@ -53,7 +77,7 @@ function ContactForm() {
   const busy = status === 'submitting'
 
   return (
-    <form onSubmit={submit} className="flex flex-col gap-3.5">
+    <form onSubmit={submit} className="flex flex-col gap-5">
       <Field
         id="contact-name"
         label="Name"
@@ -78,12 +102,12 @@ function ContactForm() {
         multiline
       />
 
-      <div className="flex flex-wrap items-center gap-3">
+      <div className="flex flex-wrap items-center gap-5">
         <Button type="submit" disabled={busy} className="disabled:opacity-60">
-          {busy ? 'Sending…' : 'Send message'}
+          {busy ? 'Sending' : 'Send message'}
         </Button>
 
-        <p aria-live="polite" className="text-[13.5px]">
+        <p aria-live="polite" className="font-mono text-[12px] tracking-[0.08em]">
           {status === 'sent' && <span className="text-accent">Sent — I will reply shortly.</span>}
           {status === 'handoff' && (
             <span className="text-muted">Opening your email app with the message ready.</span>
@@ -123,16 +147,19 @@ function Field({
     onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
       onChange(event.target.value),
     className:
-      'rounded-lg border border-line bg-raised px-3 py-2.5 text-[14.5px] text-ink placeholder:text-faint/70 focus:border-accent focus:outline-none',
+      'border border-line bg-transparent px-4 py-3.5 text-[15px] text-ink placeholder:text-faint/60 focus:border-accent-bright focus:outline-none',
   }
 
   return (
-    <div className="flex flex-col gap-1.5">
-      <label htmlFor={id} className="text-[12.5px] text-faint">
+    <div className="flex flex-col gap-2">
+      <label
+        htmlFor={id}
+        className="font-mono text-[11px] tracking-[0.16em] text-faint uppercase"
+      >
         {label}
       </label>
       {multiline ? (
-        <textarea {...shared} rows={4} className={`${shared.className} min-h-22 resize-y`} />
+        <textarea {...shared} rows={4} className={`${shared.className} min-h-28 resize-y`} />
       ) : (
         <input {...shared} type={type} autoComplete={type === 'email' ? 'email' : 'name'} />
       )}

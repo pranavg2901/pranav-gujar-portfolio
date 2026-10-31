@@ -2,20 +2,19 @@ import type { ButtonHTMLAttributes, AnchorHTMLAttributes, ReactNode } from 'reac
 import { ArrowUpRight } from '@/components/ui/Icon'
 import { cn } from '@/lib/cn'
 
-/**
- * `solid` and `outline` sit on the page; `clay` and `on-dark` sit on the dark
- * panels, where the page tokens would invert with the theme and break.
- */
-type Variant = 'solid' | 'outline' | 'clay' | 'on-dark'
+type Variant = 'solid' | 'outline' | 'ghost'
 
+/**
+ * Square, monospace, uppercase. Buttons sit flush against each other in a row
+ * rather than being spaced, which is where the control-panel feel comes from.
+ */
 const base =
-  'inline-flex items-center justify-center gap-2 rounded-full border px-6 py-3 text-[15px] font-medium transition-colors duration-200'
+  'inline-flex items-center justify-center gap-2 border px-7 py-4 font-mono text-[12.5px] font-semibold tracking-[0.1em] uppercase transition-colors duration-200'
 
 const variants: Record<Variant, string> = {
-  solid: 'border-transparent bg-ink text-surface hover:bg-ink/88',
-  outline: 'border-line-strong bg-transparent text-ink hover:border-ink',
-  clay: 'border-transparent bg-accent-soft text-[#1b1610] hover:bg-accent-soft/88',
-  'on-dark': 'border-panel-muted/45 bg-transparent text-panel-ink hover:border-panel-ink',
+  solid: 'border-accent-bright bg-accent-bright text-on-accent hover:bg-transparent hover:text-accent',
+  outline: 'border-line-strong text-ink hover:border-accent-bright hover:text-accent',
+  ghost: 'border-transparent px-0 text-muted hover:text-accent',
 }
 
 type Shared = { children: ReactNode; variant?: Variant; className?: string }
@@ -49,27 +48,7 @@ export function ButtonLink({
       {...props}
     >
       {children}
-      {external && <ArrowUpRight className="size-4 opacity-70" />}
+      {external && <ArrowUpRight className="size-3.5" />}
     </a>
-  )
-}
-
-/**
- * The circular arrow that sits on every project card. Borrowed straight from
- * the reference design, where it is the single element that makes a card read
- * as clickable without a label.
- */
-export function ArrowButton({ className }: { className?: string }) {
-  return (
-    <span
-      aria-hidden
-      className={cn(
-        'grid size-12 shrink-0 place-items-center rounded-full bg-accent-soft text-[#1b1610]',
-        'transition-transform duration-300 group-hover:rotate-45',
-        className,
-      )}
-    >
-      <ArrowUpRight className="size-5" />
-    </span>
   )
 }

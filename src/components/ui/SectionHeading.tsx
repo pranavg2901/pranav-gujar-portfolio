@@ -3,43 +3,42 @@ import { cn } from '@/lib/cn'
 import { Reveal } from '@/components/ui/Reveal'
 
 /**
- * The repeating masthead: a clay mono eyebrow, a large title, and an optional
- * line framing what follows. The eyebrow carries the only colour, which keeps
- * section starts legible without rules or boxes.
+ * The repeating masthead: an accent rule and mono label, then an oversized
+ * uppercase title. The rule is what marks a new section without needing a
+ * divider across the whole page.
  */
 export function SectionHeading({
+  index,
   eyebrow,
   title,
   note,
   align = 'left',
-  tone = 'page',
 }: {
+  /** Two-digit section number, e.g. "01". Part of the blueprint language. */
+  index?: string
   eyebrow: string
   title: ReactNode
   note?: ReactNode
   align?: 'left' | 'center'
-  tone?: 'page' | 'dark'
 }) {
   const centred = align === 'center'
 
   return (
     <Reveal>
-      <header className={cn('mb-12', centred && 'text-center')}>
-        <p className={cn('eyebrow mb-5 uppercase', centred && 'rule-both')}>{eyebrow}</p>
-        <h2
-          className={cn(
-            'text-display font-semibold',
-            tone === 'dark' ? 'text-panel-ink' : 'text-ink',
-          )}
-        >
-          {title}
-        </h2>
+      <header className={cn('mb-14', centred && 'text-center')}>
+        <p className={cn('eyebrow flex items-center gap-4', centred && 'justify-center')}>
+          {index && <span className="text-faint">{index}</span>}
+          <span aria-hidden className="h-px w-11 bg-accent" />
+          {eyebrow}
+        </p>
+
+        <h2 className="mt-6 text-display font-extrabold uppercase text-ink">{title}</h2>
+
         {note && (
           <p
             className={cn(
-              'mt-5 max-w-[56ch] text-[17px] leading-relaxed',
+              'mt-5 max-w-[56ch] text-[16.5px] leading-relaxed text-muted',
               centred && 'mx-auto',
-              tone === 'dark' ? 'text-panel-muted' : 'text-muted',
             )}
           >
             {note}

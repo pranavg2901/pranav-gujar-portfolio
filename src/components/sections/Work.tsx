@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import { ArrowUpRight } from '@/components/ui/Icon'
-import { ArrowButton } from '@/components/ui/Button'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { Reveal } from '@/components/ui/Reveal'
+import { Tag } from '@/components/ui/Tag'
 import { projects } from '@/content/projects'
 import { emphasise } from '@/lib/emphasis'
 import { withBase } from '@/lib/paths'
@@ -12,15 +12,16 @@ export function Work() {
   return (
     <section id="work" className="py-20 md:py-28">
       <SectionHeading
+        index="01"
         eyebrow="Selected work"
         title="Projects"
         note="Three systems where the hard part was a constraint rather than a feature."
       />
 
-      <div className="flex flex-col gap-6">
+      <div className="border-t border-line">
         {projects.map((project, index) => (
-          <Reveal key={project.slug} delay={index * 70}>
-            <ProjectCard project={project} />
+          <Reveal key={project.slug} delay={index * 60}>
+            <ProjectCard project={project} index={index + 1} />
           </Reveal>
         ))}
       </div>
@@ -29,28 +30,28 @@ export function Work() {
 }
 
 /**
- * A dark panel per project. The whole card is the case-study link via a
- * stretched overlay, which keeps the outbound links clickable — nesting them
- * inside a wrapping anchor would be invalid markup.
+ * The whole card is the case-study link via a stretched overlay, which keeps
+ * the outbound links clickable — nesting them inside a wrapping anchor would
+ * be invalid markup.
  *
- * When a project gains an `image`, it becomes the card background behind a
- * scrim and nothing else about the card changes.
+ * When a project gains an `image` it becomes the card background behind a
+ * scrim, and nothing else about the card changes.
  */
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project, index }: { project: Project; index: number }) {
   const emphasisTag = project.tags.find((tag) => tag.emphasis)
   const restTags = project.tags.filter((tag) => !tag.emphasis)
 
   return (
-    <article className="group relative isolate overflow-hidden rounded-[28px] bg-panel">
+    <article className="group relative isolate border-b border-line transition-colors duration-300 hover:bg-raised">
       {project.image && (
         <>
           <img
             src={withBase(project.image.src)}
             alt=""
             loading="lazy"
-            className="absolute inset-0 -z-10 size-full object-cover opacity-45 transition-transform duration-700 group-hover:scale-105"
+            className="absolute inset-0 -z-10 size-full object-cover opacity-20 transition-opacity duration-500 group-hover:opacity-30"
           />
-          <div aria-hidden className="absolute inset-0 -z-10 bg-panel/75" />
+          <div aria-hidden className="absolute inset-0 -z-10 bg-surface/80" />
         </>
       )}
 
@@ -62,78 +63,73 @@ function ProjectCard({ project }: { project: Project }) {
         />
       )}
 
-      <div className="p-7 sm:p-10">
-        <div className="flex items-start justify-between gap-6">
-          <div>
-            {emphasisTag && (
-              <span className="inline-block rounded-full bg-accent-soft/15 px-3.5 py-1.5 text-[12px] font-medium tracking-wide text-accent-soft">
-                {emphasisTag.label}
-              </span>
+      <div className="grid gap-8 py-10 lg:grid-cols-[1fr_1.15fr] lg:gap-16 lg:py-14">
+        <div>
+          <div className="flex items-start justify-between gap-6">
+            <span className="font-mono text-[11.5px] tracking-[0.16em] text-faint">
+              {String(index).padStart(2, '0')} / {project.year}
+            </span>
+            {project.study && (
+              <ArrowUpRight className="size-6 shrink-0 text-faint transition-colors duration-300 group-hover:text-accent lg:hidden" />
             )}
-            <h3 className="mt-5 text-[clamp(1.75rem,3.2vw,2.75rem)] leading-none font-semibold tracking-[-0.03em] text-panel-ink">
-              {project.name}
-            </h3>
           </div>
 
-          <div className="flex shrink-0 flex-col items-end gap-5">
-            <span className="font-mono text-[12.5px] text-panel-faint">{project.year}</span>
-            {project.study && <ArrowButton />}
+          {emphasisTag && (
+            <p className="mt-7 font-mono text-[11.5px] font-semibold tracking-[0.14em] text-accent uppercase">
+              {emphasisTag.label}
+            </p>
+          )}
+
+          <h3 className="mt-3 text-[clamp(2rem,4.4vw,3.25rem)] leading-[0.95] font-extrabold tracking-[-0.045em] text-ink uppercase">
+            {project.name}
+          </h3>
+
+          <p className="mt-5 max-w-[44ch] text-[15.5px] leading-relaxed text-muted">
+            {project.summary}
+          </p>
+
+          <div className="mt-7 flex flex-wrap gap-2">
+            {restTags.map((tag) => (
+              <Tag key={tag.label} label={tag.label} />
+            ))}
           </div>
         </div>
 
-        <p className="mt-5 max-w-[62ch] text-[16px] leading-relaxed text-panel-muted">
-          {project.summary}
-        </p>
-
-        <ul className="mt-7 grid gap-3 md:grid-cols-2 md:gap-x-10">
-          {project.highlights.map((item) => (
-            <li
-              key={item}
-              className="relative pl-5 text-[14.5px] leading-relaxed text-panel-muted"
-            >
-              <span
-                aria-hidden
-                className="absolute top-[0.6em] left-0 size-1.5 rounded-full bg-accent-soft"
-              />
-              <Emphasised text={item} />
-            </li>
-          ))}
-        </ul>
-
-        <footer className="mt-9 flex flex-wrap items-center justify-between gap-4 border-t border-panel-line pt-6">
-          <div className="flex flex-wrap gap-2">
-            {restTags.map((tag) => (
-              <span
-                key={tag.label}
-                className="rounded-full border border-panel-line px-3 py-1.5 text-[12px] text-panel-muted"
-              >
-                {tag.label}
-              </span>
-            ))}
+        <div className="flex flex-col">
+          <div className="mb-5 hidden justify-end lg:flex">
+            {project.study && (
+              <ArrowUpRight className="size-7 text-faint transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-accent" />
+            )}
           </div>
 
+          <ul className="flex flex-col gap-4">
+            {project.highlights.map((item) => (
+              <li
+                key={item}
+                className="border-l border-line pl-5 text-[14.5px] leading-relaxed text-muted transition-colors duration-300 group-hover:border-accent-bright/40"
+              >
+                <span className="[&_strong]:text-ink">{emphasise(item)}</span>
+              </li>
+            ))}
+          </ul>
+
           {project.links.length > 0 && (
-            <div className="relative z-20 flex flex-wrap gap-5 text-[14px] font-medium">
+            <div className="relative z-20 mt-8 flex flex-wrap gap-6">
               {project.links.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   {...(link.external ? { target: '_blank', rel: 'noreferrer' } : {})}
-                  className="inline-flex items-center gap-1.5 text-accent-soft hover:underline"
+                  className="inline-flex items-center gap-2 font-mono text-[12px] font-semibold tracking-[0.12em] text-accent uppercase hover:underline"
                 >
                   {link.label}
-                  {link.external && <ArrowUpRight className="size-4" />}
+                  {link.external && <ArrowUpRight className="size-3.5" />}
                 </a>
               ))}
             </div>
           )}
-        </footer>
+        </div>
       </div>
     </article>
   )
-}
-
-/** Bullets use ** emphasis, which has to resolve to light ink on a dark card. */
-function Emphasised({ text }: { text: string }) {
-  return <span className="[&_strong]:text-panel-ink">{emphasise(text)}</span>
 }

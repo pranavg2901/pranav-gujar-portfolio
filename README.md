@@ -27,7 +27,8 @@ To update the site you edit a data file, not markup.
 | File                     | Holds                                                 |
 | ------------------------ | ----------------------------------------------------- |
 | `content/site.ts`        | Name, role, email, nav, social links, resume, SEO, form |
-| `content/intro.ts`       | The hero paragraph and the stack summary               |
+| `content/intro.ts`       | Hero headline, paragraph, stack summary, tech marquee  |
+| `content/about.ts`       | The about block beside the portrait                    |
 | `content/metrics.ts`     | The five numbers in the band under the hero            |
 | `content/projects.ts`    | Project cards **and** their full case studies          |
 | `content/experience.ts`  | Jobs and their bullets                                 |
@@ -41,8 +42,13 @@ Two conventions worth knowing:
 - A project only gets a `/projects/<slug>` page if it has a `study` key.
   Remove the key and the card loses its "Case study" link; nothing else changes.
 
-Colours, fonts and spacing tokens are in `src/styles/tokens.css` — light and
+Colours, fonts and the type scale are in `src/styles/tokens.css` — light and
 dark are the same file, so a palette change is one edit.
+
+Two accent tokens exist on purpose. `--accent-bright` is the signature lime and
+is only ever a fill behind dark text; `--accent` is the contrast-safe pair used
+for anything that is itself text. Using the bright one as a text colour fails
+contrast badly in light mode.
 
 ## Layout
 
@@ -54,8 +60,9 @@ src/
   types/           shapes for everything in content/
   components/
     layout/        header, footer, theme toggle, scroll restoration
-    sections/      hero, metrics, work, experience, skills, background, contact
-    ui/            container, button, tag, bullets, reveal, icons, screenshot
+    sections/      hero, metrics, work, about, experience, skills,
+                   background, contact
+    ui/            container, button, tag, reveal, icons, section heading
   hooks/           theme, active section, contact form, document title
   lib/             base-path helpers, class join, emphasis renderer
   pages/           home, case study, 404
@@ -104,7 +111,8 @@ roughly 40kB gzipped in the bundle, for a fade and seven glyphs.
 
 ## Outstanding
 
-- Project screenshots — the cards and case studies show a labelled placeholder
-  until real images land in `public/images/`.
+- Project screenshots. Add `image: { src, alt }` to a project in
+  `content/projects.ts` and it becomes the card background behind a scrim, and
+  the case-study sidebar image. No other change is needed.
 - Retrospectives for EIGENN and AlgoPy. AgentCV has one; the others are blank
   because only the person who built them can write that honestly.
