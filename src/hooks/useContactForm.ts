@@ -11,14 +11,20 @@ export type ContactFields = {
 
 const EMPTY: ContactFields = { name: '', email: '', message: '' }
 
+/** Give up rather than leave the button disabled forever on a hung request. */
+const TIMEOUT_MS = 15_000
+
 /**
  * Two paths, one form.
  *
  * With a Web3Forms access key the message posts straight to the inbox and the
- * visitor never leaves the page. Without one, the same values are handed to the
- * visitor's own mail client as a pre-filled draft. The second path is worse,
- * but it always works and it never silently swallows a message — which is the
- * usual fate of a static-site contact form wired to nothing.
+ * visitor never leaves the page. Without one, the same values are handed to
+ * the visitor's own mail client as a pre-filled draft. The second path is
+ * worse, but it always works and never silently swallows a message — which is
+ * the usual fate of a static-site form wired to nothing.
+ *
+ * Note that the key is inlined at build time, so the deployed site only has it
+ * if CI passes VITE_WEB3FORMS_KEY to the build. See .github/workflows.
  */
 export function useContactForm() {
   const [fields, setFields] = useState<ContactFields>(EMPTY)
@@ -34,6 +40,16 @@ export function useContactForm() {
     async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault()
 
+      // Honeypot: a field hidden from people but visible to naive bots. If it
+      // has anything in it, accept silently rather than telling the bot why.
+      const form = event.currentTarget
+      const trap = form.elements.namedItem('botcheck')
+      if (trap instanceof HTMLInputElement && trap.checked) {
+        setFields(EMPTY)
+        setStatus('sent')
+        return
+      }
+
       const { accessKey, endpoint } = site.contactForm
 
       if (!accessKey) {
@@ -47,10 +63,14 @@ export function useContactForm() {
       setStatus('submitting')
       setError(null)
 
+      const abort = new AbortController()
+      const timer = setTimeout(() => abort.abort(), TIMEOUT_MS)
+
       try {
         const response = await fetch(endpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          signal: abort.signal,
           body: JSON.stringify({
             access_key: accessKey,
             subject: `Portfolio enquiry from ${fields.name}`,
@@ -60,15 +80,28 @@ export function useContactForm() {
           }),
         })
 
-        if (!response.ok) throw new Error(`Request failed with ${response.status}`)
+        // Web3Forms answers 200 with {"success": false} for a rejected key or
+        // a blocked submission. Trusting response.ok alone would report
+        // success while the message was discarded — the one failure a contact
+        // form must never have.
+        const result = (await response.json().catch(() => null)) as {
+          success?: boolean
+          message?: string
+        } | null
+
+        if (!response.ok || result?.success !== true) {
+          throw new Error(result?.message ?? `Request failed with ${response.status}`)
+        }
 
         setFields(EMPTY)
         setStatus('sent')
       } catch {
         // Keep whatever they typed — losing a written message to a failed
-        // request is the one outcome worth engineering against.
-        setError(`Could not send that. Email me directly at ${site.email}.`)
+        // request is the other outcome worth engineering against.
+        setError(`Could not send that. Please email me directly at ${site.email}.`)
         setStatus('error')
+      } finally {
+        clearTimeout(timer)
       }
     },
     [fields],

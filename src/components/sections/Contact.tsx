@@ -78,6 +78,17 @@ function ContactForm() {
 
   return (
     <form onSubmit={submit} className="flex flex-col gap-5">
+      {/* Honeypot. Hidden from people and from assistive tech, but a naive
+          bot fills every field it finds. Checked in useContactForm. */}
+      <input
+        type="checkbox"
+        name="botcheck"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden
+        className="sr-only"
+      />
+
       <Field
         id="contact-name"
         label="Name"

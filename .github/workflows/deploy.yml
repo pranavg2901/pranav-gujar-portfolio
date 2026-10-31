@@ -25,6 +25,13 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+        env:
+          # Vite inlines VITE_* at build time, so without this the deployed
+          # site has no key and the form quietly falls back to a mailto draft.
+          # Public by design: a Web3Forms key can only deliver to the one
+          # inbox it was issued for. Repo variable, not a secret, so the build
+          # log stays readable.
+          VITE_WEB3FORMS_KEY: ${{ vars.WEB3FORMS_KEY }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
