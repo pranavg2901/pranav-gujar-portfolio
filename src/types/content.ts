@@ -30,6 +30,8 @@ export type Role = {
    */
   product?: {
     name: string
+    /** One line on what it does, so the name is not left unexplained. */
+    description: string
     href?: string
     image?: { src: string; alt: string }
   }

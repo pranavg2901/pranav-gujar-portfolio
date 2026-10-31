@@ -19,6 +19,8 @@ export const experience: Role[] = [
     ],
     product: {
       name: 'Sutram',
+      description:
+        'Tender discovery and bid management for government contracts — finding matching tenders, reading their documents, and running the work through to payment.',
       href: 'https://sutram.blueportsolutions.in/',
     },
   },

@@ -24,8 +24,18 @@ export function Skills() {
               <dt className="font-mono text-[11px] tracking-[0.18em] text-accent uppercase">
                 {group.label}
               </dt>
-              <dd className="mt-3 text-[15.5px] leading-relaxed text-muted">
-                {group.items.join('  ·  ')}
+              {/* Chips rather than a comma-separated string: at a glance a
+                  reader can count what is there, and it matches the tag
+                  language used on the project cards. */}
+              <dd className="mt-4 flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <span
+                    key={item}
+                    className="border border-line px-3 py-2 font-mono text-[11.5px] leading-none text-muted transition-colors hover:border-accent-bright hover:text-ink"
+                  >
+                    {item}
+                  </span>
+                ))}
               </dd>
             </div>
           ))}

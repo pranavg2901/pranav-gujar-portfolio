@@ -3,7 +3,6 @@ import { SectionHeading } from '@/components/ui/SectionHeading'
 import { Reveal } from '@/components/ui/Reveal'
 import { experience } from '@/content/experience'
 import { emphasise } from '@/lib/emphasis'
-import { withBase } from '@/lib/paths'
 
 export function Experience() {
   return (
@@ -42,12 +41,12 @@ export function Experience() {
                 {/* The employer's product, shown inside the role rather than
                     as a project card — they own it, not me. */}
                 {role.product && (
-                  <div className="mt-8">
-                    <p className="font-mono text-[11px] tracking-[0.16em] text-faint uppercase">
-                      The product
+                  <div className="mt-9 border border-line p-6">
+                    <p className="font-mono text-[10.5px] tracking-[0.18em] text-accent uppercase">
+                      The product I work on
                     </p>
-                    <div className="mt-3 flex flex-wrap items-baseline gap-x-5 gap-y-1">
-                      <span className="text-[17px] font-semibold text-ink">
+                    <div className="mt-4 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+                      <span className="text-[21px] font-extrabold tracking-[-0.03em] text-ink uppercase">
                         {role.product.name}
                       </span>
                       {role.product.href && (
@@ -55,23 +54,16 @@ export function Experience() {
                           href={role.product.href}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center gap-1.5 font-mono text-[12px] font-semibold tracking-[0.12em] text-accent uppercase hover:underline"
+                          className="inline-flex items-center gap-1.5 font-mono text-[11.5px] font-semibold tracking-[0.12em] text-accent uppercase hover:underline"
                         >
-                          Visit
+                          Visit site
                           <ArrowUpRight className="size-3.5" />
                         </a>
                       )}
                     </div>
-                    {role.product.image && (
-                      <img
-                        src={withBase(role.product.image.src)}
-                        alt={role.product.image.alt}
-                        loading="lazy"
-                        width={1400}
-                        height={614}
-                        className="mt-5 aspect-16/7 w-full border border-line object-cover object-top"
-                      />
-                    )}
+                    <p className="mt-3 max-w-[60ch] text-[14.5px] leading-relaxed text-muted">
+                      {role.product.description}
+                    </p>
                   </div>
                 )}
               </div>

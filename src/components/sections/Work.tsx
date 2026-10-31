@@ -76,8 +76,8 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           </div>
         )}
 
-        <div className="grid gap-8 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
-        <div>
+        <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
+        <div className="flex flex-col">
           <div className="flex items-start justify-between gap-6">
             <span className="font-mono text-[11.5px] tracking-[0.16em] text-faint">
               {String(index).padStart(2, '0')} / {project.year}
@@ -101,7 +101,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             {project.summary}
           </p>
 
-          <div className="mt-7 flex flex-wrap gap-2">
+          <div className="mt-auto flex flex-wrap gap-2 pt-8">
             {restTags.map((tag) => (
               <Tag key={tag.label} label={tag.label} />
             ))}
@@ -127,7 +127,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           </ul>
 
           {project.links.length > 0 && (
-            <div className="relative z-20 mt-8 flex flex-wrap gap-6">
+            <div className="relative z-20 mt-auto flex flex-wrap gap-6 pt-8">
               {project.links.map((link) => (
                 <a
                   key={link.href}
