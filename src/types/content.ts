@@ -24,6 +24,15 @@ export type Role = {
   /** Free text so "Present" stays readable: "Aug 2025 — Present". */
   period: string
   highlights: string[]
+  /**
+   * The employer's product this role was spent on. Shown inside the
+   * experience entry, never as a project card — the company owns it.
+   */
+  product?: {
+    name: string
+    href?: string
+    image?: { src: string; alt: string }
+  }
 }
 
 export type Credential = {

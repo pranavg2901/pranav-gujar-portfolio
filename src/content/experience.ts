@@ -17,6 +17,11 @@ export const experience: Role[] = [
       'Shipped a RAG pipeline that ingests tender listings and surfaces only the matches inside each client’s domain.',
       'Run the VPS infrastructure on Coolify — SSL/TLS, versioned releases, centralised logging. Automating the release path removed about 20 minutes from every deploy.',
     ],
+    product: {
+      name: 'Sutram',
+      href: 'https://sutram.blueportsolutions.in/',
+      image: { src: 'images/sutram.jpg', alt: 'The Sutram product site' },
+    },
   },
   {
     company: 'Beginning Solutions',

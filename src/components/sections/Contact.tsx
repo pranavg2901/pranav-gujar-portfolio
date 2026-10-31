@@ -11,7 +11,7 @@ export function Contact() {
         index="05"
         eyebrow="Contact"
         title="Get in touch"
-        note="Open to backend engineering and applied AI roles, and happy to talk about anything in the projects above."
+        note="I am looking for a full-time backend engineering or applied AI role. The fastest way to reach me is email."
       />
 
       <div className="grid gap-12 border-t border-line pt-12 lg:grid-cols-2 lg:gap-20">

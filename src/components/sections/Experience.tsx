@@ -1,7 +1,9 @@
+import { ArrowUpRight } from '@/components/ui/Icon'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { Reveal } from '@/components/ui/Reveal'
 import { experience } from '@/content/experience'
 import { emphasise } from '@/lib/emphasis'
+import { withBase } from '@/lib/paths'
 
 export function Experience() {
   return (
@@ -36,6 +38,42 @@ export function Experience() {
                     </li>
                   ))}
                 </ul>
+
+                {/* The employer's product, shown inside the role rather than
+                    as a project card — they own it, not me. */}
+                {role.product && (
+                  <div className="mt-8">
+                    <p className="font-mono text-[11px] tracking-[0.16em] text-faint uppercase">
+                      The product
+                    </p>
+                    <div className="mt-3 flex flex-wrap items-baseline gap-x-5 gap-y-1">
+                      <span className="text-[17px] font-semibold text-ink">
+                        {role.product.name}
+                      </span>
+                      {role.product.href && (
+                        <a
+                          href={role.product.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-1.5 font-mono text-[12px] font-semibold tracking-[0.12em] text-accent uppercase hover:underline"
+                        >
+                          Visit
+                          <ArrowUpRight className="size-3.5" />
+                        </a>
+                      )}
+                    </div>
+                    {role.product.image && (
+                      <img
+                        src={withBase(role.product.image.src)}
+                        alt={role.product.image.alt}
+                        loading="lazy"
+                        width={1400}
+                        height={614}
+                        className="mt-5 aspect-16/7 w-full border border-line object-cover object-top"
+                      />
+                    )}
+                  </div>
+                )}
               </div>
             </article>
           </Reveal>

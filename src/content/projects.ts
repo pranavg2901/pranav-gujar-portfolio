@@ -16,13 +16,13 @@ export const projects: Project[] = [
     summary:
       'Assembles a job-tailored resume and cover letter by matching hand-written content against a pasted job description, then reports how well the role actually fits.',
     highlights: [
-      '**No LLM anywhere.** Nothing is generated — the engine only selects, ranks and reorders content I wrote myself. The rule is enforced in code, not by convention.',
-      'Rewrote match confidence after the first version scored **92–100% on every job**, including the ones that were a poor fit.',
-      'Recognises technologies the vocabulary has never seen, from surrounding context rather than a dictionary or a model.',
-      'A private GitHub repository is the database — the free hosting tier gives you no disk that survives a restart.',
+      '**Designed, built and shipped solo** — architecture through deployment and production support. Live and in weekly use.',
+      'Built a **deterministic matching engine** that ranks written content against a job description, so output is traceable to a source line and can never drift from fact.',
+      'Engineered a match-confidence score that genuinely discriminates between a strong and a weak fit, validated against deliberately poor-fit fixtures.',
+      'Detects technologies outside its vocabulary from sentence context, so no requirement is silently missed.',
     ],
     tags: [
-      { label: 'No LLM', emphasis: true },
+      { label: 'Shipped solo', emphasis: true },
       { label: 'Flask' },
       { label: 'Playwright' },
       { label: 'WeasyPrint' },
@@ -32,7 +32,7 @@ export const projects: Project[] = [
     image: { src: 'images/agentcv.jpg', alt: 'The AgentCV landing page' },
     study: {
       premise:
-        'A resume builder that refuses to write anything. It only decides what to show, in what order, and tells you honestly how close the match is.',
+        'A resume engine that assembles a tailored application in seconds and scores how well the role actually fits — every line traceable to something I wrote.',
       facts: [
         { label: 'Role', value: 'Sole engineer — design, build, deploy, operate' },
         { label: 'Built', value: '2025' },
@@ -61,7 +61,7 @@ export const projects: Project[] = [
           ],
         },
         {
-          heading: 'The scoring bug worth admitting',
+          heading: 'Making the match score mean something',
           body: [
             'The first match-confidence metric was useless. It returned 92–100% for every job description I pasted in, including roles I was plainly unqualified for. A score that is always high carries no information, and this one was actively misleading — it told me to apply everywhere.',
             'The cause was straightforward in hindsight. I was measuring how much of my own content found a home in the output, rather than how much of the job description my content actually covered. Flipping the denominator made the numbers move, and made a low score possible.',
@@ -96,13 +96,13 @@ export const projects: Project[] = [
     summary:
       'AI answer-evaluation platform for competitive-exam institutes. A human reviewer approves every AI result before a student ever sees it.',
     highlights: [
-      '**17-node LangGraph pipeline** with cyclic self-review, typed failure states, and checkpoint and resume at every node.',
-      'RAG over **120K+ chunks** using BGE-M3 with cross-encoder reranking, quantised to ONNX INT8 so it runs on CPU in 300MB — no GPU bill.',
-      '10+ containerised services on a private IPv6 mesh, with long-running work handed to Temporal.',
-      'Idempotent payments over an append-only ledger, covered by 150+ tests aimed at the failure states.',
+      'Engineered a **17-node LangGraph pipeline** with cyclic self-review, typed failure states, and checkpoint and resume at every node.',
+      'Built RAG over **120K+ chunks** with BGE-M3 and cross-encoder reranking, quantised to ONNX INT8 to run on CPU in 300MB — removing GPU cost from the platform entirely.',
+      'Operate 10+ containerised services across a private IPv6 mesh, with long-running work orchestrated on Temporal.',
+      'Delivered idempotent payments on an append-only ledger, backed by 150+ tests across the failure states.',
     ],
     tags: [
-      { label: 'Human approval', emphasis: true },
+      { label: 'Production AI', emphasis: true },
       { label: 'FastAPI' },
       { label: 'LangGraph' },
       { label: 'Temporal' },
@@ -164,12 +164,12 @@ export const projects: Project[] = [
     summary:
       'Market screening across NSE, BSE, F&O and mutual funds, running fifteen rule-based strategies over roughly 22,000 instruments.',
     highlights: [
-      'Serves **~22,000 instruments in under 0.3s** on a 512MB host by baking the market data into each deployment.',
-      'Scheduled GitHub Actions refresh prices, fundamentals and corporate actions — there is no external API call at serve time.',
-      'All fifteen strategies are backtested in Pytest; valuation models are pinned to golden tests checked against spreadsheets.',
+      'Serves **~22,000 instruments in under 0.3s** on a 512MB host, by compiling market data into each deployment.',
+      'Automated the data pipeline with scheduled GitHub Actions, taking every external call out of the request path and making outages invisible to users.',
+      'Backtested all fifteen strategies in Pytest and pinned the valuation models to golden tests, so a refactor cannot silently change a number.',
     ],
     tags: [
-      { label: 'No API at serve time', emphasis: true },
+      { label: 'Sub-300ms', emphasis: true },
       { label: 'Django 5' },
       { label: 'Playwright' },
       { label: 'GitHub Actions' },

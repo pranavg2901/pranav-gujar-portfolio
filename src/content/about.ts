@@ -14,7 +14,7 @@ export const about: {
 
   paragraphs: [
     'I am a software engineer in Pune working on backend systems and applied AI. Most of what I do is Python: HTTP APIs, data pipelines, background workers, and the retrieval and evaluation layers around language models.',
-    'The thread through my work is accountability. The evaluation platform I work on puts a human reviewer in front of every AI result before a student sees it. The resume tool I built for myself uses no language model at all, and enforces that rule in code — because knowing when not to reach for a model is as much of the job as wiring one in.',
+    'I work across the whole lifecycle: designing the schema, building the API, shipping the retrieval and evaluation layers around a model, and then keeping the result fast and correct under real traffic. Recent work includes a 17-node LangGraph evaluation pipeline, retrieval over 120,000+ chunks running on CPU, and an OCR pipeline that migrated five years of legacy records into PostgreSQL without losing a row.',
     'I also run what I ship. Deployments, SSL, logging, the 2am page — being on the hook for the thing in production is what taught me which shortcuts are affordable and which are not.',
   ],
 

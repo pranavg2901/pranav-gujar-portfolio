@@ -49,9 +49,9 @@ export const site = {
 
   /** The closing band above the footer links. */
   closing: {
-    eyebrow: 'Open to roles',
-    headline: 'Let’s build something',
-    note: 'Open to backend engineering and applied AI roles, and happy to talk through anything in the projects above.',
+    eyebrow: 'Open to opportunities',
+    headline: 'Let’s talk',
+    note: 'I am looking for a full-time backend engineering or applied AI role. If you are hiring, I would be glad to walk you through any of the work above.',
   },
 
   /**
