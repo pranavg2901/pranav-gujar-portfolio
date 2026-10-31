@@ -43,18 +43,6 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
   return (
     <article className="group relative isolate border-b border-line transition-colors duration-300 hover:bg-raised">
-      {project.image && (
-        <>
-          <img
-            src={withBase(project.image.src)}
-            alt=""
-            loading="lazy"
-            className="absolute inset-0 -z-10 size-full object-cover opacity-20 transition-opacity duration-500 group-hover:opacity-30"
-          />
-          <div aria-hidden className="absolute inset-0 -z-10 bg-surface/80" />
-        </>
-      )}
-
       {project.study && (
         <Link
           to={`/projects/${project.slug}`}
@@ -63,7 +51,32 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         />
       )}
 
-      <div className="grid gap-8 py-10 lg:grid-cols-[1fr_1.15fr] lg:gap-16 lg:py-14">
+      <div className="py-10 lg:py-14">
+        {/* The screenshot is shown, not used as wallpaper. Behind the text at
+            low opacity it muddied the copy and told the reader nothing; as a
+            framed panel it is the first thing they actually look at. */}
+        {project.image && (
+          <div className="relative mb-10">
+            <span
+              aria-hidden
+              className="absolute -top-2 -left-2 z-10 h-14 w-14 border-t-2 border-l-2 border-accent-bright"
+            />
+            <span
+              aria-hidden
+              className="absolute -right-2 -bottom-2 z-10 h-14 w-14 border-r-2 border-b-2 border-accent-bright"
+            />
+            <img
+              src={withBase(project.image.src)}
+              alt={project.image.alt}
+              loading="lazy"
+              width={1400}
+              height={614}
+              className="aspect-16/7 w-full border border-line object-cover object-top transition-transform duration-700 group-hover:scale-[1.015]"
+            />
+          </div>
+        )}
+
+        <div className="grid gap-8 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
         <div>
           <div className="flex items-start justify-between gap-6">
             <span className="font-mono text-[11.5px] tracking-[0.16em] text-faint">
@@ -128,6 +141,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               ))}
             </div>
           )}
+        </div>
         </div>
       </div>
     </article>
