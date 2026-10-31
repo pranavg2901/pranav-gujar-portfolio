@@ -18,7 +18,7 @@ export const site = {
     title: 'Pranav Gujar — Software Engineer',
     description:
       'I build production Python backends, data pipelines and AI workflows, and run them end to end.',
-    url: 'https://pranavg2901.github.io/pranav-gujar-portfolio/',
+    url: 'https://pranavg2901.github.io/',
   },
 
   /** Anchors in the one-page layout. Order here is the order in the header. */

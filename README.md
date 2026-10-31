@@ -3,7 +3,7 @@
 Personal portfolio — one scrolling page plus a case-study route per project.
 React, Vite and Tailwind, built to static files and served from GitHub Pages.
 
-Live: https://pranavg2901.github.io/pranav-gujar-portfolio/
+Live: https://pranavg2901.github.io
 
 ## Running it
 
@@ -97,9 +97,10 @@ first step with a billing error rather than anything to do with the build.
 
 Two things this setup gets right that are easy to miss:
 
-- GitHub Pages serves the site from `/pranav-gujar-portfolio/`, not `/`. The base
-  path is set once in `vite.config.ts` and read back everywhere through
-  `lib/paths.ts`, so nothing hardcodes it.
+- The repository is named `pranavg2901.github.io`, so Pages serves it from the
+  domain root. The base path is set once in `vite.config.ts` and read back
+  everywhere through `lib/paths.ts`, so moving to a host that serves from a
+  subpath is one environment variable (`SITE_BASE`).
 - Pages has no server-side rewrite, so reloading `/projects/agentcv` would 404.
   The build copies `index.html` to `404.html`, which Pages serves for unknown
   paths, and the router resolves the route from there.

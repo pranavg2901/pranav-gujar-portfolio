@@ -3,9 +3,11 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { fileURLToPath } from 'node:url'
 
-// GitHub Pages serves this repo from a subpath. Keep it in one place —
-// the router reads the same value back out of import.meta.env.BASE_URL.
-const base = process.env.SITE_BASE ?? '/pranav-gujar-portfolio/'
+// The repo is named <user>.github.io, so Pages serves it from the domain
+// root. Kept as one overridable value: a host that serves from a subpath
+// only needs SITE_BASE set, and the router reads the same value back out
+// of import.meta.env.BASE_URL.
+const base = process.env.SITE_BASE ?? '/'
 
 export default defineConfig({
   base,
