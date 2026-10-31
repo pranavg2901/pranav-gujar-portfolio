@@ -68,7 +68,7 @@ export function SiteHeader() {
                 href={withBase(site.resume.href)}
                 external
                 variant="outline"
-                className="px-5 py-3"
+                className="h-11 px-5 py-0"
               >
                 Resume
               </ButtonLink>
@@ -78,7 +78,7 @@ export function SiteHeader() {
               onClick={() => setMenuOpen((open) => !open)}
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
-              className="grid size-10 place-items-center border border-line text-muted lg:hidden"
+              className="grid h-11 w-11 shrink-0 place-items-center border border-line-strong text-muted lg:hidden"
             >
               {menuOpen ? <Close className="size-4" /> : <Menu className="size-4" />}
             </button>

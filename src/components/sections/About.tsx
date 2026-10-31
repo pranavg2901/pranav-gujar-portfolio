@@ -17,14 +17,14 @@ export function About() {
     <section id="about" className="py-20 md:py-28">
       <SectionHeading index="02" eyebrow={about.eyebrow} title={about.title} />
 
-      <div className="grid gap-12 lg:grid-cols-[260px_1fr] lg:gap-20">
+      <div className="grid gap-12 lg:grid-cols-[240px_1fr] lg:gap-20">
         <Reveal>
           <div className="relative w-44 lg:w-full">
             <span
               aria-hidden
-              className="absolute -top-2 -left-2 size-16 border-t-2 border-l-2 border-accent-bright"
+              className="absolute -top-2 -left-2 size-16 border-t-2 border-l-2 border-accent-bright lg:hidden"
             />
-            <picture>
+            <picture className="lg:hidden">
               <source srcSet={withBase(site.profileImage.webp)} type="image/webp" />
               <img
                 src={withBase(site.profileImage.jpg)}

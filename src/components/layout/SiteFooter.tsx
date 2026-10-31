@@ -17,7 +17,7 @@ export function SiteFooter() {
       <div aria-hidden className="grid-field absolute inset-0 -z-10 rotate-180" />
       <div
         aria-hidden
-        className="bloom absolute -bottom-72 left-1/2 -z-10 size-[620px] -translate-x-1/2 rounded-full"
+        className="bloom absolute -bottom-48 left-1/2 -z-10 size-[360px] -translate-x-1/2 rounded-full sm:-bottom-72 sm:size-[620px]"
       />
 
       <Container>

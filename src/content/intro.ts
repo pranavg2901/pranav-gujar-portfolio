@@ -3,7 +3,7 @@ import type { StackLine, TextRun } from '@/types/content'
 /** The hero. Plain statements of fact — no slogan, no pitch. */
 export const intro: {
   kicker: string
-  headline: { lead: string; accent: string; outline: string }
+  headline: { lead: string; accent: string }
   /** Read by screen readers in place of the three display fragments. */
   headlineLabel: string
   paragraph: TextRun[]
@@ -13,11 +13,12 @@ export const intro: {
   kicker: 'Pranav Gujar · Pune, India',
 
   /**
-   * Three fragments, three treatments: solid, accent, outlined. The split is
-   * what carries the headline at this size — a single block of 100px type is
-   * just loud.
+   * Two fragments, two treatments. Kept to two words so the headline is two
+   * clean lines at every width — a third fragment wrapped mid-phrase on
+   * phones and again on desktop once the portrait narrowed the column.
+   * The "2.5+" figure leads the metrics strip immediately below instead.
    */
-  headline: { lead: 'Software', accent: 'Engineer', outline: '/ 2.5 yrs' },
+  headline: { lead: 'Software', accent: 'Engineer' },
   headlineLabel: 'Pranav Gujar — Software Engineer, 2.5 years in production',
 
   paragraph: [

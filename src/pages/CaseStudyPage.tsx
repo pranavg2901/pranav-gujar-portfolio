@@ -28,7 +28,7 @@ export function CaseStudyPage() {
         <div aria-hidden className="grid-field absolute inset-0 -z-10" />
         <div
           aria-hidden
-          className="bloom absolute -top-64 -right-40 -z-10 size-[560px] rounded-full"
+          className="bloom absolute -top-40 -right-28 -z-10 size-[320px] rounded-full sm:-top-64 sm:-right-40 sm:size-[560px]"
         />
 
         <Container>
