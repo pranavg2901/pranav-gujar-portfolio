@@ -19,6 +19,20 @@ export function About() {
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SectionHeading index="02" eyebrow={about.eyebrow} title={about.title} />
 
+          {/* The heading alone left this column empty down the whole height of
+              the prose beside it. Three lines of hiring information fill it
+              without repeating the resume. */}
+          <dl className="mt-9 hidden border-t border-line lg:block">
+            {about.facts.map((fact) => (
+              <div key={fact.label} className="border-b border-line py-3.5">
+                <dt className="font-mono text-[10.5px] tracking-[0.16em] text-accent uppercase">
+                  {fact.label}
+                </dt>
+                <dd className="mt-1.5 text-[14.5px] leading-snug text-muted">{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
+
           {/* The hero carries the portrait from lg up, so it appears here only
               on the narrower layouts where the hero hides it. */}
           <div className="relative -mt-6 w-36 lg:hidden">

@@ -5,6 +5,12 @@ export type Link = {
   href: string
   /** Leaves the site — renders an external-link marker and rel="noreferrer". */
   external?: boolean
+  /**
+   * Shown on the case-study page but not on the project card. The card is a
+   * summary and two or three links on it start competing with each other;
+   * secondary places to find the project belong on the dedicated page.
+   */
+  studyOnly?: boolean
 }
 
 export type Metric = {

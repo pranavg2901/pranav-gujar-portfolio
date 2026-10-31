@@ -53,8 +53,11 @@ contrast badly in light mode.
 ## Layout
 
 ```
-public/            favicon, resume PDF, profile images
-scripts/           spa-fallback.mjs — writes dist/404.html after a build
+public/            favicon, social card, fonts, resume PDF, profile images
+scripts/           favicon.py     — favicon set, from one font glyph
+                   og-card.py     — the 1200x630 social card
+                   spa-fallback.mjs — writes dist/404.html after a build
+                   prerender.mjs  — a real page per case study, + sitemap
 src/
   content/         all copy and data (edit here)
   types/           shapes for everything in content/
@@ -102,12 +105,21 @@ Two things this setup gets right that are easy to miss:
   everywhere through `lib/paths.ts`, so moving to a host that serves from a
   subpath is one environment variable (`SITE_BASE`).
 - Pages has no server-side rewrite, so reloading `/projects/agentcv` would 404.
-  The build copies `index.html` to `404.html`, which Pages serves for unknown
-  paths, and the router resolves the route from there.
+  `scripts/prerender.mjs` writes a real `projects/<slug>/index.html` for every
+  case study, each carrying its own title, description and Open Graph tags, so
+  those routes answer 200 and preview correctly when shared. `404.html` is
+  still written as the fallback for any other unknown path.
+- The same script writes `sitemap.xml` and `robots.txt`, taking the domain
+  from the canonical link in the built `index.html` so it is not a second
+  place to keep the URL.
 
 ## Dependencies
 
 React, React DOM, React Router. That is the whole runtime list.
+
+Fonts are self-hosted from `public/fonts` (the two variable latin subsets,
+79KB together) rather than fetched from Google, which removes two DNS lookups
+and a render-blocking stylesheet from the critical path.
 
 Animations are an `IntersectionObserver` and a CSS transition
 (`components/ui/Reveal.tsx`); icons are drawn in `components/ui/Icon.tsx`. The
@@ -116,11 +128,11 @@ roughly 40kB gzipped in the bundle, for a fade and seven glyphs.
 
 ## Known limitation
 
-Deep links such as `/projects/agentcv` are served by `404.html` and resolved by
-the router, so they render correctly but respond with HTTP 404. GitHub Pages
-has no server-side rewrite, so this cannot be fixed there. It does not affect
-visitors; it only means crawlers may skip the case-study routes. Moving to a
-host with rewrites, or switching to a hash router, would return a true 200.
+The generated case-study pages carry correct metadata but an empty body — the
+content is still rendered by the app. Search engines run JavaScript, so they
+index it; a preview bot that does not will show the title and description and
+nothing else. Real server rendering would need an SSR build, which is more
+machinery than three pages justify.
 
 ## Outstanding
 

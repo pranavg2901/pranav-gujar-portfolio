@@ -6,9 +6,10 @@
   "description": "Personal portfolio of Pranav Gujar, software engineer.",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && node scripts/spa-fallback.mjs",
+    "build": "tsc -b && vite build && node scripts/spa-fallback.mjs && node scripts/prerender.mjs",
     "preview": "vite preview",
-    "typecheck": "tsc -b --noEmit"
+    "typecheck": "tsc -b --noEmit",
+    "favicon": "python scripts/favicon.py && python scripts/og-card.py"
   },
   "dependencies": {
     "react": "^19.3.1",

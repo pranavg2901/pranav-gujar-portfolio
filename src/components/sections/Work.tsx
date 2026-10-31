@@ -39,6 +39,10 @@ export function Work() {
  */
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const emphasisTag = project.tags.find((tag) => tag.emphasis)
+  // Secondary links (an app-store listing, a mirror) live on the case-study
+  // page only. On the card they compete with the live demo for the one click
+  // the card is asking for.
+  const cardLinks = project.links.filter((link) => !link.studyOnly)
   const restTags = project.tags.filter((tag) => !tag.emphasis)
 
   return (
@@ -136,9 +140,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             ))}
           </ul>
 
-          {project.links.length > 0 && (
+          {cardLinks.length > 0 && (
             <div className="relative z-20 mt-auto flex flex-wrap gap-6 pt-8">
-              {project.links.map((link) => (
+              {cardLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}

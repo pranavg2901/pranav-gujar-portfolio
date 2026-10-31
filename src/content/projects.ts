@@ -180,6 +180,12 @@ export const projects: Project[] = [
     ],
     links: [
       { label: 'Live demo', href: 'https://algo-trading-lq8e.onrender.com/', external: true },
+      {
+        label: 'Google Play',
+        href: 'https://play.google.com/store/apps/details?id=com.onrender.algo_trading_lq8e.twa',
+        external: true,
+        studyOnly: true,
+      },
     ],
     study: {
       premise:
@@ -190,6 +196,7 @@ export const projects: Project[] = [
         { label: 'Stack', value: 'Django 5, Playwright, GitHub Actions, Docker' },
         { label: 'Coverage', value: 'NSE, BSE, F&O, mutual funds — ~22,000 instruments' },
         { label: 'Budget', value: '512MB host' },
+        { label: 'Also on', value: 'Google Play (trusted web activity)' },
       ],
       sections: [
         {
