@@ -17,7 +17,7 @@ import type { Credential } from '@/types/content'
  */
 export function Background() {
   return (
-    <section id="background" className="pb-20 md:pb-28">
+    <section id="background" className="pb-14 md:pb-28">
       <div className="grid gap-12 md:grid-cols-2 md:gap-14">
         <Group title="Education" items={education} />
         <Group title="Certifications" items={certifications} />

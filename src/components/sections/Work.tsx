@@ -10,7 +10,7 @@ import type { Project } from '@/types/content'
 
 export function Work() {
   return (
-    <section id="work" className="py-20 md:py-28">
+    <section id="work" className="py-14 md:py-28">
       <SectionHeading
         index="01"
         eyebrow="Selected work"

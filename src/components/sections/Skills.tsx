@@ -8,7 +8,7 @@ import { skills } from '@/content/skills'
  */
 export function Skills() {
   return (
-    <section id="skills" className="py-20 md:py-28">
+    <section id="skills" className="py-14 md:py-28">
       <SectionHeading index="04" eyebrow="Stack" title="What I work with" />
 
       <Reveal>

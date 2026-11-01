@@ -19,7 +19,7 @@ import { cn } from '@/lib/cn'
  */
 export function About() {
   return (
-    <section id="about" className="py-16 md:py-24">
+    <section id="about" className="py-14 md:py-24">
       <div className="grid gap-10 lg:grid-cols-[minmax(0,21rem)_1fr] lg:gap-20">
         <div className="lg:self-start">
           <SectionHeading index="02" eyebrow={about.eyebrow} title={about.title} />

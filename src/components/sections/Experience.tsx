@@ -8,7 +8,7 @@ import { emphasise } from '@/lib/emphasis'
 
 export function Experience() {
   return (
-    <section id="experience" className="py-20 md:py-28">
+    <section id="experience" className="py-14 md:py-28">
       <SectionHeading index="03" eyebrow="Experience" title="Where I have worked" />
 
       <div className="border-t border-line">
@@ -56,28 +56,35 @@ export function Experience() {
                 {product && (
                   <Link
                     to={`/work/${product.slug}`}
-                    className="group mt-9 block border border-line p-6 transition-colors hover:border-accent-bright"
+                    className="group mt-9 block border border-line p-5 transition-colors hover:border-accent-bright sm:p-6"
                   >
                     <p className="font-mono text-[11px] tracking-[0.18em] text-accent uppercase">
                       The product I {role.period.includes('Present') ? 'work' : 'worked'} on
                     </p>
-                    <div className="mt-4 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-                      <span className="text-[21px] font-extrabold tracking-[-0.03em] text-ink uppercase transition-colors group-hover:text-accent">
-                        {product.name}
-                        {product.fullName && (
-                          <span className="ml-3 font-mono text-[11.5px] font-medium tracking-[0.14em] text-faint">
-                            {product.fullName}
-                          </span>
-                        )}
-                      </span>
-                      <span className="inline-flex items-center gap-1.5 font-mono text-[11.5px] font-semibold tracking-[0.12em] text-accent uppercase">
-                        View details
-                        <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
-                      </span>
-                    </div>
-                    <p className="mt-3 max-w-[60ch] text-[14.5px] leading-relaxed text-muted">
+
+                    {/* The name and the call to action shared a row, which on a
+                        phone broke into three ragged lines: the short name, the
+                        spelled-out name beside it, then the link dropped
+                        underneath and above the description it was supposed to
+                        follow. Stacked, the panel reads top to bottom — what it
+                        is, what it does, where to go. */}
+                    <p className="mt-4 text-[21px] leading-tight font-extrabold tracking-[-0.03em] text-ink uppercase transition-colors group-hover:text-accent">
+                      {product.name}
+                    </p>
+                    {product.fullName && (
+                      <p className="mt-1.5 font-mono text-[11.5px] font-medium tracking-[0.14em] text-faint">
+                        {product.fullName}
+                      </p>
+                    )}
+
+                    <p className="mt-4 max-w-[60ch] text-[14.5px] leading-relaxed text-muted">
                       {product.summary}
                     </p>
+
+                    <span className="mt-5 inline-flex items-center gap-1.5 font-mono text-[11.5px] font-semibold tracking-[0.12em] text-accent uppercase">
+                      View details
+                      <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
+                    </span>
                   </Link>
                 )}
               </div>

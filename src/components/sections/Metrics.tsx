@@ -24,7 +24,7 @@ export function Metrics() {
           read as one thick line, and the hero stack, the marquee and these
           figures — three separate things — collapsed into a single dense
           band with no way to tell where one ended. */}
-      <dl className="mt-12 grid border-b border-line sm:grid-cols-3 md:mt-16 lg:grid-cols-5">
+      <dl className="mt-8 grid border-b border-line sm:mt-12 sm:grid-cols-3 md:mt-16 lg:grid-cols-5">
         {metrics.map((metric) => (
           <div
             key={metric.caption}

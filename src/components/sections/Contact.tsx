@@ -9,7 +9,7 @@ import { site } from '@/content/site'
 
 export function Contact() {
   return (
-    <section id="contact" className="py-20 md:py-28">
+    <section id="contact" className="py-14 md:py-28">
       <SectionHeading
         index="05"
         eyebrow="Contact"
@@ -99,7 +99,11 @@ function Row({
   return (
     <div className="border-b border-line py-5 sm:pr-5 lg:border-r lg:px-6 lg:py-6 lg:first:pl-0 lg:last:border-r-0">
       <dt className="font-mono text-[11px] tracking-[0.16em] text-faint uppercase">{label}</dt>
-      <dd className="mt-2 flex items-start gap-2 text-[15px]">
+      {/* Centred, not top-aligned. The value's own padding — there to give the
+          link a touch-sized target — made its box taller than the icon, so
+          aligning to the top left the icon sitting above the text it belongs
+          to. */}
+      <dd className="mt-2 flex items-center gap-1.5 text-[15px]">
         <span className="min-w-0 break-words">
           {href ? (
             <a
