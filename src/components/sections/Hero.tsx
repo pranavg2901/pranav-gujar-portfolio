@@ -24,31 +24,25 @@ export function Hero() {
 
             {/* Two display fragments read as one name visually but as noise to
                 a screen reader, so the accessible name is supplied once. */}
-            {/* One line on a phone, two from 640px up.
-                
-                Stacked, a two-word name reads as two separate shouts rather
-                than as a name, and it cost a third of the first screen.
+            {/* Two lines at every width.
+            
+                One line on a phone was tried and reverted: fitting both words
+                across 350px caps the type at around 40px, which is not a
+                display size — the name ended up smaller than the paragraph
+                beneath it was long. Stacked, each word can run to 76px.
 
-                The break is the display mode of the two words — inline on a
-                phone, block above — rather than a <br>. A conditional <br>
-                broke hydration: the server serialises it as a void element
-                and the client re-renders around the whitespace beside it,
-                and React discarded the whole tree and drew it again. The
-                space lives inside the first word as a non-breaking space, so
-                there is no separate text node to disagree about.
-
-                The type is sized in vw below the breakpoint. It was tuned to
-                fill the measure exactly, which measured as "no overflow" and
-                looked like the name running into the edge of the phone —
-                a line needs air beside it, not a flush fit. It now takes
-                about five sixths of the column at every width down to
-                320px. */}
-            <h1 className="mt-6 text-[clamp(1.85rem,10.4vw,3rem)] leading-[0.95] font-extrabold tracking-[-0.045em] uppercase sm:text-hero sm:tracking-[inherit]">
+                That figure is measured rather than guessed. "Pranav" is
+                4.035em wide in this face at this tracking, so the size is set
+                in vw to hold the longer word at about 88% of the column,
+                from 320px upwards. An earlier version was tuned to fill the
+                column exactly, which measured as "no overflow" and looked
+                like the name running off the edge of the phone. */}
+            <h1 className="mt-6 text-[clamp(2.6rem,19.5vw,5rem)] leading-[0.92] font-extrabold tracking-[-0.045em] uppercase sm:text-hero sm:leading-[inherit] sm:tracking-[inherit]">
               <span className="sr-only">{intro.headlineLabel}</span>
-              <span aria-hidden className="inline text-ink sm:block">
-                {intro.headline.lead}&nbsp;
+              <span aria-hidden className="block text-ink">
+                {intro.headline.lead}
               </span>
-              <span aria-hidden className="inline text-accent sm:block">
+              <span aria-hidden className="block text-accent">
                 {intro.headline.accent}
               </span>
             </h1>
