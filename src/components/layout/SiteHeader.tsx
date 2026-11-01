@@ -28,7 +28,17 @@ export function SiteHeader() {
     }
 
     window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
+
+    // Lock the page behind the sheet. Without this the content scrolls under
+    // an open menu on a phone, which reads as the menu having come loose from
+    // the page rather than sitting on top of it.
+    const { overflow } = document.body.style
+    document.body.style.overflow = 'hidden'
+
+    return () => {
+      window.removeEventListener('keydown', onKeyDown)
+      document.body.style.overflow = overflow
+    }
   }, [menuOpen])
 
   return (
@@ -103,10 +113,17 @@ export function SiteHeader() {
                 </li>
               ))}
               {/* The header Resume button is hidden on phones, so the sheet
-                  carries it — otherwise the resume is unreachable on mobile. */}
+                  carries it — otherwise the resume is unreachable on mobile.
+                  The phone label, because this link downloads the file here
+                  rather than opening it in a viewer. */}
               <li className="pt-5 pb-2">
-                <ButtonLink href={withBase(site.resume.href)} external variant="solid">
-                  {site.resume.label}
+                <ButtonLink
+                  href={withBase(site.resume.href)}
+                  external
+                  variant="solid"
+                  className="w-full"
+                >
+                  {site.resume.mobileLabel}
                 </ButtonLink>
               </li>
             </ul>
