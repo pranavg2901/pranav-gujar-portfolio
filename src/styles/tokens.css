@@ -69,24 +69,32 @@
    retained for fills, where saturation is what makes a button read as a
    button. */
 .dark {
-  --surface: #121211;
-  --surface-raised: #191917;
-  --surface-sunken: #1a1a18;
+  --surface: #121216;
+  --surface-raised: #19191f;
+  --surface-sunken: #1a1a20;
 
-  --ink: #e8e6df;
-  --ink-strong: #f7f6f2;
-  --ink-muted: #9b998f;
-  --ink-faint: #74726a;
+  --ink: #e7e6ea;
+  --ink-strong: #f6f5f8;
+  --ink-muted: #9a99a3;
+  --ink-faint: #74737d;
 
-  /* Text accent is dimmed; the fill accent is not. */
-  --accent: #b9e04a;
-  --accent-bright: #c3f53c;
-  --accent-wash: rgba(185, 224, 74, 0.1);
-  --on-accent: #121211;
+  /* Violet, not lime.
+     
+     The lime is the light theme's colour and it earns its place there: on a
+     near-white page it reads as ink with a charge behind it. On charcoal the
+     same hue has nowhere to sit — it is lighter than the background by a
+     margin that makes it glow rather than mark. Violet is closer in value to
+     the surface, so it reads as a colour on the page instead of a light
+     shining through it, and it belongs to the applied-AI half of the work
+     rather than to the terminal half. */
+  --accent: #a78bfa;
+  --accent-bright: #b9a0ff;
+  --accent-wash: rgba(167, 139, 250, 0.12);
+  --on-accent: #14111f;
 
-  --line: #2a2a26;
-  --line-strong: #3a3a34;
-  --grid-line: rgba(185, 224, 74, 0.05);
+  --line: #2a2a2e;
+  --line-strong: #3a3a40;
+  --grid-line: rgba(167, 139, 250, 0.05);
 }
 
 @theme inline {
