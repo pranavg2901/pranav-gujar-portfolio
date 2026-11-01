@@ -20,7 +20,11 @@ export function About() {
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SectionHeading index="02" eyebrow={about.eyebrow} title={about.title} />
 
-          {/* Two across, not five down.
+          {/* Two across, not five down — and shown at every width.
+
+              These were lg-only, which meant the relocation and notice-period
+              answers simply did not exist on a phone. Most recruiters open a
+              portfolio on a phone.
               
               One per row turned the column into a long thin form — five
               labels, five rules, and more vertical space than the prose
@@ -28,7 +32,7 @@ export function About() {
               meant to sit against. Paired up they read as a block, and the
               last one spans rather than leaving an orphan in a column of its
               own. */}
-          <dl className="mt-9 hidden grid-cols-2 border-t border-line lg:grid">
+          <dl className="mt-9 grid grid-cols-2 border-t border-line">
             {about.facts.map((fact, index) => (
               <div
                 key={fact.label}

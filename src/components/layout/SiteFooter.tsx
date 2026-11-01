@@ -37,7 +37,10 @@ export function SiteFooter() {
           </p>
 
           {/* Equal halves, for the same reason as the hero pair. */}
-          <div className="mx-auto mt-10 grid w-full max-w-[29rem] grid-cols-2">
+          {/* Stacked on a phone: at half of 390px, "Download resume" wrapped
+              to two lines while "Email me" stayed on one, and the pair read as
+              a mistake. Side by side from 480px, where both fit. */}
+          <div className="mx-auto mt-10 grid w-full max-w-[29rem] grid-cols-1 min-[480px]:grid-cols-2">
             <ButtonLink href={`mailto:${site.email}`} variant="solid">
               Email me
             </ButtonLink>
