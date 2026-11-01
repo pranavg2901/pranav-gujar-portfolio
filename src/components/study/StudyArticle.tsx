@@ -160,12 +160,21 @@ export function StudyArticle({
             )}
           </div>
 
-          {/* Deliberately not sticky. The fact lists run six to eight rows and
-              most values wrap to two lines in this column — about 750px, which
-              is taller than a laptop viewport. A sticky element taller than the
-              space it sticks in has its bottom rows pinned off-screen for good,
-              so the last facts could never be read. */}
-          <aside className="lg:self-start">
+          {/* Not shown on a phone.
+          
+              Stacked below the article it became a second reading of the same
+              material: the stack, the period and the role are all stated in
+              the prose above it, and on a narrow screen a reader meets them
+              twice, the second time as a list of labels with no context.
+              Beside the text on a wide screen it is a reference panel the eye
+              checks; underneath it is just repetition.
+
+              Deliberately not sticky either. The lists run six to eight rows
+              and most values wrap to two lines in this column — about 750px,
+              taller than a laptop viewport. A sticky element taller than the
+              space it sticks in has its bottom rows pinned off-screen for
+              good, so the last facts could never be read. */}
+          <aside className="hidden lg:block lg:self-start">
             {image && (
               <img
                 src={withBase(image.src)}
