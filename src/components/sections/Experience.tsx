@@ -18,7 +18,13 @@ export function Experience() {
           return (
           <Reveal key={role.company} delay={index * 60}>
             <article className="grid gap-6 border-b border-line py-10 md:grid-cols-[260px_1fr] md:gap-16 md:py-12">
-              <div>
+              {/* Rides along with its own entry. The bullets and the product
+                  panel run long enough that the company name scrolls away
+                  before a reader is finished with it, leaving them reading
+                  about a job with no label on it. `self-start` is what makes
+                  this work in a grid — stretched to the row height, a sticky
+                  element has nothing to travel within. */}
+              <div className="md:sticky md:top-28 md:self-start">
                 <p className="font-mono text-[11.5px] tracking-[0.16em] text-accent uppercase">
                   {role.period}
                 </p>
