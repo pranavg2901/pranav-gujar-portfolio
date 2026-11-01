@@ -39,11 +39,14 @@ export function Experience() {
                 </ul>
 
                 {/* The employer's product, shown inside the role rather than
-                    as a project card — they own it, not me. */}
+                    as a project card — they own it, not me. The label follows
+                    the tense of the role: a finished job did not keep the
+                    present tense just because the panel was written for the
+                    current one. */}
                 {role.product && (
                   <div className="mt-9 border border-line p-6">
                     <p className="font-mono text-[10.5px] tracking-[0.18em] text-accent uppercase">
-                      The product I work on
+                      The product I {role.period.includes('Present') ? 'work' : 'worked'} on
                     </p>
                     <div className="mt-4 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
                       <span className="text-[21px] font-extrabold tracking-[-0.03em] text-ink uppercase">

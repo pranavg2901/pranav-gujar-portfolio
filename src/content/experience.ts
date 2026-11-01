@@ -34,6 +34,12 @@ export const experience: Role[] = [
       'Built REST APIs in Django REST Framework with JWT auth, wired up to Razorpay, OpenAI and Google APIs.',
       'Managed hosting for **10+ live applications** on Hostinger VPS and AWS EC2; faster queries cut page load times by 30%.',
       'Ran full Google Play release cycles — signing, staged rollouts, pre-release testing, and crash and ANR monitoring.',
+      'Migrated a production database off a legacy schema with Python written for the job, keeping every existing user record intact.',
     ],
+    product: {
+      name: 'DMFU — Daily Mess For U',
+      description:
+        'A mess-management app, shipped to the Google Play Store. I owned the whole lifecycle: the interface in Figma, the release itself, and the Ubuntu VPS it ran on — Apache, SSL automation, domain routing, and shell scripts for backups and self-healing health checks.',
+    },
   },
 ]
