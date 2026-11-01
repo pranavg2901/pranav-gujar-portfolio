@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/Button'
 import { Check, Copy, Spinner } from '@/components/ui/Icon'
 import { Reveal } from '@/components/ui/Reveal'
 import { SuccessDialog } from '@/components/ui/SuccessDialog'
+import { useToast } from '@/components/ui/Toast'
 import { useContactForm } from '@/hooks/useContactForm'
 import { site } from '@/content/site'
 
@@ -137,14 +138,15 @@ function Row({
 }
 
 /**
- * Copies a detail to the clipboard and says so.
- *
- * The confirmation is the icon itself turning into a tick for a moment,
- * rather than a toast: the feedback belongs where the finger just was, and
- * four of these firing toasts would be noise.
+ * Copies a detail to the clipboard and confirms it twice over: the icon
+ * becomes a tick where the finger just was, and a toast names what was
+ * copied. The tick alone left a doubt worth removing — on a phone the thumb
+ * covers the icon at the moment it changes, so the one piece of feedback was
+ * behind the hand that triggered it.
  */
 function CopyButton({ value, label }: { value: string; label: string }) {
   const [copied, setCopied] = useState(false)
+  const toast = useToast()
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
   const onCopy = async () => {
@@ -169,6 +171,7 @@ function CopyButton({ value, label }: { value: string; label: string }) {
     }
 
     setCopied(true)
+    toast(`${label} copied to the clipboard.`)
     clearTimeout(timer.current)
     timer.current = setTimeout(() => setCopied(false), 1600)
   }
