@@ -11,7 +11,12 @@ import { cn } from '@/lib/cn'
 export function Metrics() {
   return (
     <Reveal>
-      <dl className="grid grid-cols-2 border-b border-line sm:grid-cols-3 lg:grid-cols-5">
+      {/* Space above, because the marquee's bottom rule and this grid's top
+          rule otherwise sit against each other. Two hairlines a pixel apart
+          read as one thick line, and the hero stack, the marquee and these
+          figures — three separate things — collapsed into a single dense
+          band with no way to tell where one ended. */}
+      <dl className="mt-12 grid grid-cols-2 border-b border-line sm:grid-cols-3 md:mt-16 lg:grid-cols-5">
           {metrics.map((metric, index) => (
             <div
               key={metric.caption}

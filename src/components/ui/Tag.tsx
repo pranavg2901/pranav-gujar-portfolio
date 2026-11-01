@@ -1,8 +1,13 @@
 import { cn } from '@/lib/cn'
 
 /**
- * One tag per project is emphasised — the thing that makes it unusual, rather
- * than another framework name. That one gets the accent; the rest are outlined.
+ * One tag per project is emphasised. It names what the thing is — a resume
+ * engine, an evaluation platform, a market screener — and nothing else.
+ *
+ * It used to carry a verdict instead ("Shipped solo", "Honest backtests").
+ * That read as copy written to impress rather than to inform, and a reader
+ * who suspects the words are decoration stops trusting the numbers under
+ * them too. The accent is on the category; the rest of the tags are outlined.
  */
 export function Tag({ label, emphasis = false }: { label: string; emphasis?: boolean }) {
   return (

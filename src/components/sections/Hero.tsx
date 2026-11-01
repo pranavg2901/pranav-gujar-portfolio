@@ -117,7 +117,7 @@ export function Marquee() {
   const items = [...intro.marquee, ...intro.marquee]
 
   return (
-    <div className="overflow-hidden border-y border-line py-5">
+    <div className="overflow-hidden border-y border-line py-6">
       <ul className="marquee-track flex w-max items-center">
         {items.map((item, index) => (
           <li

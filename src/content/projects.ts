@@ -1,8 +1,14 @@
 import type { Project } from '@/types/content'
 
 /**
- * Order matters — this is the order on the page. AgentCV leads because it is
- * live, public and entirely mine.
+ * Newest first, worked out rather than arranged. `projects` below is the
+ * sorted list; `entries` is the raw one, and the order things are written in
+ * there only decides ties.
+ *
+ * Recency is the year work last happened: the year it was built, or this year
+ * if it is still being worked on. That means an ongoing project climbs back to
+ * the top on its own each January, and a new one lands in the right place
+ * without anyone remembering to move it.
  *
  * Only projects with a `study` get a /projects/<slug> page; the rest render as
  * a card with no "Case study" link, so adding or removing a study is a content
@@ -14,7 +20,7 @@ import type { Project } from '@/types/content'
  * - Every number here is one I can point at in the repository it came from.
  *   A figure that cannot survive "show me" is worse than no figure.
  */
-export const projects: Project[] = [
+const entries: Project[] = [
   {
     slug: 'agentcv',
     name: 'AgentCV',
@@ -28,7 +34,7 @@ export const projects: Project[] = [
       'Wrote **46 test suites, 9 of which measure rendered pixels** in a real browser across 10 device widths — catching overlapped text and tap targets under 44px that reading the source cannot.',
     ],
     tags: [
-      { label: 'Shipped solo', emphasis: true },
+      { label: 'Resume engine', emphasis: true },
       { label: 'Flask' },
       { label: 'python-docx' },
       { label: 'WeasyPrint' },
@@ -131,7 +137,7 @@ export const projects: Project[] = [
       'Built Razorpay payments on an append-only ledger where a retry never charges twice, backed by **150+ tests** including contract tests that catch the AI output changing shape.',
     ],
     tags: [
-      { label: 'Production AI', emphasis: true },
+      { label: 'Evaluation platform', emphasis: true },
       { label: 'FastAPI' },
       { label: 'LangGraph' },
       { label: 'Temporal' },
@@ -224,7 +230,7 @@ export const projects: Project[] = [
       'Covered it with **2,341 automated tests**, 147 of them driving a real browser, and ran the whole platform at **₹0/month** inside free-tier limits.',
     ],
     tags: [
-      { label: 'Honest backtests', emphasis: true },
+      { label: 'Market screener', emphasis: true },
       { label: 'Django 5' },
       { label: 'Playwright' },
       { label: 'GitHub Actions' },
@@ -318,6 +324,16 @@ export const projects: Project[] = [
     },
   },
 ]
+
+/** The year a project was last worked on — this year, while it is ongoing. */
+const recency = (project: Project): number =>
+  project.ongoing ? new Date().getFullYear() : Number(project.year)
+
+/**
+ * Sorted newest first. Array.prototype.sort is stable, so two projects from
+ * the same year keep the order they are written in above.
+ */
+export const projects: Project[] = [...entries].sort((a, b) => recency(b) - recency(a))
 
 export const projectBySlug = (slug: string): Project | undefined =>
   projects.find((project) => project.slug === slug)

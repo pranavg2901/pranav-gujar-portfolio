@@ -23,16 +23,19 @@ if (!outDir || specs.length === 0) {
 }
 await mkdir(outDir, { recursive: true })
 
+// Override with CDP_PORT when 9222 is taken.
+const port = process.env.CDP_PORT ?? '9222'
+
 const version = await (async () => {
   // Chrome may still be starting up.
   for (let attempt = 0; attempt < 40; attempt++) {
     try {
-      return await (await fetch('http://127.0.0.1:9222/json/version')).json()
+      return await (await fetch(`http://127.0.0.1:${port}/json/version`)).json()
     } catch {
       await new Promise((r) => setTimeout(r, 500))
     }
   }
-  throw new Error('no debugging port on 9222 — is Chrome running with --remote-debugging-port?')
+  throw new Error(`no debugging port on ${port} — is Chrome running with --remote-debugging-port?`)
 })()
 
 const socket = new WebSocket(version.webSocketDebuggerUrl)
