@@ -24,7 +24,10 @@ export const metrics: Metric[] = [
   // something else entirely next to a figure in years.
   { value: experienceShort(), caption: `Experience, since ${experienceSince}`, short: 'Experience' },
   { value: '10+', caption: 'Client applications delivered end to end', short: 'Apps delivered' },
-  { value: '5+', caption: 'Applications I run in production today', short: 'Running today' },
+  // "In production" says nothing to a reader outside engineering, and next
+  // to a count it reads as filler. What the number actually means is how
+  // many live applications I am responsible for right now.
+  { value: '5+', caption: 'Live applications I maintain today', short: 'Live apps' },
   { value: '3+', caption: 'Systems I designed, built and operate', short: 'Systems built' },
   // Hidden on a phone: the Credentials section lists both certifications in
   // full, with a link to verify each badge, so the strip is the one place
