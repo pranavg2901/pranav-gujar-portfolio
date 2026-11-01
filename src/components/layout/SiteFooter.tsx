@@ -68,7 +68,7 @@ export function SiteFooter() {
                   href={link.href}
                   target="_blank"
                   rel="me noreferrer"
-                  className="text-muted transition-colors hover:text-accent"
+                  className="-my-3 inline-block py-3 text-muted transition-colors hover:text-accent"
                 >
                   {link.label}
                 </a>
@@ -82,14 +82,14 @@ export function SiteFooter() {
                 {isHome ? (
                   <a
                     href={`#${item.id}`}
-                    className="text-muted transition-colors hover:text-accent"
+                    className="-my-3 inline-block py-3 text-muted transition-colors hover:text-accent"
                   >
                     {item.label}
                   </a>
                 ) : (
                   <Link
                     to={`/#${item.id}`}
-                    className="text-muted transition-colors hover:text-accent"
+                    className="-my-3 inline-block py-3 text-muted transition-colors hover:text-accent"
                   >
                     {item.label}
                   </Link>
@@ -103,7 +103,10 @@ export function SiteFooter() {
           <p>
             &copy; {new Date().getFullYear()} {site.name} / {site.location}
           </p>
-          <a href={`mailto:${site.email}`} className="transition-colors hover:text-accent">
+          <a
+            href={`mailto:${site.email}`}
+            className="-my-2 inline-block py-2 transition-colors hover:text-accent"
+          >
             {site.email}
           </a>
         </div>

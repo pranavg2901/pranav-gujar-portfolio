@@ -85,7 +85,7 @@ function Row({
           <a
             href={href}
             {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}
-            className="text-accent hover:underline"
+            className="-my-2 inline-block py-2 text-accent hover:underline"
           >
             {value}
           </a>

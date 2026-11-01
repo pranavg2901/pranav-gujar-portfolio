@@ -46,7 +46,7 @@ export function About() {
                     last && odd && 'col-span-2 pr-0',
                   )}
                 >
-                  <dt className="font-mono text-[10.5px] tracking-[0.16em] text-accent uppercase">
+                  <dt className="font-mono text-[11px] tracking-[0.16em] text-accent uppercase">
                     {fact.label}
                   </dt>
                   <dd className="mt-1.5 text-[14.5px] leading-snug text-muted">{fact.value}</dd>

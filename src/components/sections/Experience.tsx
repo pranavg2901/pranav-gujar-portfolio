@@ -58,7 +58,7 @@ export function Experience() {
                     to={`/work/${product.slug}`}
                     className="group mt-9 block border border-line p-6 transition-colors hover:border-accent-bright"
                   >
-                    <p className="font-mono text-[10.5px] tracking-[0.18em] text-accent uppercase">
+                    <p className="font-mono text-[11px] tracking-[0.18em] text-accent uppercase">
                       The product I {role.period.includes('Present') ? 'work' : 'worked'} on
                     </p>
                     <div className="mt-4 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">

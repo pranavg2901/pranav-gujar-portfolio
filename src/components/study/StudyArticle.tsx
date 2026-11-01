@@ -61,7 +61,7 @@ export function StudyArticle({
           <div className="py-16 md:py-20">
             <Link
               to={back.to}
-              className="inline-flex items-center gap-2 font-mono text-[12px] tracking-[0.14em] text-muted uppercase transition-colors hover:text-accent"
+              className="-my-2 inline-flex items-center gap-2 py-2 font-mono text-[12px] tracking-[0.14em] text-muted uppercase transition-colors hover:text-accent"
             >
               <ArrowLeft className="size-4" />
               {back.label}
@@ -100,7 +100,7 @@ export function StudyArticle({
                     key={link.href}
                     href={link.href}
                     {...(link.external ? { target: '_blank', rel: 'noreferrer' } : {})}
-                    className="inline-flex items-center gap-2 font-mono text-[12.5px] font-semibold tracking-[0.12em] text-accent uppercase hover:underline"
+                    className="-my-2 inline-flex items-center gap-2 py-2 font-mono text-[12.5px] font-semibold tracking-[0.12em] text-accent uppercase hover:underline"
                   >
                     {link.label}
                     {link.external && <ArrowUpRight className="size-4" />}
@@ -177,7 +177,7 @@ export function StudyArticle({
             <dl className="flex flex-col border-t border-line">
               {study.facts.map((fact) => (
                 <div key={fact.label} className="border-b border-line py-4">
-                  <dt className="font-mono text-[10.5px] tracking-[0.16em] text-accent uppercase">
+                  <dt className="font-mono text-[11px] tracking-[0.16em] text-accent uppercase">
                     {fact.label}
                   </dt>
                   <dd className="mt-1.5 text-[14px] leading-snug text-muted">{fact.value}</dd>
