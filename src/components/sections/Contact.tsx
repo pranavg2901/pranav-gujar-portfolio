@@ -22,13 +22,18 @@ export function Contact() {
           was text written to fill a gap. Laid out as a strip, the same way
           the metrics read under the hero, there is no gap to fill. */}
       <Reveal>
-        <dl className="grid grid-cols-1 border-t border-line sm:grid-cols-2 lg:grid-cols-5">
+        {/* The email is the longest value by some way, so it gets a wider
+            column rather than everything being equal and it wrapping. */}
+        <dl className="grid grid-cols-1 border-t border-line sm:grid-cols-2 lg:grid-cols-[1.35fr_repeat(4,1fr)]">
           <Row label="Email" value={site.email} href={`mailto:${site.email}`} />
           {site.social.map((link) => (
             <Row
               key={link.href}
               label={link.label}
-              value={link.href.replace(/^https?:\/\//, '')}
+              // Just the handle. The label already says which site it is, so
+              // repeating "github.com/" only costs the width that pushed the
+              // handle onto a second line.
+              value={link.href.replace(/^https?:\/\/(www\.)?(github|linkedin)\.com\//, '')}
               href={link.href}
               external
             />
