@@ -47,13 +47,13 @@ const entries: Project[] = [
       premise:
         'A resume engine that generates no prose of its own. It selects from material I have written, fits it to the posting and to the page, and assesses the match candidly enough to advise against applying.',
       facts: [
-        { label: 'Role', value: 'Sole engineer — design, build, deploy, operate' },
-        { label: 'Built', value: '2025 — 318 commits over five weeks' },
+        { label: 'Role', value: 'Sole engineer' },
+        { label: 'Built', value: '2025' },
         { label: 'Scale', value: '59 routes, 10 screens, 5 document templates' },
         { label: 'Stack', value: 'Flask, python-docx, WeasyPrint, Playwright, Docker' },
-        { label: 'Tests', value: '46 suites, 72 files, 9 measuring rendered output' },
-        { label: 'Storage', value: 'Private GitHub repository via the Contents API' },
-        { label: 'Status', value: 'Live, in weekly use' },
+        { label: 'Tests', value: '46 suites, 72 files' },
+        { label: 'Storage', value: 'GitHub Contents API' },
+        { label: 'Status', value: 'Live' },
       ],
       sections: [
         {
@@ -150,14 +150,14 @@ const entries: Project[] = [
       premise:
         'Everything an exam candidate needs in one platform, with grading as the difficult part of it. The pipeline performs the reading; a reviewer signs the result.',
       facts: [
-        { label: 'Domain', value: 'Competitive-exam preparation — a vertical AI platform' },
+        { label: 'Domain', value: 'Competitive-exam preparation' },
         { label: 'Exams', value: 'UPSC, state PSC, CA, CS' },
-        { label: 'Users', value: 'Institutes enrol; their students receive access' },
+        { label: 'Users', value: 'Coaching institutes and their students' },
         { label: 'Built', value: '2026' },
-        { label: 'Backend', value: 'FastAPI, LangGraph, Temporal, PostgreSQL with PgBouncer' },
-        { label: 'Also', value: 'Redis, RabbitMQ, ONNX, React and TypeScript' },
-        { label: 'Observability', value: 'Langfuse tracing across every node' },
-        { label: 'Scale', value: '120K+ indexed chunks, 10+ services on a private IPv6 mesh' },
+        { label: 'Backend', value: 'FastAPI, LangGraph, Temporal, PostgreSQL, Redis, RabbitMQ' },
+        { label: 'Frontend', value: 'React, TypeScript' },
+        { label: 'Observability', value: 'Langfuse' },
+        { label: 'Scale', value: '120K+ indexed chunks, 10+ services' },
       ],
       sections: [
         {
@@ -251,13 +251,13 @@ const entries: Project[] = [
         'Sixteen screens across 8,100 companies, rebuilt nightly and committed into the deployment — and each one states what its backtest actually measured, including the results that show no edge.',
       facts: [
         { label: 'Role', value: 'Sole engineer' },
-        { label: 'Built', value: 'Since 2025 — 1,162 commits over 16 months' },
-        { label: 'Scale', value: '16 screens, 187 routes, ~106,000 hand-written lines' },
-        { label: 'Coverage', value: '8,111 companies from ~23,000 NSE and BSE instruments' },
+        { label: 'Built', value: 'Since 2025' },
+        { label: 'Scale', value: '16 screens, 187 routes' },
+        { label: 'Coverage', value: '8,111 NSE and BSE companies' },
         { label: 'Stack', value: 'Django 5, Playwright, GitHub Actions, Docker, Render' },
-        { label: 'Tests', value: '2,341 — 2,194 offline, 147 in a real browser' },
-        { label: 'Budget', value: '512MB host, ₹0 per month' },
-        { label: 'Also on', value: 'Google Play, as a trusted web activity' },
+        { label: 'Tests', value: '2,341 automated' },
+        { label: 'Hosting', value: '512MB host, ₹0 per month' },
+        { label: 'Also on', value: 'Google Play' },
       ],
       sections: [
         {

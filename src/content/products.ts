@@ -35,8 +35,8 @@ export const products: Product[] = [
       premise:
         'Several tender-management firms, each with their own branding and their own data, served from a single codebase I deliver and operate end to end.',
       facts: [
-        { label: 'Owner', value: 'Blueport Solutions — I build and operate it' },
-        { label: 'My role', value: 'Software Engineer, end-to-end delivery' },
+        { label: 'Owner', value: 'Blueport Solutions' },
+        { label: 'My role', value: 'Software Engineer' },
         { label: 'Period', value: 'Aug 2025 — Present' },
         { label: 'Architecture', value: 'Multi-tenant, white-label SaaS' },
         { label: 'Stack', value: 'Python, Django REST, PostgreSQL, Redis' },
@@ -126,9 +126,9 @@ export const products: Product[] = [
         'A student in an unfamiliar city has to eat every day, affordably. DMFU is the application that locates a mess for them — and the second application the mess uses to administer itself.',
       facts: [
         { label: 'Owner', value: 'Beginning Solutions' },
-        { label: 'My role', value: 'Full Stack Developer — built and shipped it' },
+        { label: 'My role', value: 'Full Stack Developer' },
         { label: 'Period', value: '2024 — 2025' },
-        { label: 'Shipped', value: 'Two Android applications, both on Google Play' },
+        { label: 'Released', value: 'Two Android applications on Google Play' },
         { label: 'Stack', value: 'Python, MongoDB, Shell, Ubuntu, Figma' },
         { label: 'Operations', value: 'Apache, SSL automation, automated backups' },
       ],
