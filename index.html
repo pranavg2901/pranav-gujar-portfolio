@@ -12,37 +12,14 @@
     <!-- max-image-preview:large is what lets Google show the social card
          rather than a thumbnail beside the result. -->
     <meta name="robots" content="index, follow, max-image-preview:large" />
-    <!-- The SVG switches colourway by itself (see scripts/favicon.py); the
-         PNG fallbacks cannot, so each is paired with a media query for the
-         browsers that ignore an SVG icon. -->
+    <!-- One icon for both themes. The filled tile is what makes that work:
+         it stays visible against light and dark browser chrome alike, where
+         a bare letter would vanish into one or the other. -->
     <link rel="icon" href="%BASE_URL%favicon.svg" type="image/svg+xml" />
-    <link
-      rel="icon"
-      href="%BASE_URL%favicon-32.png"
-      sizes="32x32"
-      type="image/png"
-      media="(prefers-color-scheme: light)"
-    />
-    <link
-      rel="icon"
-      href="%BASE_URL%favicon-32-dark.png"
-      sizes="32x32"
-      type="image/png"
-      media="(prefers-color-scheme: dark)"
-    />
-    <link
-      rel="apple-touch-icon"
-      href="%BASE_URL%favicon-180.png"
-      media="(prefers-color-scheme: light)"
-    />
-    <link
-      rel="apple-touch-icon"
-      href="%BASE_URL%favicon-180-dark.png"
-      media="(prefers-color-scheme: dark)"
-    />
-    <!-- Browser chrome follows the device's scheme, the same as the icon. -->
-    <meta name="theme-color" content="#c3f53c" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#a78bfa" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="%BASE_URL%favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="%BASE_URL%favicon-180.png" />
+
+    <meta name="theme-color" content="#c3f53c" />
     <link rel="canonical" href="https://pranavg2901.github.io/" />
 
     <meta property="og:type" content="website" />
@@ -94,6 +71,7 @@
           // chosen it, rather than following the operating system.
           const dark = localStorage.getItem('theme') === 'dark'
           document.documentElement.classList.toggle('dark', dark)
+
         } catch {}
 
         try {
