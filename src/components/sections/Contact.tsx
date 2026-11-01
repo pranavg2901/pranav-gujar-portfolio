@@ -69,12 +69,14 @@ function Row({
   href?: string
   external?: boolean
 }) {
+  // Label above value rather than beside it. In a 20rem column a fixed label
+  // width left the longer values no room, so the email dropped onto its own
+  // line while the shorter handles stayed beside their labels and the whole
+  // list came out ragged.
   return (
-    <div className="flex flex-wrap items-baseline gap-x-6 gap-y-1 border-b border-line py-5">
-      <dt className="w-24 shrink-0 font-mono text-[11px] tracking-[0.16em] text-faint uppercase">
-        {label}
-      </dt>
-      <dd className="text-[16px]">
+    <div className="border-b border-line py-4">
+      <dt className="font-mono text-[11px] tracking-[0.16em] text-faint uppercase">{label}</dt>
+      <dd className="mt-1.5 text-[15.5px] break-words">
         {href ? (
           <a
             href={href}
