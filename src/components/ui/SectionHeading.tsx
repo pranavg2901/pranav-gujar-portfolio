@@ -6,6 +6,10 @@ import { Reveal } from '@/components/ui/Reveal'
  * The repeating masthead: an accent rule and mono label, then an oversized
  * uppercase title. The rule is what marks a new section without needing a
  * divider across the whole page.
+ *
+ * The rule is shorter on a phone. At 44px it was nearly as wide as the label
+ * beside it and read as a dash drawn across the line rather than as a mark
+ * against it.
  */
 export function SectionHeading({
   index,
@@ -28,7 +32,7 @@ export function SectionHeading({
       <header className={cn('mb-14', centred && 'text-center')}>
         <p className={cn('eyebrow flex items-center gap-4', centred && 'justify-center')}>
           {index && <span className="text-faint">{index}</span>}
-          <span aria-hidden className="h-px w-11 bg-accent" />
+          <span aria-hidden className="h-px w-6 bg-accent sm:w-11" />
           {eyebrow}
         </p>
 

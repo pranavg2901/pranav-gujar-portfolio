@@ -68,7 +68,7 @@ export function StudyArticle({
             </Link>
 
             <p className="eyebrow mt-10 flex items-center gap-4">
-              <span aria-hidden className="h-px w-11 bg-accent" />
+              <span aria-hidden className="h-px w-6 bg-accent sm:w-11" />
               {eyebrow}
             </p>
 

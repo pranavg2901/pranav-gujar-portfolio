@@ -17,7 +17,7 @@ export function Hero() {
         <div className="grid items-center gap-14 pt-12 pb-16 md:pt-20 md:pb-24 lg:grid-cols-[1fr_300px] lg:gap-16">
           <div>
             <p className="eyebrow flex items-center gap-4">
-              <span aria-hidden className="h-px w-11 bg-accent" />
+              <span aria-hidden className="h-px w-6 bg-accent sm:w-11" />
               <span className="hidden sm:inline">{intro.kicker.name} ·&nbsp;</span>
               {intro.kicker.location}
             </p>

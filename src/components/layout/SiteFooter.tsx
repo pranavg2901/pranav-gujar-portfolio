@@ -23,9 +23,9 @@ export function SiteFooter() {
       <Container>
         <div className="py-24 text-center md:py-32">
           <p className="eyebrow flex items-center justify-center gap-4">
-            <span aria-hidden className="h-px w-11 bg-accent" />
+            <span aria-hidden className="h-px w-6 bg-accent sm:w-11" />
             {site.closing.eyebrow}
-            <span aria-hidden className="h-px w-11 bg-accent" />
+            <span aria-hidden className="h-px w-6 bg-accent sm:w-11" />
           </p>
 
           <h2 className="mt-7 text-hero font-extrabold text-ink uppercase">

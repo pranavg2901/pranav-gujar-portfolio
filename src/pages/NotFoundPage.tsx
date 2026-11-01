@@ -11,7 +11,7 @@ export function NotFoundPage() {
       <Container>
         <div className="py-32 md:py-40">
           <p className="eyebrow flex items-center gap-4">
-            <span aria-hidden className="h-px w-11 bg-accent" />
+            <span aria-hidden className="h-px w-6 bg-accent sm:w-11" />
             Error 404
           </p>
           <h1 className="mt-6 text-hero font-extrabold uppercase text-ink">

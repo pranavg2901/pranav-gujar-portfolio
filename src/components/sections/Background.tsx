@@ -30,7 +30,7 @@ function Group({ title, items }: { title: string; items: Credential[] }) {
   return (
     <Reveal>
       <h3 className="eyebrow flex items-center gap-4">
-        <span aria-hidden className="h-px w-11 bg-accent" />
+        <span aria-hidden className="h-px w-6 bg-accent sm:w-11" />
         {title}
       </h3>
 
