@@ -3,6 +3,12 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  # The page description and the structured data are generated at build time
+  # and include how long I have been working, which changes every month. A
+  # rebuild on the 1st keeps what a search engine reads in step with what the
+  # page itself computes on every visit.
+  schedule:
+    - cron: '0 3 1 * *'
   workflow_dispatch:
 
 permissions:
@@ -21,7 +27,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          # 24, not 22: the build scripts import the TypeScript content files
+          # directly and rely on Node stripping the types without a flag.
+          node-version: 24
           cache: npm
       - run: npm ci
       - run: npm run build

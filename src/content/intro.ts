@@ -1,4 +1,5 @@
 import type { StackLine, TextRun } from '@/types/content'
+import { experienceLong } from '@/lib/experience'
 
 /** The hero. Plain statements of fact — no slogan, no pitch. */
 export const intro: {
@@ -16,11 +17,11 @@ export const intro: {
    * Two fragments, two treatments. Kept to two words so the headline is two
    * clean lines at every width — a third fragment wrapped mid-phrase on
    * phones and again on desktop once the portrait narrowed the column.
-   * The "2.5+" figure leads the metrics strip immediately below instead.
+   * The years figure leads the metrics strip immediately below instead, and
+   * is computed there rather than written.
    */
   headline: { lead: 'Software', accent: 'Engineer' },
-  headlineLabel:
-    'Pranav Gujar — Software Engineer, backend systems and applied AI, Pune, India',
+  headlineLabel: `Pranav Gujar — Software Engineer, backend systems and applied AI, ${experienceLong()} in production, Pune, India`,
 
   paragraph: [
     {

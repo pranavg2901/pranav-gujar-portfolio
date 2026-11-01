@@ -1,4 +1,9 @@
 import type { Link } from '@/types/content'
+// Relative, not the "@/" alias: the Node build scripts import this module
+// directly to generate the page metadata, and Node resolves no such alias.
+// A type-only import is erased before Node sees it, which is why the line
+// above can keep it.
+import { experienceLong } from '../lib/experience.ts'
 
 /**
  * Everything global lives here: identity, navigation, outbound links, SEO,
@@ -20,8 +25,9 @@ export const site = {
     // has to be the obvious first result for it. The role terms follow, for
     // the searches where the name is not known yet.
     title: 'Pranav Gujar — Python Backend & AI Engineer | Pune, India',
-    description:
-      'Pranav Gujar is a software engineer in Pune with 2.5+ years building production Python systems — FastAPI, Django, PostgreSQL, LangGraph and RAG pipelines on AWS. Open to full-time backend and applied AI roles.',
+    // Rebuilt monthly by .github/workflows, so the figure here cannot drift
+    // the way a typed one does.
+    description: `Pranav Gujar is a software engineer in Pune with ${experienceLong()} building production Python systems — FastAPI, Django, PostgreSQL, LangGraph and RAG pipelines on AWS. Open to full-time backend and applied AI roles.`,
     url: 'https://pranavg2901.github.io/',
 
     /** Used in the structured data a search engine reads. */

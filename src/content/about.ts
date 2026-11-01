@@ -1,3 +1,5 @@
+import { experienceLong, experienceSince } from '@/lib/experience'
+
 /**
  * The one place on the site with a face on it. Kept small and placed after the
  * work, so the hero stays type-led and the projects arrive before the person.
@@ -29,6 +31,6 @@ export const about: {
   facts: [
     { label: 'Based', value: 'Pune, India' },
     { label: 'Open to', value: 'Full-time roles' },
-    { label: 'Experience', value: '2.5+ years in production' },
+    { label: 'Experience', value: `${experienceLong()}, since ${experienceSince}` },
   ],
 }
