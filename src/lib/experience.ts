@@ -17,12 +17,19 @@ export function experienceMonths(now: Date = new Date()): number {
   return (now.getFullYear() - START.year) * 12 + (now.getMonth() + 1 - START.month)
 }
 
-/** "2y 9m" — for the metrics strip, where the cell is one short token. */
+/**
+ * "2Y 9M" — for the metrics strip, where the cell is one short token.
+ *
+ * Uppercase because the neighbouring cells are digits and symbols — 10+, 5+,
+ * 3+, 2 — all of which stand at full cap height. Lowercase y and m sit at
+ * x-height, so in the same bold display face they looked shrunken next to
+ * their own numbers rather than like part of them.
+ */
 export function experienceShort(now: Date = new Date()): string {
   const months = experienceMonths(now)
   const years = Math.floor(months / 12)
   const rest = months % 12
-  return rest === 0 ? `${years}y` : `${years}y ${rest}m`
+  return rest === 0 ? `${years}Y` : `${years}Y ${rest}M`
 }
 
 /** "2 years 9 months" — for prose, labels and the page description. */
