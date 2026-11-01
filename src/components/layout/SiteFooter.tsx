@@ -51,11 +51,18 @@ export function SiteFooter() {
           </div>
         </div>
 
-        {/* On a phone this was two wrapping rows of links and then two more
-            lines of small print, all left-aligned and all the same weight —
-            seven items with no shape to them. The navigation is a two-column
-            list at that width, which gives each link a whole line to itself
-            and the block an edge to sit against.
+        {/* No section navigation on a phone.
+
+            The header is sticky and its menu is one tap away from anywhere on
+            the page, so a second copy of the same five links at the foot was
+            duplication that happened to look untidy: a two-column grid of an
+            odd number of items, leaving "Contact" alone on the last row under
+            a pile of other links.
+
+            What remains is what the foot of a page is for — where else to
+            find the person, and who they are. The navigation returns from
+            640px up, where it sits on one line beside the profile links and
+            costs nothing.
 
             rel="me" on the profile links marks them as the same person's
             other accounts, which is what lets a search engine tie the
@@ -76,7 +83,7 @@ export function SiteFooter() {
             ))}
           </ul>
 
-          <ul className="grid grid-cols-2 gap-x-6 gap-y-3.5 sm:flex sm:flex-wrap sm:justify-end sm:gap-7">
+          <ul className="hidden sm:flex sm:flex-wrap sm:justify-end sm:gap-7">
             {site.nav.map((item) => (
               <li key={item.id}>
                 {isHome ? (
