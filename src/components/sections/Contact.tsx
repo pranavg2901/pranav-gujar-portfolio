@@ -109,6 +109,12 @@ function Row({
 }) {
   // A cell in the strip. Label above value, because the values are long
   // enough that a label beside them leaves nothing for them to sit in.
+  //
+  // Every value is set in the same ink, whether or not it is a link. Colouring
+  // the four that happen to be links left the strip reading as two rows in
+  // two different colours, which is a distinction about markup rather than
+  // about meaning. The accent and the underline arrive on hover, where they
+  // answer the only question colour was being asked to answer.
   return (
     <div className="border-b border-line py-5 sm:pr-5 lg:border-r lg:px-6 lg:py-6 lg:first:pl-0 lg:last:border-r-0">
       <dt className="font-mono text-[11px] tracking-[0.16em] text-faint uppercase">{label}</dt>
@@ -122,12 +128,12 @@ function Row({
             <a
               href={href}
               {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}
-              className="-my-2 inline-block py-2 text-accent hover:underline"
+              className="-my-2 inline-block py-2 text-ink transition-colors hover:text-accent hover:underline"
             >
               {value}
             </a>
           ) : (
-            <span className="text-muted">{value}</span>
+            <span className="text-ink">{value}</span>
           )}
         </span>
 
