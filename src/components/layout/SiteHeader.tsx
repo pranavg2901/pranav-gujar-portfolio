@@ -49,7 +49,7 @@ export function SiteHeader() {
             to="/"
             className="-my-3 inline-block shrink-0 py-3 font-mono text-[14px] font-bold text-ink uppercase"
           >
-            Pranav<span className="text-accent">_</span>Gujar
+            {site.name}
             <span className="hidden text-faint sm:inline"> / {site.tagline}</span>
           </Link>
 
