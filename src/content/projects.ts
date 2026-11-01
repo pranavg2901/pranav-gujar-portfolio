@@ -15,10 +15,11 @@ import type { Project } from '@/types/content'
  * change and nothing else.
  *
  * Copy rules for everything in this file:
- * - Short sentences, plain words. A recruiter skims this on a phone, and a
- *   clever phrase that costs them a re-read costs the rest of the page.
- * - Every number here is one I can point at in the repository it came from.
- *   A figure that cannot survive "show me" is worse than no figure.
+ * - A professional register: precise, measured, no conversational asides. This
+ *   is read by hiring managers, and the writing is part of what is assessed.
+ * - Plain words and short sentences all the same. Formality is not density.
+ * - Every figure is one I can point to in the repository it came from. A
+ *   number that cannot survive "show me" does not belong on the page.
  */
 const entries: Project[] = [
   {
@@ -26,12 +27,12 @@ const entries: Project[] = [
     name: 'AgentCV',
     year: '2025',
     summary:
-      'Reads a job posting and builds a tailored, ATS-ready resume and cover letter out of achievements I have already written — then grades how well I fit the role, requirement by requirement, and says why.',
+      'Reads a job posting and assembles a tailored, ATS-ready resume and cover letter from achievements I have already written, then assesses the fit requirement by requirement and explains the result.',
     highlights: [
-      '**Designed, built and shipped it on my own in five weeks** — 318 commits, 59 routes across 10 screens, 5 document templates. Live, and I use it for every application.',
-      'Built a **matching engine that explains itself**. Every requirement in a posting is marked evidenced, mentioned, available but unused, or a real gap — so a score always names the sentence behind it.',
-      'Built a skill vocabulary of **211 terms and 614 real-world variants**, plus detection for technologies it has never seen, so a requirement is never silently dropped.',
-      'Wrote **46 test suites, 9 of which measure rendered pixels** in a real browser across 10 device widths — catching overlapped text and tap targets under 44px that reading the source cannot.',
+      '**Designed, built and shipped independently in five weeks** — 318 commits, 59 routes across 10 screens, 5 document templates. Live, and in use for every application I submit.',
+      'Built a **matching engine that explains its own output**. Each requirement in a posting is classified as evidenced, mentioned, available but unused, or a genuine gap, so every score identifies the sentence behind it.',
+      'Developed a skill vocabulary of **211 canonical terms and 614 surface variants**, together with detection for technologies outside it, so no requirement is silently discarded.',
+      'Wrote **46 test suites, 9 of which measure rendered output** in a real browser across 10 device widths — identifying overlapping text and sub-44px tap targets that static analysis cannot.',
     ],
     tags: [
       { label: 'Resume engine', emphasis: true },
@@ -44,81 +45,81 @@ const entries: Project[] = [
     links: [{ label: 'Live demo', href: 'https://agentcv-tf7z.onrender.com/', external: true }],
     study: {
       premise:
-        'A resume engine that writes nothing of its own. It picks from lines I wrote, fits them to the posting and to the page, and grades the fit honestly enough to tell me not to apply.',
+        'A resume engine that generates no prose of its own. It selects from material I have written, fits it to the posting and to the page, and assesses the match candidly enough to advise against applying.',
       facts: [
         { label: 'Role', value: 'Sole engineer — design, build, deploy, operate' },
         { label: 'Built', value: '2025 — 318 commits over five weeks' },
         { label: 'Scale', value: '59 routes, 10 screens, 5 document templates' },
         { label: 'Stack', value: 'Flask, python-docx, WeasyPrint, Playwright, Docker' },
-        { label: 'Tests', value: '46 suites, 72 files, 9 measuring real pixels' },
-        { label: 'Storage', value: 'A private GitHub repo, through the Contents API' },
-        { label: 'Status', value: 'Live, in weekly use by me' },
+        { label: 'Tests', value: '46 suites, 72 files, 9 measuring rendered output' },
+        { label: 'Storage', value: 'Private GitHub repository via the Contents API' },
+        { label: 'Status', value: 'Live, in weekly use' },
       ],
       sections: [
         {
           heading: 'Why I built it',
           body: [
-            'Rewriting a resume for every application is slow work, and it still matters. The same two years of experience read very differently depending on what you put first. I wanted the tailoring without the retyping.',
-            'The easy answer in 2025 is to hand the job description and the resume to a language model. I took a different route, and that one decision shaped the rest of the project.',
+            'Tailoring a resume for each application is slow, repetitive work that nonetheless affects the outcome: the same experience reads very differently depending on what is presented first. The objective was to keep the tailoring and remove the retyping.',
+            'The conventional approach is to pass the job description and the resume to a language model. I chose a different design, and that decision shaped the rest of the project.',
           ],
         },
         {
-          heading: 'Every line traces back to something I wrote',
+          heading: 'Every line traces back to written material',
           body: [
-            'A resume is a factual claim about your own history. When a model rewrites it, small things slip: six months of contract work becomes "led the team", a library you used once becomes a core skill. Then you have to check every line yourself, which is most of the work you were trying to skip.',
-            'So the engine writes no sentences. Every sentence in the output already exists, word for word, in a library I keep by hand. The engine only decides which entries to use, what order to put them in, and what to cut so it fits the page. Whatever reaches the paper is something I can defend in an interview.',
+            'A resume is a factual claim about a person’s own history. When a model rewrites it, detail drifts: six months of contract work becomes "led the team", and a library used once becomes a core competency. Verifying every line afterwards costs as much as the tailoring it was meant to replace.',
+            'The engine therefore generates no prose. Every sentence in the output already exists, word for word, in a library I maintain by hand. It decides only which entries to include, in what order, and what to remove so the document fits the page. Everything that reaches the page is material I can defend in an interview.',
           ],
           points: [
-            'Content lives in tagged, hand-written JSON — version controlled, one file per area.',
-            'Figures live in one file, so changing a number updates every bullet that quotes it.',
-            'Edits made before an export apply to that export only, and never touch the library.',
+            'Content is held as tagged, hand-written JSON — version controlled, one file per domain.',
+            'Figures live in a single file, so revising a number updates every bullet that cites it.',
+            'Edits made before an export apply to that export alone and never modify the library.',
           ],
         },
         {
-          heading: 'A score that names its evidence',
+          heading: 'A score that identifies its evidence',
           body: [
-            'The first version of the score was useless. It came back 92–100% for every posting I pasted in, including roles I was clearly not qualified for. A score that is always high tells you nothing, and this one was worse than nothing: it told me to apply everywhere.',
-            'The reason was simple. I was measuring how much of my own content made it into the output, instead of how much of the posting my content actually covered. Turning that around made the numbers move, and made a low score possible.',
-            'It no longer reports one percentage at all. Every requirement in the posting gets a verdict of its own, and the report says which bullet earned it.',
+            'The first version of the score carried no information. It returned 92–100% for every posting, including roles I was plainly unqualified for. A score that is always high is not merely useless but misleading, since it recommends applying everywhere.',
+            'The cause was a misplaced denominator: the metric measured how much of my own content reached the output, rather than how much of the posting that content covered. Reversing it made the figures meaningful and made a low score possible.',
+            'It no longer reports a single percentage. Each requirement receives its own verdict, and the report names the bullet that earned it.',
           ],
           points: [
-            'Four verdicts per requirement: evidenced, only mentioned, in the library but unused, or a real gap.',
-            'Placement warnings: a must-have that appears once, or not until page two, is flagged as effectively invisible.',
-            'Requirements are weighted by where they sit — a skill under "Requirements" counts for more than the same word in a culture paragraph.',
+            'Four verdicts per requirement: evidenced, mentioned only, present in the library but unused, or a genuine gap.',
+            'Placement warnings: a must-have appearing once, or not until page two, is flagged as effectively invisible.',
+            'Requirements are weighted by position — a skill under "Requirements" counts for more than the same term in a culture paragraph.',
           ],
         },
         {
-          heading: 'Recognising tools it has never seen',
+          heading: 'Recognising unfamiliar technologies',
           body: [
-            'Job postings name tools that no fixed list will ever hold: in-house frameworks, this month’s libraries, plain typos. A dictionary lookup drops them without a word, and that is the worst thing a matching tool can do, because the score still looks fine afterwards.',
-            'The vocabulary covers 211 canonical skills and the 614 ways postings actually spell them. Anything outside it is spotted from the shape of the sentence around it — the wording that marks something as a technology rather than a verb. It is not a model, it needs no GPU and it adds nothing to the image size, and it fails out loud: what it could not match is shown rather than hidden.',
+            'Job postings name tools that no fixed list can contain: in-house frameworks, recently released libraries, and misspellings. A dictionary lookup discards them silently, which is the most damaging failure available to a matching tool, because the score still appears healthy afterwards.',
+            'The vocabulary covers 211 canonical skills and the 614 surface forms postings use for them. Terms outside it are identified from the structure of the surrounding sentence — the phrasing that marks a word as a technology rather than a verb. The method requires no model, no GPU and no additional image size, and it fails visibly: unmatched terms are surfaced rather than dropped.',
           ],
         },
         {
-          heading: 'Fitting the page without rewording',
+          heading: 'Fitting the page without rewriting',
           body: [
-            'A resume that runs four lines onto a third page is a resume nobody finishes reading. The usual fixes are to shrink the font or let a model tighten the prose, and both are quiet lies — one about readability, one about what I actually wrote.',
-            'Instead the document is trimmed in a fixed priority order and re-measured after every step, until it lands on exactly one or two pages. Nothing is reworded and nothing shrinks; the least relevant item simply goes.',
+            'A resume that runs four lines onto a third page is unlikely to be read in full. The usual remedies are to reduce the font size or to let a model condense the prose; the first compromises legibility and the second alters what was written.',
+            'Instead the document is trimmed in a fixed priority order and re-measured after each step, until it occupies exactly one or two pages. Nothing is reworded and no type is reduced — the least relevant item is removed.',
           ],
         },
         {
-          heading: 'Storing data on a host that forgets',
+          heading: 'Persistence on a host without storage',
           body: [
-            'The free tier restarts the container and keeps no disk, so SQLite and local files were out. Paying for a managed Postgres, for a tool I open a few times a week, was not worth the money or the extra thing to look after.',
-            'In production every save goes through the GitHub Contents API, which makes a private repository the database: small JSON documents, one writer, writes that are rare, and a full history of every change for free. Every save is a commit I can diff and undo. One module touches storage at all, which is what made swapping the whole layer possible in the first place.',
+            'The free tier restarts the container and provides no persistent disk, which ruled out SQLite and local files. A managed Postgres instance was not justifiable in cost or operational overhead for a tool opened a few times a week.',
+            'In production every write goes through the GitHub Contents API, which makes a private repository the datastore: small JSON documents, a single writer, infrequent writes, and a complete history of every change at no cost. Each save is a commit that can be inspected and reverted. One module touches storage, which is what made replacing the entire layer practical.',
           ],
         },
         {
-          heading: 'Tests that look at the screen',
+          heading: 'Tests that measure the rendered page',
           body: [
-            'Most of the 46 test suites read code, which cannot see a layout break. Nine of them drive a real browser and measure what was actually painted, at 10 device widths and 4 breakpoints.',
-            'They check the things that only show up to a human eye: text painted over text you need to read, edges that should line up and do not, two controls doing the same job that look different, any text under 11.5px, any tap target under 44px on a phone. A resume tool that looks broken has lost before it is read.',
+            'Most of the 46 test suites inspect code, which cannot detect a broken layout. Nine drive a real browser and measure what was actually rendered, across 10 device widths and 4 breakpoints.',
+            'They verify the conditions only a human eye would otherwise catch: text rendered over text, edges that should align and do not, controls with identical function rendered differently, text below 11.5px, and tap targets below 44px on a phone.',
           ],
         },
       ],
       retrospective: [
-        'The score is the part I would build differently from the start. I shipped a number before I had any way to tell whether it was a good number, and because it was always high it looked like it was working. A few deliberately bad postings as test cases would have caught it on day one.',
-        'Using GitHub as the database I would do again at this size, and would not defend for a second user. It works because there is no concurrency to get wrong.',
+        'The score is the component I would approach differently. I shipped a metric before establishing any means of evaluating it, and because it was consistently high it appeared to be working. A small set of deliberately poor-fit postings as fixtures would have exposed the fault immediately.',
+        'Using GitHub as the datastore is a decision I would repeat at this scale and would not defend for a second concurrent writer. It succeeds precisely because there is no concurrency to manage.',
       ],
     },
   },
@@ -128,13 +129,13 @@ const entries: Project[] = [
     name: 'EIGENN',
     year: '2026',
     summary:
-      'A platform built for one domain: competitive-exam preparation. Coaching institutes enrol and give their students access; a student uploads a handwritten answer sheet and gets it evaluated in one step — with a human reviewer approving every AI result before the student sees it.',
+      'A platform built for a single domain: competitive-exam preparation. Coaching institutes enrol and grant access to their students; a student submits a handwritten answer sheet and receives an evaluation in one step, with a human reviewer approving every AI result before the student sees it.',
     highlights: [
-      'Built a **multi-tenant platform serving two kinds of user at once** — coaching institutes who enrol and manage their own students, and the UPSC, state PSC, CA and CS aspirants those students are.',
-      'Built a **17-node LangGraph pipeline** that reads a scanned answer sheet, reviews its own working, names every way it can fail, and resumes from any node instead of starting over — traced end to end in Langfuse.',
-      'Built search over **120K+ chunks** with BGE-M3 and cross-encoder reranking, quantised to ONNX INT8 so it runs on an ordinary CPU in 300MB — taking GPU cost out of the platform entirely.',
-      'Architected the backend as **10+ containerised services** on a private IPv6 mesh behind a React and TypeScript front end, with long-running evaluations durable on Temporal.',
-      'Built Razorpay payments on an append-only ledger where a retry never charges twice, backed by **150+ tests** including contract tests that catch the AI output changing shape.',
+      'Built a **multi-tenant platform serving two distinct user groups** — coaching institutes who enrol and administer their own students, and the UPSC, state PSC, CA and CS candidates those students are.',
+      'Engineered a **17-node LangGraph pipeline** that reads a scanned answer sheet, reviews its own intermediate output, declares every failure state, and resumes from any node rather than restarting — instrumented end to end with Langfuse.',
+      'Built retrieval over **120K+ chunks** using BGE-M3 with cross-encoder reranking, quantised to ONNX INT8 to run on CPU within 300MB — removing GPU cost from the platform entirely.',
+      'Architected the backend as **10+ containerised services** on a private IPv6 mesh behind a React and TypeScript front end, with long-running evaluations made durable on Temporal.',
+      'Implemented idempotent Razorpay payments over an append-only ledger so retries are safe, supported by **150+ tests** including contract tests that detect changes in AI output structure.',
     ],
     tags: [
       { label: 'Evaluation platform', emphasis: true },
@@ -147,11 +148,11 @@ const entries: Project[] = [
     links: [{ label: 'Live demo', href: 'https://demo.eigenn.in/', external: true }],
     study: {
       premise:
-        'Everything an exam aspirant needs in one place, and grading is the hard part of it. The pipeline does the reading; a human signs the result.',
+        'Everything an exam candidate needs in one platform, with grading as the difficult part of it. The pipeline performs the reading; a reviewer signs the result.',
       facts: [
         { label: 'Domain', value: 'Competitive-exam preparation — a vertical AI platform' },
         { label: 'Exams', value: 'UPSC, state PSC, CA, CS' },
-        { label: 'Users', value: 'Institutes enrol; their students get access' },
+        { label: 'Users', value: 'Institutes enrol; their students receive access' },
         { label: 'Built', value: '2026' },
         { label: 'Backend', value: 'FastAPI, LangGraph, Temporal, PostgreSQL with PgBouncer' },
         { label: 'Also', value: 'Redis, RabbitMQ, ONNX, React and TypeScript' },
@@ -160,56 +161,56 @@ const entries: Project[] = [
       ],
       sections: [
         {
-          heading: 'One domain, done properly',
+          heading: 'One domain, addressed properly',
           body: [
-            'An aspirant preparing for UPSC, a state PSC, CA or CS is not short of tools. They are short of one place that understands the exam they are actually sitting. General-purpose products treat an answer sheet as a document; this one treats it as an answer to a question with a known marking scheme.',
-            'The platform is multi-tenant and two-sided. A coaching institute enrols, brings its own students, and keeps its own content, cohorts and branding. The student signs in through their institute and gets the whole loop in one place: upload the handwritten sheet, have it read, get it evaluated, see the feedback against the marking scheme — rather than scanning in one tool, asking a model in another and never getting a mark anyone stands behind.',
+            'A candidate preparing for UPSC, a state PSC, CA or CS is not short of tools. They are short of a single environment that understands the examination they are actually sitting. General-purpose products treat an answer sheet as a document; this platform treats it as an answer to a question with a defined marking scheme.',
+            'The platform is multi-tenant and two-sided. An institute enrols, brings its own students, and retains its own content, cohorts and branding. The student signs in through their institute and completes the entire cycle in one place: submit the handwritten sheet, have it read, receive an evaluation against the marking scheme — rather than scanning in one tool, querying a model in another, and receiving no mark anyone will stand behind.',
           ],
           points: [
-            'Institutes manage their own students, content and cohorts; data stays separated by tenant.',
-            'A handwritten answer sheet is scanned and read on the way into the pipeline, so the input is paper, not typing.',
-            'One step for the student: upload, and the evaluation comes back reviewed.',
+            'Institutes administer their own students, content and cohorts; data is separated by tenant.',
+            'A handwritten answer sheet is scanned and read on entry to the pipeline, so the input is paper rather than typed text.',
+            'A single step for the student: submit, and the reviewed evaluation returns.',
           ],
         },
         {
-          heading: 'A human signs every result',
+          heading: 'A reviewer signs every result',
           body: [
-            'A platform that sends machine-written marks straight to a student is a risk, not a product. Institutes are judged on their grading, and one confidently wrong score costs more trust than a hundred right ones earn.',
-            'So the pipeline never gives a final mark. It produces a draft with its reasoning next to it, and a reviewer approves, edits or rejects it. Only the approved version reaches the student. That makes the AI a very fast first reader instead of the authority, which is the job it is actually good at.',
+            'A platform that issues machine-generated marks directly to a student is a liability rather than a product. Institutes are judged on their grading, and one confidently incorrect score costs more trust than a hundred correct ones earn.',
+            'The pipeline therefore never issues a final mark. It produces a draft with its reasoning attached, and a reviewer approves, amends or rejects it; only the approved version reaches the student. That makes the model a rapid first reader rather than an authority, which is the role it performs well.',
           ],
         },
         {
-          heading: 'A pipeline that fails in named ways',
+          heading: 'A pipeline with declared failure states',
           body: [
-            'The evaluation flow is 17 nodes in LangGraph, and some of them loop back so the pipeline checks its own working before it carries on. The loops matter: a first pass over a handwritten answer is often wrong in a way a second pass catches.',
-            'Every node saves its state, so a failure picks up where it stopped instead of starting again. And every failure has a name and a type rather than one generic error. A system that can only tell you "something went wrong" is a system nobody can run.',
+            'The evaluation flow comprises 17 nodes in LangGraph, several of which cycle so the pipeline reviews its own intermediate output before continuing. The cycles matter: a first pass over a handwritten answer is frequently wrong in a way a second pass identifies.',
+            'Every node checkpoints, so a failure resumes rather than restarts, and each failure state is typed rather than raised as a generic error. A system that can report only that something went wrong is a system that cannot be operated.',
           ],
           points: [
-            'Named failure types — each one has an owner and a way to recover.',
-            'Every node saves state, so a half-finished run is not wasted work.',
-            'Long jobs run on Temporal, not inside a web request.',
-            'Langfuse traces every node, so a bad result can be opened and read afterwards.',
+            'Typed failure states, each with a defined owner and recovery path.',
+            'Per-node checkpoint and resume, so a partial run is not discarded.',
+            'Long-running work orchestrated on Temporal rather than inside request handlers.',
+            'Langfuse traces every node, so a poor result can be examined after the fact.',
           ],
         },
         {
-          heading: 'Search that fits on a CPU',
+          heading: 'Retrieval within a CPU budget',
           body: [
-            'Search runs over more than 120,000 chunks of reference material, embedded with BGE-M3 and then reranked by a cross-encoder. Reranking is the step that separates roughly relevant passages from the right one.',
-            'Running that on GPUs would have been the easy choice and a bill every month. Quantising the models to ONNX INT8 got the whole search stack into about 300MB of RAM on ordinary CPU machines. Accuracy dropped a little. The cost dropped to nothing.',
+            'Retrieval runs over more than 120,000 chunks of reference material, embedded with BGE-M3 and reranked by a cross-encoder. Reranking is the step that separates broadly relevant passages from the correct one.',
+            'Running that on GPUs would have been the straightforward choice and a recurring cost. Quantising the models to ONNX INT8 brought the entire retrieval stack within approximately 300MB of RAM on ordinary CPU hosts. The accuracy cost was marginal; the infrastructure cost was eliminated.',
           ],
         },
         {
-          heading: 'Tests for output that is allowed to vary',
+          heading: 'Testing output that is permitted to vary',
           body: [
-            'A model does not return the same sentence twice, so the usual "assert equals" tests say nothing. What has to stay fixed is the shape: the fields, the types, the ranges a mark can sit in.',
-            'Contract tests check exactly that, and they are the ones that catch a prompt or model change quietly breaking the code downstream — the failure that otherwise reaches a reviewer as a blank screen.',
+            'A model does not return an identical sentence twice, so conventional equality assertions establish nothing. What must remain fixed is the structure: the fields, the types, and the ranges a mark may occupy.',
+            'Contract tests verify exactly that, and they are what detect a prompt or model change quietly breaking downstream code — a failure that otherwise reaches a reviewer as a blank screen.',
           ],
         },
         {
-          heading: 'Money needs a higher standard',
+          heading: 'Payments require a higher standard',
           body: [
-            'Payments are the one place where a retry must never become a second charge. Every write goes into an append-only ledger and every operation is safe to repeat, so a duplicated webhook or a double-tapped button ends at the same balance.',
-            'Most of the 150+ tests here are not happy-path tests. They cover the duplicate callback, the timeout halfway through a write, the message that arrives out of order — the cases that only turn up in production if you have not written them down first.',
+            'Payments are the one area where a retry must never become a second charge. Writes go to an append-only ledger and every operation is idempotent, so a duplicated webhook or a double submission settles to the same balance.',
+            'Most of the 150+ tests in this area are not happy-path tests. They cover the duplicate callback, the timeout mid-write, and the out-of-order delivery — the states that appear in production only if they have been written down first.',
           ],
         },
       ],
@@ -222,12 +223,12 @@ const entries: Project[] = [
     year: '2025',
     ongoing: true,
     summary:
-      'Runs 16 independent screening strategies over 8,100 NSE and BSE companies every night, publishes each as a pre-computed snapshot, and prints the measured backtest result on the page — including when it shows no edge.',
+      'Runs 16 independent screening strategies across 8,100 NSE and BSE companies each night, publishes each as a pre-computed snapshot, and states the measured backtest result on the page — including where it shows no edge.',
     highlights: [
-      '**Publishes its own negative results.** Each strategy states what its backtest actually measured — t-statistics, profit factors, multiple-testing corrections — including the screens that show no edge at all.',
-      'Serves **8,100 companies in under 0.3s** on a 512MB host by committing the night’s data into the deployment, so nothing external is called while a reader waits.',
-      'Cut serve time **200s → 0.7s**, memory **62MB → 27MB per worker**, and upstream calls **13,000 → 3,000 a night**. Every one of those is a measurement, before and after.',
-      'Covered it with **2,341 automated tests**, 147 of them driving a real browser, and ran the whole platform at **₹0/month** inside free-tier limits.',
+      '**Publishes its own negative results.** Each strategy states what its backtest measured — t-statistics, profit factors, multiple-testing corrections — including the screens that demonstrate no edge.',
+      'Serves **8,100 companies in under 0.3s** on a 512MB host by committing each night’s data into the deployment, so no external call occurs while a reader waits.',
+      'Reduced serve time **200s → 0.7s**, memory **62MB → 27MB per worker**, and upstream requests **13,000 → 3,000 per night**. Each figure is a measurement taken before and after.',
+      'Covered the platform with **2,341 automated tests**, 147 of which drive a real browser, and operate the whole system at **₹0/month** within free-tier limits.',
     ],
     tags: [
       { label: 'Market screener', emphasis: true },
@@ -247,7 +248,7 @@ const entries: Project[] = [
     ],
     study: {
       premise:
-        'Sixteen screens over 8,100 companies, rebuilt every night and baked into the deployment — and every one of them prints what its backtest actually measured, including the ones with no edge.',
+        'Sixteen screens across 8,100 companies, rebuilt nightly and committed into the deployment — and each one states what its backtest actually measured, including the results that show no edge.',
       facts: [
         { label: 'Role', value: 'Sole engineer' },
         { label: 'Built', value: 'Since 2025 — 1,162 commits over 16 months' },
@@ -255,70 +256,70 @@ const entries: Project[] = [
         { label: 'Coverage', value: '8,111 companies from ~23,000 NSE and BSE instruments' },
         { label: 'Stack', value: 'Django 5, Playwright, GitHub Actions, Docker, Render' },
         { label: 'Tests', value: '2,341 — 2,194 offline, 147 in a real browser' },
-        { label: 'Budget', value: '512MB host, ₹0 a month' },
+        { label: 'Budget', value: '512MB host, ₹0 per month' },
         { label: 'Also on', value: 'Google Play, as a trusted web activity' },
       ],
       sections: [
         {
-          heading: 'The work is gathering, not analysing',
+          heading: 'The work is collection, not analysis',
           body: [
-            'Equity research in India is mostly data collection. The numbers sit across four sites that do not agree with each other, each company needs ten to twenty fields pulled by hand, and by the time you have done thirty the market has moved. Nobody checks 8,100.',
-            'So the machine does the gathering every night, and the reader only ever opens companies that qualified for something. It screens; it does not advise and it does not place orders. That boundary is a design decision, not a missing feature.',
+            'Equity research in India is predominantly data collection. The figures are distributed across four sources that do not agree with one another, each company requires ten to twenty fields gathered by hand, and the market has moved by the time thirty have been completed. Reviewing 8,100 is not feasible manually.',
+            'The platform performs the collection nightly, so the reader opens only companies that qualified for something. It screens; it does not advise and it does not place orders. That boundary is a design decision rather than an omission.',
           ],
         },
         {
-          heading: 'The data is a build artifact, not a query',
+          heading: 'Data as a build artifact rather than a query',
           body: [
-            'End-of-day market data never changes. Yesterday’s prices are final. Anything that never changes can be built in instead of looked up — which is what makes a 512MB host enough.',
-            'A nightly GitHub Actions job fetches from every source, runs each of the 16 screens as its own step, writes each result as an atomic JSON snapshot and commits it. That commit triggers a deploy, so the image ships with the data already inside it. Serving a page is then a dictionary lookup: nothing is scraped while a reader waits, and the site cannot be slow because a data provider is slow.',
+            'End-of-day market data does not change. Yesterday’s prices are final, and anything immutable can be built in rather than looked up — which is what makes a 512MB host sufficient.',
+            'A nightly GitHub Actions job fetches from every source, runs each of the 16 screens as an independent step, writes each result as an atomic JSON snapshot, and commits it. The commit triggers a deploy, so the image ships with the data already inside it. Serving a page is then a dictionary lookup: nothing is fetched while a reader waits, and the site cannot be slow because an upstream provider is slow.',
           ],
           points: [
             'Under 0.3s per page across 8,111 companies, on 512MB.',
-            'No API call in the read path, so there are no rate limits to work around.',
-            'Rolling back bad data is a redeploy of the previous build.',
-            'A provider outage shows up as a slightly old page instead of a broken one.',
+            'No external call in the read path, so there are no rate limits to accommodate.',
+            'Rolling back incorrect data is a redeploy of the previous build.',
+            'A provider outage presents as slightly stale data rather than a broken page.',
           ],
         },
         {
-          heading: 'Four numbers that had to be measured, not guessed',
+          heading: 'Four figures that required measurement',
           body: [
-            'None of the performance work started as an opinion. Each one began with a number that was unacceptable and ended with the same number taken again.',
-            'The worst was a screen that built its default window live, fetching about 850 days of candles per company. It took over 200 seconds, which is past the server’s 120-second timeout — so the worker was killed before it could ever finish and cache the result, and every visitor restarted the same doomed work. As a committed snapshot it answers in 0.7 seconds.',
+            'None of the performance work began as an assumption. Each started with an unacceptable measurement and concluded with the same measurement retaken.',
+            'The most severe case was a screen that built its default window at request time, fetching approximately 850 days of candles per company. It took over 200 seconds, beyond the server’s 120-second timeout, so the worker was terminated before it could complete and cache the result, and every visitor restarted the same work. As a committed snapshot it responds in 0.7 seconds.',
           ],
           points: [
-            'Serve time 200s → 0.7s, by moving the build out of the request.',
-            'Time to first byte 0.95s → 0.30s, by encoding each feed once per data version. 0.30s is the India-to-Singapore network floor, so there is nothing left to win.',
-            'Memory 62.3MB → 27.2MB per worker, after finding four modules each building their own index of the same instrument list. Two workers measured 675MB and were killed mid-request, which is why production runs one.',
-            'Upstream calls ~13,000 → ~3,000 a night, with a build-time shared cache that is guarded so it cannot change any screen’s output.',
+            'Serve time 200s → 0.7s, by moving the build out of the request path.',
+            'Time to first byte 0.95s → 0.30s, by encoding each feed once per data version. 0.30s is the India-to-Singapore network floor.',
+            'Memory 62.3MB → 27.2MB per worker, after identifying four modules each building a separate index of the same instrument list. A two-worker configuration measured 675MB and was OOM-killed, which is why production runs one.',
+            'Upstream requests ~13,000 → ~3,000 per night, via a build-time shared cache guarded so it cannot alter any screen’s output.',
           ],
         },
         {
-          heading: 'The screens that found nothing — and say so',
+          heading: 'The screens that found nothing, stated plainly',
           body: [
-            'Most trading projects imply an edge and never test for one. This platform runs the backtest and prints the result on the page whether or not the result is flattering.',
-            'Several screens measured as no edge, and they still say that in public. Stage 2 breakouts came out at +0.24% over their own 15-day window with a t-statistic of 0.12 — the in-sample half negative, the holdout positive, which is regime rather than skill. The F&O momentum screen wins 29.8% against a 33.3% breakeven, a profit factor of 0.83, and no cost assumption rescues it. A study of a 2013 astrology trading book found 0 of 1,589 rules surviving a multiple-testing correction.',
-            'Supporting that in the architecture: there is no combined score and no average anywhere. The screens disagree — two were 44 points apart on the same company on the same day — and they are different ages, so every block prints its own date, and a company missing from a screen means it did not qualify, never sell.',
+            'Most trading projects imply an edge and never test for one. This platform runs the backtest and publishes the result on the page regardless of whether the result is favourable.',
+            'Several screens measured as no edge and say so publicly. Stage 2 breakouts returned +0.24% over their own 15-day window with a t-statistic of 0.12 — the in-sample half negative and the holdout positive, which indicates regime rather than skill. The F&O momentum screen wins 29.8% against a 33.3% breakeven at a profit factor of 0.83, and no cost assumption recovers it. A study of a 2013 astrology trading method found 0 of 1,589 rules surviving a multiple-testing correction.',
+            'The architecture supports that position: there is no combined score and no average anywhere. The screens disagree — two differed by 44 points on the same company on the same day — and they are of different ages, so every block carries its own date, and a company’s absence from a screen means it did not qualify, never that it should be sold.',
           ],
         },
         {
-          heading: 'A pipeline that starved itself',
+          heading: 'A pipeline that starved itself of data',
           body: [
-            'The nightly job ran its test suite before it built the data. Bad data from an upstream failed a test, the failed gate skipped all thirty builds, and the only thing that could have repaired the file was the build that had just been skipped. It left the site on stale data six separate times before I understood the shape of it.',
-            'Data-reading tests are now tagged out of that gate, and the gate itself reports without blocking: a red test publishes the data and still turns the run red. "Partial publish, loud failure" was written in the job’s own header the whole time — the gate was the one step disobeying it.',
+            'The nightly job ran its test suite before building the data. Poor upstream data failed a test, the failed gate skipped all thirty builds, and the only process capable of repairing the file was the build that had just been skipped. The site served stale data on six separate occasions before I identified the pattern.',
+            'Data-reading tests are now tagged out of that gate, and the gate itself reports without blocking: a failing test publishes the data and still marks the run red. "Partial publish, loud failure" was stated in the job’s own header throughout — the gate was the single step not honouring it.',
           ],
         },
         {
-          heading: 'A number that was quietly wrong 1,005 times',
+          heading: 'A figure that was wrong on 1,005 companies',
           body: [
-            'One provider returns NSE history adjusted for splits and bonuses, and BSE history unadjusted. Taking the higher of the two as the all-time high therefore adopted the unadjusted BSE figure, and invented drawdowns that never happened — on 1,005 companies.',
-            'Nothing crashed and nothing looked wrong, which is what makes this class of bug worth the story. Every BSE all-time high is now labelled unverified on the page rather than quietly trusted.',
+            'One provider returns NSE history adjusted for splits and bonuses, and BSE history unadjusted. Taking the higher of the two as the all-time high therefore adopted the unadjusted BSE figure and produced drawdowns that had never occurred, across 1,005 companies.',
+            'Nothing failed and nothing appeared incorrect, which is what makes this class of defect worth recording. Every BSE all-time high is now labelled unverified on the page rather than silently trusted.',
           ],
         },
       ],
       retrospective: [
-        'A monitor must not live inside the thing it monitors. When the Actions budget ran out, every workflow died in four seconds, the site served 17-day-old data, and the health check stayed green through all of it because it only ever checked whether the web server was up. There is now a separate staleness endpoint watched from outside GitHub, and alerts that fire only on failure.',
-        'Four audit guards passed with the bug deliberately put back. The comment explaining the fix contained the exact string the guard was grepping for, so the guard found its own documentation and went green. Guards now strip comments before matching, and I do not trust a new one until I have made it fail on purpose.',
-        'The dependency scan ran before the tests and was set to block. One advisory in a transitive dependency therefore meant a push ran zero tests while the run still looked normal. It is non-blocking now, runs after the tests, and a final always-run step fails the build on its result.',
+        'A monitor must not run inside the system it monitors. When the Actions budget was exhausted, every workflow failed within four seconds, the site served 17-day-old data, and the health check remained green throughout because it verified only that the web server was running. A separate staleness endpoint is now monitored from outside GitHub, with alerts that fire only on failure.',
+        'Four audit guards passed with the defect deliberately reintroduced. The comment explaining the fix contained the exact string the guard searched for, so the guard matched its own documentation. Guards now strip comments before matching, and I do not rely on a new one until I have made it fail deliberately.',
+        'The dependency scan ran before the tests and was configured to block, so a single advisory in a transitive dependency meant a push executed zero tests while the run still appeared normal. It is non-blocking now, runs after the tests, and a final always-run step fails the build on its result.',
       ],
     },
   },
@@ -342,8 +343,8 @@ export const projectBySlug = (slug: string): Project | undefined =>
  *
  * AlgoPy used to be written as "2025–26", which would have quietly become
  * wrong on 1 January — in the card, the page heading and the browser title at
- * once, with nothing to catch it. "Present" cannot go stale, and it says the
- * more useful thing anyway: the project is still alive.
+ * once, with nothing to catch it. "Present" cannot go stale, and it states the
+ * more useful fact anyway: the project is still active.
  */
 export const projectYears = (project: Project): string =>
   project.ongoing ? `${project.year}–present` : project.year

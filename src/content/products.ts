@@ -4,14 +4,16 @@ import type { Product } from '@/types/content'
  * Products owned by an employer, each with its own page under /work.
  *
  * These are deliberately not project cards. The company owns them, and a
- * portfolio that quietly files an employer's product next to work the author
- * built alone is making a claim it cannot support. They sit inside the role
- * that produced them, and the page says whose it is in the first fact.
+ * portfolio that files an employer's product beside work the author built
+ * alone is making a claim it cannot support. They sit inside the role that
+ * produced them, and the page states the owner in its first fact.
  *
- * What they are not short of is engineering worth reading about, which is why
- * they get a page at all: the Experience section has room for five bullets,
- * and five bullets cannot hold a multi-tenant architecture or a database
- * migration that could not lose a row.
+ * They are given a page because the engineering warrants one: the Experience
+ * section has room for five bullets, and five bullets cannot hold a
+ * multi-tenant architecture or a migration that could not lose a record.
+ *
+ * Copy register matches content/projects.ts — precise and measured, no
+ * conversational asides.
  */
 export const products: Product[] = [
   {
@@ -20,7 +22,7 @@ export const products: Product[] = [
     company: 'Blueport Solutions',
     period: 'Aug 2025 — Present',
     summary:
-      'Tender discovery and bid management for government contracts — finding matching tenders, reading their documents, and running the work through to payment.',
+      'Tender discovery and bid management for government contracts — identifying matching tenders, reading their documents, and carrying the work through to payment.',
     tags: [
       { label: 'Multi-tenant', emphasis: true },
       { label: 'Django REST' },
@@ -31,61 +33,61 @@ export const products: Product[] = [
     links: [{ label: 'Visit site', href: 'https://sutram.blueportsolutions.in/', external: true }],
     study: {
       premise:
-        'Several tender-management firms, each with their own branding and their own data, served from one codebase I own end to end.',
+        'Several tender-management firms, each with their own branding and their own data, served from a single codebase I deliver and operate end to end.',
       facts: [
-        { label: 'Owner', value: 'Blueport Solutions — I build and run it' },
+        { label: 'Owner', value: 'Blueport Solutions — I build and operate it' },
         { label: 'My role', value: 'Software Engineer, end-to-end delivery' },
         { label: 'Period', value: 'Aug 2025 — Present' },
-        { label: 'Shape', value: 'Multi-tenant, white-label SaaS' },
+        { label: 'Architecture', value: 'Multi-tenant, white-label SaaS' },
         { label: 'Stack', value: 'Python, Django REST, PostgreSQL, Redis' },
         { label: 'Infrastructure', value: 'VPS on Coolify — SSL/TLS, versioned releases' },
       ],
       sections: [
         {
-          heading: 'What a tender actually costs a firm',
+          heading: 'What a tender costs a firm',
           body: [
-            'A government tender is published as a pile of documents, with a deadline and a format that is unforgiving about both. Firms that bid for a living spend most of their time on the part before the bidding: finding the tenders that are even relevant, reading the documents, and keeping track of what has been submitted and what has been paid.',
-            'Sutram is the whole of that loop in one place — discovery, the documents, the bid, and the payment at the end of it.',
+            'A government tender is published as a set of documents with a deadline and a format that admits no error. Firms that bid professionally spend most of their time on the work preceding the bid: identifying which tenders are relevant, reading the documentation, and tracking what has been submitted and what has been paid.',
+            'Sutram covers that entire cycle in one platform — discovery, the documents, the bid, and the payment that concludes it.',
           ],
         },
         {
           heading: 'One codebase, several firms',
           body: [
-            'Each client is a separate firm with its own branding, its own users and its own commercially sensitive bids. The straightforward answer is to run a copy of the application per client, and then maintain five copies forever.',
-            'Instead it is one codebase and one deployment, with the separation enforced in the database rather than in the code that queries it. That is the part worth being careful about: an access rule that lives in a handler is a rule somebody forgets to write on the next endpoint, and in this domain a leak between two clients is not a bug report, it is the end of the contract.',
+            'Each client is a separate firm with its own branding, its own users and its own commercially sensitive bids. The straightforward approach is to run a copy of the application per client and then maintain five copies indefinitely.',
+            'Instead there is one codebase and one deployment, with separation enforced in the database rather than in the code that queries it. That distinction is the one worth being careful about: an access rule written into a handler is a rule that will be omitted from the next endpoint, and in this domain a leak between two clients is not a defect report but the end of a contract.',
           ],
           points: [
-            'Row-level isolation, so a client’s data is separated by the database and not by remembering to filter.',
-            'Role-based access control over what each user inside a firm can see and do.',
-            'White-label branding per tenant, from one deployment.',
+            'Row-level isolation, so each client’s data is separated by the database rather than by remembering to filter.',
+            'Role-based access control governing what each user within a firm may see and do.',
+            'White-label branding per tenant, from a single deployment.',
           ],
         },
         {
-          heading: 'Showing a firm only the tenders that are theirs',
+          heading: 'Surfacing only the relevant tenders',
           body: [
-            'Tender listings arrive as a flood, and almost none of any day’s postings are relevant to any one firm. A keyword filter is too blunt — the language of a tender rarely matches the language a firm uses about itself.',
-            'A retrieval pipeline reads incoming listings and surfaces only the ones inside each client’s own field, so the inbox is short enough to actually be read.',
+            'Tender listings arrive in volume, and almost none of a given day’s postings are relevant to any one firm. Keyword filtering is too coarse, because the language of a tender rarely matches the language a firm uses to describe itself.',
+            'A retrieval pipeline reads incoming listings and surfaces only those within each client’s own field, which reduces the queue to a length that will actually be reviewed.',
           ],
         },
         {
-          heading: 'Five years of paper into a database',
+          heading: 'Five years of records into a database',
           body: [
-            'The clients did not arrive empty-handed. They arrived with five years of history in spreadsheets and scanned PDFs — the record of everything they had bid for, in a form nothing could query.',
-            'An OCR ingestion pipeline moved all of it into PostgreSQL without losing a row. "Without losing a row" is the whole requirement: a migration that is 99% correct is one a client cannot trust, and they would be right not to.',
+            'The clients arrived with five years of history in spreadsheets and scanned PDFs — a complete record of everything they had bid for, in a form nothing could query.',
+            'An OCR ingestion pipeline migrated all of it into PostgreSQL without the loss of a record. That is the whole requirement: a migration that is 99% correct is one a client cannot rely on, and they would be correct not to.',
           ],
         },
         {
-          heading: 'Making it fast enough to live in',
+          heading: 'Response times suited to daily use',
           body: [
-            'This is software people have open all day, so response time is not a vanity metric — it is the difference between a tool and a chore.',
-            'Average API response time came down by 70%, from four directions at once: Redis caching for what does not change between requests, indexes for the queries that were reading more than they needed, load balancing, and rewriting the queries that were slow by construction rather than by volume.',
+            'This is software that remains open throughout the working day, so response time determines whether it functions as a tool or an obstruction.',
+            'Average API response time was reduced by 70% through four measures: Redis caching for data that does not change between requests, indexes for queries reading more than they required, load balancing, and rewriting the queries that were slow by construction rather than by volume.',
           ],
         },
         {
-          heading: 'Running it, not just building it',
+          heading: 'Operating it, not only building it',
           body: [
-            'The VPS is mine to run as well: SSL/TLS, versioned releases and centralised logging, managed through Coolify.',
-            'Automating the release path took about 20 minutes off every deploy. The time matters less than what it buys — a deploy that is quick and boring is a deploy you are willing to do on a Friday to fix something small, instead of letting it wait.',
+            'The VPS is mine to operate as well: SSL/TLS, versioned releases and centralised logging, managed through Coolify.',
+            'Automating the release path removed approximately 20 minutes from every deploy. The time saved matters less than what it enables — a deploy that is quick and uneventful is one worth performing to correct something minor, rather than deferring it.',
           ],
         },
       ],
@@ -99,7 +101,7 @@ export const products: Product[] = [
     company: 'Beginning Solutions',
     period: '2024 — 2025',
     summary:
-      'Two Android apps for the same problem: finding an affordable daily meal, and running the mess that serves it.',
+      'Two Android applications addressing the same problem: locating an affordable daily meal, and administering the mess that serves it.',
     tags: [
       { label: 'Shipped to Play Store', emphasis: true },
       { label: 'Python' },
@@ -121,72 +123,72 @@ export const products: Product[] = [
     ],
     study: {
       premise:
-        'A student in a new city has to eat every day, cheaply. DMFU is the app that finds them a mess — and the second app the mess uses to run itself.',
+        'A student in an unfamiliar city has to eat every day, affordably. DMFU is the application that locates a mess for them — and the second application the mess uses to administer itself.',
       facts: [
         { label: 'Owner', value: 'Beginning Solutions' },
         { label: 'My role', value: 'Full Stack Developer — built and shipped it' },
         { label: 'Period', value: '2024 — 2025' },
-        { label: 'Shipped', value: 'Two Android apps, both on Google Play' },
+        { label: 'Shipped', value: 'Two Android applications, both on Google Play' },
         { label: 'Stack', value: 'Python, MongoDB, Shell, Ubuntu, Figma' },
         { label: 'Operations', value: 'Apache, SSL automation, automated backups' },
       ],
       sections: [
         {
-          heading: 'Two apps, one problem',
+          heading: 'Two applications, one problem',
           body: [
-            'A mess is where a great many students and working people in India eat every day: a kitchen that serves a fixed menu at a fixed price, usually on a monthly plan. Finding a good one near you is word of mouth, and running one is a notebook.',
-            'DMFU is both halves. One app is for the people eating — search what is nearby, read the menu, see the price and what others thought, then subscribe. The other is for the people cooking, who manage their own listing, menu and plans from it.',
+            'A mess is where a great many students and working professionals in India eat daily: a kitchen serving a fixed menu at a fixed price, generally on a monthly plan. Identifying a good one is a matter of word of mouth, and administering one is typically a paper record.',
+            'DMFU addresses both halves. One application serves the people eating — search what is nearby, review the menu, compare the price and the ratings, then subscribe. The other serves the kitchen, which administers its own listing, menu and plans through it.',
           ],
         },
         {
-          heading: 'What the finder does',
+          heading: 'What the finder provides',
           body: [
-            'The app is built around how someone actually chooses a mess: close to me, within my budget, serving what I eat, and not disappointing anyone recently.',
+            'The application is structured around how a person actually selects a mess: proximity, budget, dietary preference, and recent reputation.',
           ],
           points: [
-            'Messes near you, ranked by ratings left by people who have actually eaten there.',
-            'Veg and non-veg filtering, because for a lot of users this is the first question, not a preference.',
-            'The full detail before committing: address, photos, menu, prices and plan options.',
-            'Daily meals or a subscription, whichever matches the person’s week and budget.',
+            'Nearby messes ranked by ratings from people who have eaten there.',
+            'Vegetarian and non-vegetarian filtering, which for many users is the first criterion rather than a preference.',
+            'Full detail before committing: address, photographs, menu, pricing and plan options.',
+            'Daily meals or a subscription, according to the user’s schedule and budget.',
             'A Mess Pocket wallet, topped up with coupons and redeemed at the counter.',
-            'Notifications when a mess opens or closes, so nobody walks to a shut kitchen.',
-            'Ratings on meals, which is what keeps the rest of the list honest.',
+            'Notifications when a mess opens or closes, so no one travels to a closed kitchen.',
+            'Meal ratings, which are what keep the rankings meaningful.',
           ],
         },
         {
-          heading: 'The other app, for the kitchen',
+          heading: 'The second application, for the kitchen',
           body: [
-            'Everything the finder shows has to come from somewhere, and that somewhere is a person running a mess who has no interest in software. So the manager app is deliberately the smaller of the two: it does the handful of things that keep a listing true, and nothing else.',
-            'The pairing is what makes the product work. A listing nobody maintains goes stale in a week, and a stale listing is worse than none — it sends somebody to a kitchen that closed an hour ago.',
+            'Everything the finder displays has to originate somewhere, and that somewhere is a person running a mess with no particular interest in software. The manager application is therefore deliberately the smaller of the two: it performs the few operations that keep a listing accurate, and nothing further.',
+            'The pairing is what makes the product function. An unmaintained listing becomes inaccurate within a week, and an inaccurate listing is worse than none, because it directs someone to a kitchen that closed an hour earlier.',
           ],
           points: [
-            'The listing itself: name, address, photos — what a prospective eater sees first.',
-            'The menu and the prices, which change more often than anything else.',
-            'The plans on offer, daily or monthly, so the finder can show what it costs.',
-            'Open or closed, which is what drives the notification a subscriber gets.',
+            'The listing itself: name, address and photographs — what a prospective customer sees first.',
+            'The menu and the pricing, which change more frequently than anything else.',
+            'The plans offered, daily or monthly, so the finder can display the cost.',
+            'Open or closed status, which drives the notification a subscriber receives.',
             'Coupons redeemed at the counter against a subscriber’s Mess Pocket.',
-            'Ratings and feedback coming back in, which is what keeps the rankings honest.',
+            'Ratings and feedback as they arrive, which is what keeps the rankings honest.',
           ],
         },
         {
-          heading: 'Moving a live database without losing anyone',
+          heading: 'Migrating a live database without data loss',
           body: [
-            'The production database was on a legacy schema that had stopped fitting the product. Changing it meant moving real records belonging to real users who would open the app the next morning either way.',
-            'I wrote the migration in Python specifically for this data, rather than reaching for a generic tool that would have needed the data to be tidier than it was. Every existing user record came through intact. Nobody logged in to find their subscription missing, which is the only measure of success a migration has.',
+            'The production database used a legacy schema that no longer fitted the product. Changing it meant moving live records belonging to users who would open the application the following morning regardless.',
+            'I wrote the migration in Python specifically for this data, rather than adopting a general-purpose tool that would have required the data to be more consistent than it was. Every existing user record was preserved. No one signed in to find a subscription missing, which is the only measure by which a migration succeeds.',
           ],
         },
         {
-          heading: 'The server behind the apps',
+          heading: 'The infrastructure behind the applications',
           body: [
-            'An app on a phone is the visible half. The other half was an Ubuntu VPS I owned outright: Apache, SSL automation so certificates renewed without anyone remembering, and domain routing.',
-            'The part I would point at is the shell scripts — automated backups, and health checks that could restart what they found broken. A food app has a hard daily peak at lunch and dinner, and there is nobody on call at 1pm. Self-healing was not a nice extra, it was the on-call rota.',
+            'An application on a phone is the visible half. The other half was an Ubuntu VPS I owned outright: Apache, SSL automation so certificates renewed without intervention, and domain routing.',
+            'The component worth noting is the shell tooling — automated backups, and health checks capable of restarting what they found unresponsive. A food application has a firm daily peak at lunch and dinner, with no one available to intervene. Self-healing was not an enhancement; it was the on-call arrangement.',
           ],
         },
         {
-          heading: 'Getting it into the store, twice',
+          heading: 'Two Play Store releases',
           body: [
-            'I designed the interface in Figma before any of it was built, which is the cheapest place to find out that a screen does not work.',
-            'Then the whole Play Store path for both apps: signing, versioning, a staged rollout rather than shipping to everybody at once, and crash monitoring afterwards. Releasing to a store is a different discipline from deploying a server — you cannot roll back a bad build out of a user’s phone, so the staging is the safety net.',
+            'I designed the interface in Figma before implementation, which is the least expensive point at which to discover that a screen does not work.',
+            'The full Play Store path followed for both applications: signing, versioning, a staged rollout rather than a release to the entire user base at once, and crash monitoring afterwards. Releasing to a store is a different discipline from deploying a server — a defective build cannot be withdrawn from a user’s device, so the staging is the safeguard.',
           ],
         },
       ],

@@ -167,7 +167,7 @@ function ContactForm() {
           type="submit"
           disabled={busy}
           aria-busy={busy}
-          className="min-w-[13rem] disabled:cursor-wait disabled:border-line-strong disabled:bg-transparent disabled:text-muted"
+          className="w-full min-w-[13rem] disabled:cursor-wait disabled:border-line-strong disabled:bg-transparent disabled:text-muted sm:w-auto"
         >
           {busy ? (
             <>
