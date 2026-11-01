@@ -22,7 +22,7 @@ export function Contact() {
           was text written to fill a gap. Laid out as a strip, the same way
           the metrics read under the hero, there is no gap to fill. */}
       <Reveal>
-        <dl className="grid grid-cols-2 border-t border-line lg:grid-cols-4">
+        <dl className="grid grid-cols-1 border-t border-line sm:grid-cols-2 lg:grid-cols-4">
           <Row label="Email" value={site.email} href={`mailto:${site.email}`} />
           {site.social.map((link) => (
             <Row
@@ -60,7 +60,7 @@ function Row({
   // A cell in the strip. Label above value, because the values are long
   // enough that a label beside them leaves nothing for them to sit in.
   return (
-    <div className="border-b border-line py-6 pr-5 lg:border-r lg:px-6 lg:first:pl-0 lg:last:border-r-0">
+    <div className="border-b border-line py-5 sm:pr-5 lg:border-r lg:px-6 lg:py-6 lg:first:pl-0 lg:last:border-r-0">
       <dt className="font-mono text-[11px] tracking-[0.16em] text-faint uppercase">{label}</dt>
       <dd className="mt-2 text-[15px] break-words">
         {href ? (
