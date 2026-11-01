@@ -1,6 +1,7 @@
+import { useRef, useState } from 'react'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { Button } from '@/components/ui/Button'
-import { Spinner } from '@/components/ui/Icon'
+import { Check, Copy, Spinner } from '@/components/ui/Icon'
 import { Reveal } from '@/components/ui/Reveal'
 import { SuccessDialog } from '@/components/ui/SuccessDialog'
 import { useContactForm } from '@/hooks/useContactForm'
@@ -28,8 +29,18 @@ export function Contact() {
             table rather than two groups of facts. Four equal columns, and
             the email still fits on one line. */}
         <dl className="grid grid-cols-1 border-t border-line sm:grid-cols-2 lg:grid-cols-4">
-          <Row label="Email" value={site.email} href={`mailto:${site.email}`} />
-          <Row label="Phone" value={site.phone.display} href={`tel:${site.phone.dial}`} />
+          <Row
+            label="Email"
+            value={site.email}
+            href={`mailto:${site.email}`}
+            copy={site.email}
+          />
+          <Row
+            label="Phone"
+            value={site.phone.display}
+            href={`tel:${site.phone.dial}`}
+            copy={site.phone.display}
+          />
           {site.social.map((link) => (
             <Row
               key={link.href}
@@ -40,6 +51,7 @@ export function Contact() {
               value={link.href.replace(/^https?:\/\/(www\.)?(github|linkedin)\.com\//, '')}
               href={link.href}
               external
+              copy={link.href}
             />
           ))}
         </dl>
@@ -69,31 +81,96 @@ function Row({
   value,
   href,
   external = false,
+  copy,
 }: {
   label: string
   value: string
   href?: string
   external?: boolean
+  /**
+   * What the copy control puts on the clipboard. Given explicitly because it
+   * is not always the text on screen: the handles are displayed without their
+   * domain, but what a reader wants to paste is the whole profile URL.
+   */
+  copy?: string
 }) {
   // A cell in the strip. Label above value, because the values are long
   // enough that a label beside them leaves nothing for them to sit in.
   return (
     <div className="border-b border-line py-5 sm:pr-5 lg:border-r lg:px-6 lg:py-6 lg:first:pl-0 lg:last:border-r-0">
       <dt className="font-mono text-[11px] tracking-[0.16em] text-faint uppercase">{label}</dt>
-      <dd className="mt-2 text-[15px] break-words">
-        {href ? (
-          <a
-            href={href}
-            {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}
-            className="-my-2 inline-block py-2 text-accent hover:underline"
-          >
-            {value}
-          </a>
-        ) : (
-          <span className="text-muted">{value}</span>
-        )}
+      <dd className="mt-2 flex items-start gap-2 text-[15px]">
+        <span className="min-w-0 break-words">
+          {href ? (
+            <a
+              href={href}
+              {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}
+              className="-my-2 inline-block py-2 text-accent hover:underline"
+            >
+              {value}
+            </a>
+          ) : (
+            <span className="text-muted">{value}</span>
+          )}
+        </span>
+
+        {copy && <CopyButton value={copy} label={label} />}
       </dd>
     </div>
+  )
+}
+
+/**
+ * Copies a detail to the clipboard and says so.
+ *
+ * The confirmation is the icon itself turning into a tick for a moment,
+ * rather than a toast: the feedback belongs where the finger just was, and
+ * four of these firing toasts would be noise.
+ */
+function CopyButton({ value, label }: { value: string; label: string }) {
+  const [copied, setCopied] = useState(false)
+  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
+
+  const onCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(value)
+    } catch {
+      // Some in-app browsers refuse the async clipboard API. This older path
+      // still works in them, and failing silently would leave the visitor
+      // believing they had copied something.
+      const field = document.createElement('textarea')
+      field.value = value
+      field.setAttribute('readonly', '')
+      field.style.position = 'fixed'
+      field.style.opacity = '0'
+      document.body.appendChild(field)
+      field.select()
+      try {
+        document.execCommand('copy')
+      } finally {
+        document.body.removeChild(field)
+      }
+    }
+
+    setCopied(true)
+    clearTimeout(timer.current)
+    timer.current = setTimeout(() => setCopied(false), 1600)
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={onCopy}
+      aria-label={copied ? `${label} copied` : `Copy ${label.toLowerCase()}`}
+      title={copied ? 'Copied' : 'Copy'}
+      className="-m-2 shrink-0 cursor-pointer p-2 text-faint transition-colors hover:text-accent"
+    >
+      {copied ? (
+        <Check className="size-4 text-accent" />
+      ) : (
+        <Copy className="size-4" />
+      )}
+    </button>
   )
 }
 

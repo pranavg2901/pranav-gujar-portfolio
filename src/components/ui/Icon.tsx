@@ -99,3 +99,22 @@ export function Spinner({ className, ...props }: SVGProps<SVGSVGElement>) {
     </Glyph>
   )
 }
+
+/** Two offset sheets. Used on the contact details, beside anything copyable. */
+export function Copy(props: SVGProps<SVGSVGElement>) {
+  return (
+    <Glyph {...props}>
+      <rect x="9" y="9" width="11" height="11" rx="2" />
+      <path d="M15 5.5A1.5 1.5 0 0 0 13.5 4H5.5A1.5 1.5 0 0 0 4 5.5v8A1.5 1.5 0 0 0 5.5 15" />
+    </Glyph>
+  )
+}
+
+/** Confirms a copy. Shown in place of the Copy glyph for a moment after. */
+export function Check(props: SVGProps<SVGSVGElement>) {
+  return (
+    <Glyph {...props}>
+      <path d="M5 12.5 10 17.5 19 7" />
+    </Glyph>
+  )
+}
