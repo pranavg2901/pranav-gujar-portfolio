@@ -20,6 +20,7 @@ import { projects } from '../src/content/projects.ts'
 import { products, productTitle } from '../src/content/products.ts'
 import { site } from '../src/content/site.ts'
 import { caseStudyGraph, homeGraph, productGraph } from './structured-data.mjs'
+import { render } from '../dist-ssr/entry-server.js'
 
 const dist = resolve(import.meta.dirname, '..', 'dist')
 
@@ -29,6 +30,21 @@ const template = await readFile(resolve(dist, 'index.html'), 'utf8')
 // lives in exactly one place (src/content/site.ts, by way of index.html).
 const origin = template.match(/<link rel="canonical" href="([^"]+)"/)?.[1]
 if (!origin) throw new Error('prerender: no canonical link found in dist/index.html')
+
+/**
+ * Puts the rendered markup inside #root.
+ *
+ * Without this the deployed HTML carried an empty div, so nothing appeared on
+ * screen until 105KB of JavaScript had been fetched, parsed and executed —
+ * first paint and largest paint measured as the same millisecond on every
+ * run, because they were the same event. Now the text is in the document and
+ * React hydrates it afterwards.
+ */
+function setBody(html, markup) {
+  const pattern = /(<div id="root">)(<\/div>)/
+  if (!pattern.test(html)) throw new Error('prerender: no empty #root in the template')
+  return html.replace(pattern, `$1${markup}$2`)
+}
 
 const escape = (value) =>
   value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
@@ -72,6 +88,7 @@ function setMeta(html, attribute, key, value) {
   home = setMeta(home, 'property', 'og:title', site.seo.title)
   home = setMeta(home, 'property', 'og:description', site.seo.description)
   home = setStructuredData(home, homeGraph())
+  home = setBody(home, render('/'))
   await writeFile(resolve(dist, 'index.html'), home)
   // 404.html is a copy of the home page, so it has to be rewritten too.
   await writeFile(resolve(dist, '404.html'), home)
@@ -96,6 +113,7 @@ for (const project of studies) {
   html = setMeta(html, 'property', 'og:url', url)
   html = setMeta(html, 'property', 'og:type', 'article')
   html = setStructuredData(html, caseStudyGraph(project, url))
+  html = setBody(html, render(`/projects/${project.slug}`))
 
   const directory = resolve(dist, 'projects', project.slug)
   await mkdir(directory, { recursive: true })
@@ -115,6 +133,7 @@ for (const product of products) {
   html = setMeta(html, 'property', 'og:url', url)
   html = setMeta(html, 'property', 'og:type', 'article')
   html = setStructuredData(html, productGraph(product, url))
+  html = setBody(html, render(`/work/${product.slug}`))
 
   const directory = resolve(dist, 'work', product.slug)
   await mkdir(directory, { recursive: true })

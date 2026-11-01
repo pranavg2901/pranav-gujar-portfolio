@@ -14,6 +14,10 @@ const STORAGE_KEY = 'theme'
  * the light treatment is the one it is designed around.
  */
 function currentTheme(): Theme {
+  // No DOM while pre-rendering. Light is the default, and the inline script
+  // in index.html has already applied the real choice before React runs, so
+  // the first client render agrees with what is on screen.
+  if (typeof document === 'undefined') return 'light'
   return document.documentElement.classList.contains('dark') ? 'dark' : 'light'
 }
 
