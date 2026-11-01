@@ -21,7 +21,9 @@ export const experience: Role[] = [
       name: 'Sutram',
       description:
         'Tender discovery and bid management for government contracts — finding matching tenders, reading their documents, and running the work through to payment.',
-      href: 'https://sutram.blueportsolutions.in/',
+      links: [
+        { label: 'Visit site', href: 'https://sutram.blueportsolutions.in/', external: true },
+      ],
     },
   },
   {
@@ -39,7 +41,19 @@ export const experience: Role[] = [
     product: {
       name: 'DMFU — Daily Mess For U',
       description:
-        'A mess-management app, shipped to the Google Play Store. I owned the whole lifecycle: the interface in Figma, the release itself, and the Ubuntu VPS it ran on — Apache, SSL automation, domain routing, and shell scripts for backups and self-healing health checks.',
+        'Two apps, one product. Students and working professionals use the finder to search messes near them — menus, prices, ratings, veg or non-veg — subscribe to a meal plan, top up a Mess Pocket wallet and redeem coupons at the counter. The people running a mess manage their own listing from the second app. I owned the whole lifecycle: the interface in Figma, both Play Store releases, and the Ubuntu VPS behind them — Apache, SSL automation, domain routing, and shell scripts for backups and self-healing health checks.',
+      links: [
+        {
+          label: 'Mess Finder',
+          href: 'https://play.google.com/store/apps/details?id=com.dmfu',
+          external: true,
+        },
+        {
+          label: 'Mess Manager',
+          href: 'https://play.google.com/store/apps/details?id=com.dmfu_mess_manager',
+          external: true,
+        },
+      ],
     },
   },
 ]

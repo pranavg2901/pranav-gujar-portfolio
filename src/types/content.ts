@@ -36,9 +36,14 @@ export type Role = {
    */
   product?: {
     name: string
-    /** One line on what it does, so the name is not left unexplained. */
+    /** A line or two on what it does, so the name is not left unexplained. */
     description: string
-    href?: string
+    /**
+     * Where to see it. A list rather than one URL because a product can ship
+     * as more than one thing — DMFU is two Play Store apps, one for the
+     * people eating and one for the people running the mess.
+     */
+    links?: Link[]
     image?: { src: string; alt: string }
   }
 }

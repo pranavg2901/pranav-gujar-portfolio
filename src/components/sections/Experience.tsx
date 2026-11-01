@@ -48,20 +48,26 @@ export function Experience() {
                     <p className="font-mono text-[10.5px] tracking-[0.18em] text-accent uppercase">
                       The product I {role.period.includes('Present') ? 'work' : 'worked'} on
                     </p>
-                    <div className="mt-4 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+                    <div className="mt-4 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3">
                       <span className="text-[21px] font-extrabold tracking-[-0.03em] text-ink uppercase">
                         {role.product.name}
                       </span>
-                      {role.product.href && (
-                        <a
-                          href={role.product.href}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-1.5 font-mono text-[11.5px] font-semibold tracking-[0.12em] text-accent uppercase hover:underline"
-                        >
-                          Visit site
-                          <ArrowUpRight className="size-3.5" />
-                        </a>
+                      {/* A product can ship as more than one thing, so these
+                          are listed rather than assumed to be a single site. */}
+                      {role.product.links && role.product.links.length > 0 && (
+                        <span className="flex flex-wrap items-baseline gap-x-5 gap-y-2">
+                          {role.product.links.map((link) => (
+                            <a
+                              key={link.href}
+                              href={link.href}
+                              {...(link.external ? { target: '_blank', rel: 'noreferrer' } : {})}
+                              className="inline-flex items-center gap-1.5 font-mono text-[11.5px] font-semibold tracking-[0.12em] text-accent uppercase hover:underline"
+                            >
+                              {link.label}
+                              <ArrowUpRight className="size-3.5" />
+                            </a>
+                          ))}
+                        </span>
                       )}
                     </div>
                     <p className="mt-3 max-w-[60ch] text-[14.5px] leading-relaxed text-muted">
