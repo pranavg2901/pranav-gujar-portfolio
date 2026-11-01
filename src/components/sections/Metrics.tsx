@@ -1,5 +1,6 @@
 import { Reveal } from '@/components/ui/Reveal'
 import { metrics } from '@/content/metrics'
+import { cn } from '@/lib/cn'
 
 /**
  * A hairline-ruled strip. The dividers are borders on the cells rather than a
@@ -11,10 +12,17 @@ export function Metrics() {
   return (
     <Reveal>
       <dl className="grid grid-cols-2 border-b border-line sm:grid-cols-3 lg:grid-cols-5">
-          {metrics.map((metric) => (
+          {metrics.map((metric, index) => (
             <div
               key={metric.caption}
-              className="border-t border-line py-8 pr-4 sm:border-r sm:px-6 sm:first:pl-0 sm:last:border-r-0 sm:last:pr-0"
+              className={cn(
+                'border-t border-line py-8 pr-4 sm:border-r sm:px-6 sm:first:pl-0 sm:last:border-r-0 sm:last:pr-0',
+                // Two columns on a phone, and an odd number of metrics left
+                // the last one as a half-width cell with a gap beside it.
+                // Stretching it across closes the gap without padding the
+                // list with a number that is only there to make it even.
+                index === metrics.length - 1 && metrics.length % 2 === 1 && 'max-sm:col-span-2',
+              )}
             >
               <dt className="text-stat font-extrabold whitespace-nowrap text-accent">
                 {metric.value}

@@ -55,6 +55,8 @@ contrast badly in light mode.
 ```
 public/            favicon, social card, fonts, resume PDF, profile images
 scripts/           favicon.py     — favicon set, from one font glyph
+                   screenshots.mjs — layout checks through Chrome's own
+                                     devtools protocol, no test runner
                    structured-data.mjs — the JSON-LD a search engine reads
                    og-card.py     — the 1200x630 social card
                    spa-fallback.mjs — writes dist/404.html after a build
