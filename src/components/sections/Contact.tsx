@@ -22,10 +22,12 @@ export function Contact() {
           was text written to fill a gap. Laid out as a strip, the same way
           the metrics read under the hero, there is no gap to fill. */}
       <Reveal>
-        {/* The email is the longest value by some way, so it gets a wider
-            column rather than everything being equal and it wrapping. */}
-        <dl className="grid grid-cols-1 border-t border-line sm:grid-cols-2 lg:grid-cols-[1.35fr_repeat(4,1fr)]">
+        {/* How to reach me. The email is the longest value by some way, so it
+            gets a wider column rather than everything being equal and it
+            wrapping. */}
+        <dl className="grid grid-cols-1 border-t border-line sm:grid-cols-2 lg:grid-cols-[1.35fr_repeat(3,1fr)]">
           <Row label="Email" value={site.email} href={`mailto:${site.email}`} />
+          <Row label="Phone" value={site.phone.display} href={`tel:${site.phone.dial}`} />
           {site.social.map((link) => (
             <Row
               key={link.href}
@@ -38,16 +40,21 @@ export function Contact() {
               external
             />
           ))}
-          {/* Two cells, not one. "Pune, India" on its own answers where I am
-              and leaves the question an HR screen actually filters on
-              unanswered. */}
+        </dl>
+
+        {/* The questions an HR screen asks before it reads anything else.
+            Left unanswered, each one is assumed — and the assumption is
+            always the one that rules a candidate out. */}
+        <dl className="grid grid-cols-1 border-t border-line sm:grid-cols-2 lg:grid-cols-4">
           <Row label="Based" value={site.location} />
-          <Row label="Relocation" value="Anywhere in India" />
+          <Row label="Relocation" value={site.availability.relocation} />
+          <Row label="Notice period" value={site.availability.notice} />
+          <Row label="Work mode" value={site.availability.workMode} />
         </dl>
       </Reveal>
 
       <Reveal delay={60}>
-        <div className="mt-14 max-w-[44rem]">
+        <div className="mt-14">
           <ContactForm />
         </div>
       </Reveal>
@@ -138,12 +145,22 @@ function ContactForm() {
         multiline
       />
 
-      <div className="flex flex-wrap items-center gap-5">
+      {/* Status on the left, action on the right — the far corner is where
+          the eye lands after filling a form down the page. */}
+      <div className="mt-2 flex flex-wrap-reverse items-center justify-end gap-x-6 gap-y-4">
         {/* A spinner and a fixed width, not just a word change. Swapping
             "Send message" for "Sending" moved the button's edges and was easy
             to miss, so people pressed it again while the first request was
             still in flight. The button is disabled throughout, but looking
             disabled is the part that stops the second click. */}
+
+        <p aria-live="polite" className="mr-auto font-mono text-[12px] tracking-[0.08em]">
+          {busy && <span className="text-muted">Sending your message…</span>}
+          {status === 'handoff' && (
+            <span className="text-muted">Opening your email app with the message ready.</span>
+          )}
+          {status === 'error' && <span className="text-muted">{error}</span>}
+        </p>
         <Button
           type="submit"
           disabled={busy}
@@ -159,14 +176,6 @@ function ContactForm() {
             'Send message'
           )}
         </Button>
-
-        <p aria-live="polite" className="font-mono text-[12px] tracking-[0.08em]">
-          {busy && <span className="text-muted">Sending your message…</span>}
-          {status === 'handoff' && (
-            <span className="text-muted">Opening your email app with the message ready.</span>
-          )}
-          {status === 'error' && <span className="text-muted">{error}</span>}
-        </p>
       </div>
     </form>
     </>

@@ -27,6 +27,7 @@ const person = () => ({
   url: site.seo.url,
   image: `${site.seo.url}images/pranav-gujar.jpg`,
   email: `mailto:${site.email}`,
+  telephone: site.phone.dial,
   address: {
     '@type': 'PostalAddress',
     addressLocality: site.seo.locality,

@@ -14,6 +14,15 @@ export const site = {
   role: 'Software Engineer — Backend Systems & Applied AI',
   location: 'Pune, India',
   email: 'pranavgujar2901@gmail.com',
+  /** Spaced for reading; the tel: link strips it back down. */
+  phone: { display: '+91 91466 24414', dial: '+919146624414' },
+
+  /** The three things an HR screen checks before anything else. */
+  availability: {
+    notice: '60 days',
+    relocation: 'Anywhere in India',
+    workMode: 'Onsite, hybrid or remote',
+  },
 
   /** Shown beside the name in the header. Keep it to a few words. */
   /** Shown beside the name in the header. Rendered in monospace. */
@@ -61,7 +70,8 @@ export const site = {
       'Temporal',
       'RabbitMQ',
     ],
-    seeking: 'Full-time backend engineering or applied AI role, open to relocating anywhere in India',
+    seeking:
+      'Full-time backend engineering or applied AI role — 60 days notice, open to relocating anywhere in India, and to onsite, hybrid or remote work',
   },
 
   /** Anchors in the one-page layout. Order here is the order in the header. */

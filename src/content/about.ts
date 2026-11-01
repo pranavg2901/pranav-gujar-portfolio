@@ -32,6 +32,7 @@ export const about: {
     { label: 'Based', value: 'Pune, India' },
     { label: 'Open to', value: 'Full-time roles' },
     { label: 'Relocation', value: 'Anywhere in India' },
+    { label: 'Notice period', value: '60 days' },
     { label: 'Experience', value: `${experienceLong()}, since ${experienceSince}` },
   ],
 }
