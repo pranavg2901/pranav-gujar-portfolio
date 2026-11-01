@@ -308,3 +308,47 @@
     }
   }
 }
+
+@layer base {
+  /* The scrollbar, in the site's own palette.
+     
+     The default is a wide grey channel that belongs to the operating system
+     rather than to the page, and in dark mode it is a bright strip down the
+     edge of a near-black layout — the first thing the eye lands on.
+
+     Both syntaxes are here on purpose: `scrollbar-width` and
+     `scrollbar-color` are the standard and cover Firefox and current Chrome,
+     while the ::-webkit- rules cover Safari and older Chromium. Styled with
+     the theme variables, so it follows light and dark without a second rule.
+
+     Phones are unaffected — their scrollbars are transient overlays the page
+     cannot style. */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--line-strong) var(--surface-sunken);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--surface-sunken);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--line-strong);
+    /* A border in the track colour insets the thumb, so it reads as a bar in
+       a channel rather than a block filling the gutter. */
+    border: 2px solid var(--surface-sunken);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: var(--surface-sunken);
+  }
+}
