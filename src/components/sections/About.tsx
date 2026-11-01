@@ -2,6 +2,7 @@ import { SectionHeading } from '@/components/ui/SectionHeading'
 import { Reveal } from '@/components/ui/Reveal'
 import { about } from '@/content/about'
 import { site } from '@/content/site'
+import { cn } from '@/lib/cn'
 import { withBase } from '@/lib/paths'
 
 /**
@@ -19,12 +20,29 @@ export function About() {
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SectionHeading index="02" eyebrow={about.eyebrow} title={about.title} />
 
-          {/* The heading alone left this column empty down the whole height of
-              the prose beside it. Three lines of hiring information fill it
-              without repeating the resume. */}
-          <dl className="mt-9 hidden border-t border-line lg:block">
-            {about.facts.map((fact) => (
-              <div key={fact.label} className="border-b border-line py-3.5">
+          {/* Two across, not five down.
+              
+              One per row turned the column into a long thin form — five
+              labels, five rules, and more vertical space than the prose
+              beside it, so the facts finished after the paragraphs they were
+              meant to sit against. Paired up they read as a block, and the
+              last one spans rather than leaving an orphan in a column of its
+              own. */}
+          <dl className="mt-9 hidden grid-cols-2 border-t border-line lg:grid">
+            {about.facts.map((fact, index) => (
+              <div
+                key={fact.label}
+                className={cn(
+                  'border-b border-line py-3.5 pr-5',
+                  index % 2 === 0 && index !== about.facts.length - 1 && 'border-r',
+                  index % 2 === 1 && 'pl-5',
+                  // An odd count leaves the last one alone on its row; let it
+                  // take the width rather than sit beside a gap.
+                  index === about.facts.length - 1 &&
+                    about.facts.length % 2 === 1 &&
+                    'col-span-2 pr-0',
+                )}
+              >
                 <dt className="font-mono text-[10.5px] tracking-[0.16em] text-accent uppercase">
                   {fact.label}
                 </dt>
