@@ -156,5 +156,10 @@ machinery than three pages justify.
 
 - Project screenshots. Add `image: { src, alt }` to a project in
   `content/projects.ts` and the card picks it up. No other change is needed.
-- Retrospectives for EIGENN and AlgoPy. AgentCV has one; the others are blank
-  because only the person who built them can write that honestly.
+- A retrospective for EIGENN. AgentCV and AlgoPy have one; this one is blank
+  because only the person who built it can write that honestly.
+- The resume PDF in `public/files` still describes AlgoPy as 15 strategies
+  over ~22,000 instruments. The site says 16 screens over 8,111 companies,
+  which is the accurate reading. Replace the PDF so the two agree.
+- Google Search Console: the site is not yet verified or submitted, so Google
+  has no reason to crawl it quickly. Verification is one meta tag.
