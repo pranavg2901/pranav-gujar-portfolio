@@ -68,10 +68,34 @@
           const dark = localStorage.getItem('theme') === 'dark'
           document.documentElement.classList.toggle('dark', dark)
         } catch {}
+
+        try {
+          // The intro plays once per tab. Seeing it again on every
+          // navigation back to the home page would turn a flourish into a
+          // toll. The flag is set here, before the animation runs, so a
+          // reload mid-animation does not replay it either.
+          if (!sessionStorage.getItem('intro')) {
+            document.documentElement.classList.add('intro')
+            sessionStorage.setItem('intro', '1')
+          }
+        } catch {
+          // Private browsing can refuse storage. Skipping the intro is the
+          // right failure: a visitor who sees content is never worse off.
+        }
       })()
     </script>
   </head>
   <body>
+    <!-- Sits outside #root so it is never touched by hydration, and is
+         inert markup until the `intro` class above opts it in. It animates
+         on a timer, not on a load event, so it cannot wait for a resource
+         that never arrives, and it is pointer-transparent throughout — the
+         page beneath is usable even while it is on screen. -->
+    <div class="intro-curtain" aria-hidden="true">
+      <span class="intro-mark">PRANAV<span>_</span>GUJAR</span>
+      <span class="intro-rule"></span>
+    </div>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

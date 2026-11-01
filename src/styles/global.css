@@ -212,3 +212,99 @@
     }
   }
 }
+
+@layer components {
+  /* The opening transition.
+     
+     Not a loader: it waits for nothing. The page underneath is already
+     rendered — the markup ships from the build — so this is a curtain over
+     finished work rather than a spinner over an empty box. It runs on a
+     fixed timeline, clears itself in 900ms, and lets clicks through from the
+     first frame, so the worst case is a visitor who scrolls straight past it.
+
+     Rendered only when the inline head script adds `intro`, which it does
+     once per tab. */
+  .intro-curtain {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: none;
+    place-items: center;
+    align-content: center;
+    gap: 1.1rem;
+    background: var(--surface);
+    pointer-events: none;
+  }
+
+  .intro .intro-curtain {
+    display: grid;
+    /* 0.38s on screen, then 0.34s to clear: the page is fully visible by
+       about 720ms. Longer than that and the curtain is spending the paint
+       time the build works to save. */
+    animation: intro-lift 0.34s cubic-bezier(0.76, 0, 0.24, 1) 0.38s both;
+  }
+
+  .intro-mark {
+    font-family: var(--font-mono);
+    font-size: clamp(0.9rem, 2.4vw, 1.15rem);
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    color: var(--ink);
+    animation: intro-fade 0.22s ease-out both;
+  }
+
+  .intro-mark span {
+    color: var(--accent);
+  }
+
+  /* Travels its full width in the time the curtain is up, so the motion
+     reads as progress rather than as a pause. */
+  .intro-rule {
+    width: min(14rem, 45vw);
+    height: 2px;
+    background: var(--line);
+    overflow: hidden;
+    animation: intro-fade 0.22s ease-out both;
+  }
+
+  .intro-rule::after {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    background: var(--accent-bright);
+    transform-origin: left;
+    animation: intro-sweep 0.42s cubic-bezier(0.65, 0, 0.35, 1) both;
+  }
+
+  @keyframes intro-fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes intro-sweep {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes intro-lift {
+    to {
+      transform: translateY(-100%);
+    }
+  }
+
+  /* Someone who has asked for less motion is shown the page, not a curtain. */
+  @media (prefers-reduced-motion: reduce) {
+    .intro .intro-curtain {
+      display: none;
+    }
+  }
+}
