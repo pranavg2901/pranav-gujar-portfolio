@@ -56,8 +56,13 @@ export function About() {
           </dl>
 
           {/* The hero carries the portrait from lg up, so it appears here only
-              on the narrower layouts where the hero hides it. */}
-          <div className="relative -mt-6 w-36 lg:hidden">
+              on the narrower layouts where the hero hides it.
+
+              The negative top margin it used to carry pulled it up under the
+              heading, which was free space until the facts moved in above it
+              — then the photo sat on top of the last row. It gets its own
+              space now, and the corner bracket needs the padding anyway. */}
+          <div className="relative mt-10 w-36 pt-2 pl-2 lg:hidden">
             <span
               aria-hidden
               className="absolute -top-2 -left-2 size-14 border-t-2 border-l-2 border-accent-bright"
