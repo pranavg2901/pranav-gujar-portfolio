@@ -10,17 +10,19 @@ import { experienceShort, experienceSince } from '@/lib/experience'
  * how many, how much of it I still run — and leaves the projects to speak
  * for themselves.
  *
- * The two application counts are kept separate on purpose. The applications
- * I hosted include the ones I built, so adding them would publish a total
- * that cannot be defended.
+ * The two application counts measure different things and must not be added:
+ * one is everything delivered across both jobs, the other is what is on my
+ * hands right now. The second caption says "today" for exactly that reason —
+ * the Experience section below mentions 10+ applications hosted at a previous
+ * employer, and without the word these two look like a contradiction.
  *
  * Values are kept to a single short token and the unit moved into the caption
  * — at five across, anything longer collides with the next cell.
  */
 export const metrics: Metric[] = [
   { value: experienceShort(), caption: `In production, since ${experienceSince}` },
-  { value: '6+', caption: 'Client applications delivered end to end' },
-  { value: '10+', caption: 'Applications I have run in production' },
-  { value: '3', caption: 'Systems I designed, built and operate' },
+  { value: '10+', caption: 'Client applications delivered end to end' },
+  { value: '5+', caption: 'Applications I run in production today' },
+  { value: '3+', caption: 'Systems I designed, built and operate' },
   { value: '2', caption: 'AWS certifications' },
 ]
