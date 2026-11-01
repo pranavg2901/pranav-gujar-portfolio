@@ -69,13 +69,17 @@ export function Hero() {
           <Portrait className="hidden lg:block" />
         </div>
 
-        <dl className="grid gap-x-12 gap-y-3 border-t border-line py-8 font-mono text-[12.5px] sm:grid-cols-2">
+        {/* Label above the list on a phone. Beside it, a fixed 82px label
+            column left the values about half the screen, so every line
+            wrapped and the longest label ran past its own column — four rows
+            of ragged text where there should be four clean ones. */}
+        <dl className="grid gap-x-12 gap-y-5 border-t border-line py-8 font-mono text-[12.5px] sm:grid-cols-2 sm:gap-y-3">
           {intro.stack.map((line) => (
-            <div key={line.label} className="flex gap-4">
-              <dt className="w-[82px] shrink-0 tracking-wider text-accent uppercase">
+            <div key={line.label} className="flex flex-col gap-1.5 sm:flex-row sm:gap-4">
+              <dt className="tracking-wider text-accent uppercase sm:w-[82px] sm:shrink-0">
                 {line.label}
               </dt>
-              <dd className="text-faint">{line.items.join(' / ')}</dd>
+              <dd className="leading-relaxed text-faint">{line.items.join(' / ')}</dd>
             </div>
           ))}
         </dl>
