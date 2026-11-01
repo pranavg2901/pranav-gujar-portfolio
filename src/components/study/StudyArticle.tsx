@@ -12,6 +12,12 @@ type StudyArticleProps = {
   /** The small line above the title: "Case study / 2026", "Product / Blueport". */
   eyebrow: string
   title: string
+  /**
+   * The name spelled out, set small under the title. It stays inside the
+   * <h1> so the heading a crawler and a screen reader read is still the
+   * whole name, while the page is not dominated by it.
+   */
+  subtitle?: string
   tags?: ProjectTag[]
   /**
    * Outbound links — a live site, a store listing. These appear on this page
@@ -35,6 +41,7 @@ export function StudyArticle({
   back,
   eyebrow,
   title,
+  subtitle,
   tags,
   links,
   study,
@@ -65,7 +72,14 @@ export function StudyArticle({
               {eyebrow}
             </p>
 
-            <h1 className="mt-6 text-hero font-extrabold text-ink uppercase">{title}</h1>
+            <h1 className="mt-6 text-hero font-extrabold text-ink uppercase">
+              {title}
+              {subtitle && (
+                <span className="mt-4 block font-mono text-[clamp(0.8rem,1.5vw,1rem)] font-medium tracking-[0.18em] text-faint">
+                  {subtitle}
+                </span>
+              )}
+            </h1>
 
             <p className="mt-7 max-w-[56ch] text-[18px] leading-[1.65] text-muted">
               {study.premise}

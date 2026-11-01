@@ -13,6 +13,7 @@
 //
 // Everything is derived from src/content, so the structured data cannot drift
 // away from what the page actually says.
+import { productTitle } from '../src/content/products.ts'
 import { site } from '../src/content/site.ts'
 
 const person = () => ({
@@ -85,7 +86,7 @@ export function productGraph(product, url) {
         '@type': 'TechArticle',
         '@id': url,
         url,
-        headline: `${product.name} — ${product.company}`,
+        headline: `${productTitle(product)} — ${product.company}`,
         description: product.study.premise,
         inLanguage: 'en',
         author: { '@id': `${site.seo.url}#person` },
@@ -94,7 +95,7 @@ export function productGraph(product, url) {
       {
         '@type': 'SoftwareApplication',
         '@id': `${url}#software`,
-        name: product.name,
+        name: productTitle(product),
         description: product.summary,
         publisher: { '@type': 'Organization', name: product.company },
         contributor: { '@id': `${site.seo.url}#person` },

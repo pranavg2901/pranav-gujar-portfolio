@@ -69,7 +69,14 @@ export type CaseStudy = {
 export type Product = {
   /** URL segment under /work. */
   slug: string
+  /** The short name, set as display type. Keep it to one word where there is one. */
   name: string
+  /**
+   * The name spelled out, set small beneath it. "DMFU — Daily Mess For U" as
+   * a single heading ran to two lines of display type and filled the screen
+   * before the reader had learned anything.
+   */
+  fullName?: string
   /** Whose product it is. Printed on the page, not left to be inferred. */
   company: string
   period: string

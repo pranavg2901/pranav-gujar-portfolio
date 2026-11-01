@@ -30,6 +30,7 @@ export function ProductPage() {
       back={{ to: '/#experience', label: 'All experience' }}
       eyebrow={`${product.company} / ${product.period}`}
       title={product.name}
+      subtitle={product.fullName}
       tags={product.tags}
       links={product.links}
       study={product.study}

@@ -58,6 +58,11 @@ export function Experience() {
                     <div className="mt-4 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
                       <span className="text-[21px] font-extrabold tracking-[-0.03em] text-ink uppercase transition-colors group-hover:text-accent">
                         {product.name}
+                        {product.fullName && (
+                          <span className="ml-3 font-mono text-[11.5px] font-medium tracking-[0.14em] text-faint">
+                            {product.fullName}
+                          </span>
+                        )}
                       </span>
                       <span className="inline-flex items-center gap-1.5 font-mono text-[11.5px] font-semibold tracking-[0.12em] text-accent uppercase">
                         Read about it

@@ -94,7 +94,8 @@ export const products: Product[] = [
 
   {
     slug: 'dmfu',
-    name: 'DMFU — Daily Mess For U',
+    name: 'DMFU',
+    fullName: 'Daily Mess For U',
     company: 'Beginning Solutions',
     period: '2024 — 2025',
     summary:
@@ -180,3 +181,12 @@ export const products: Product[] = [
 
 export const productBySlug = (slug: string): Product | undefined =>
   products.find((product) => product.slug === slug)
+
+/**
+ * The full name as one string, for a page title or structured data — the
+ * places that are read as text rather than set as type. The page itself
+ * splits the two so the heading does not fill the screen, but a search for
+ * "Daily Mess For U" still has to find it.
+ */
+export const productTitle = (product: Product): string =>
+  product.fullName ? `${product.name} — ${product.fullName}` : product.name

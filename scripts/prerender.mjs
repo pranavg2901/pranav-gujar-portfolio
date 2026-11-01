@@ -17,7 +17,7 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { projects } from '../src/content/projects.ts'
-import { products } from '../src/content/products.ts'
+import { products, productTitle } from '../src/content/products.ts'
 import { site } from '../src/content/site.ts'
 import { caseStudyGraph, homeGraph, productGraph } from './structured-data.mjs'
 
@@ -104,7 +104,7 @@ for (const project of studies) {
 
 for (const product of products) {
   const url = `${origin}work/${product.slug}/`
-  const title = `${product.name} — ${product.company} — Pranav Gujar`
+  const title = `${productTitle(product)} — ${product.company} — Pranav Gujar`
 
   let html = template
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${escape(title)}</title>`)
