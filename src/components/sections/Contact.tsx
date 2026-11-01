@@ -22,10 +22,12 @@ export function Contact() {
           was text written to fill a gap. Laid out as a strip, the same way
           the metrics read under the hero, there is no gap to fill. */}
       <Reveal>
-        {/* How to reach me. The email is the longest value by some way, so it
-            gets a wider column rather than everything being equal and it
-            wrapping. */}
-        <dl className="grid grid-cols-1 border-t border-line sm:grid-cols-2 lg:grid-cols-[1.35fr_repeat(3,1fr)]">
+        {/* Both rows share one column template. They were different — the
+            first weighted to give the email more room — and the dividers
+            landed in different places on each row, which read as a broken
+            table rather than two groups of facts. Four equal columns, and
+            the email still fits on one line. */}
+        <dl className="grid grid-cols-1 border-t border-line sm:grid-cols-2 lg:grid-cols-4">
           <Row label="Email" value={site.email} href={`mailto:${site.email}`} />
           <Row label="Phone" value={site.phone.display} href={`tel:${site.phone.dial}`} />
           {site.social.map((link) => (
