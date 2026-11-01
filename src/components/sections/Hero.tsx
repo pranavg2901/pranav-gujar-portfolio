@@ -132,11 +132,17 @@ function Portrait({ className }: { className?: string }) {
         />
         <picture>
           <source srcSet={withBase(profileImage.webp)} type="image/webp" />
+          {/* The largest element above the fold on a wide screen, so it is
+              fetched at high priority rather than taking its turn behind the
+              script. Decoding off the main thread keeps it from competing
+              with hydration. */}
           <img
             src={withBase(profileImage.jpg)}
             alt={profileImage.alt}
             width={760}
             height={760}
+            fetchPriority="high"
+            decoding="async"
             className="relative aspect-4/5 w-full object-cover object-[center_top] grayscale transition-all duration-500 hover:grayscale-0"
           />
         </picture>

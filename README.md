@@ -157,12 +157,22 @@ machinery than three pages justify.
 
 ## Outstanding
 
-- Project screenshots. Add `image: { src, alt }` to a project in
-  `content/projects.ts` and the card picks it up. No other change is needed.
-- A retrospective for EIGENN. AgentCV and AlgoPy have one; this one is blank
-  because only the person who built it can write that honestly.
-- The resume PDF in `public/files` still describes AlgoPy as 15 strategies
-  over ~22,000 instruments. The site says 16 screens over 8,111 companies,
-  which is the accurate reading. Replace the PDF so the two agree.
-- Google Search Console: the site is not yet verified or submitted, so Google
-  has no reason to crawl it quickly. Verification is one meta tag.
+Nothing in the code. These four need information only Pranav has:
+
+- **AgentCV and Algo_Trading are private repositories.** The site and the
+  GitHub profile both describe them; a visitor who clicks through to GitHub
+  finds neither. Making them public is the single highest-impact change left,
+  and it needs a read for committed secrets and personal data first.
+- **The resume PDF in `public/files` is out of date** on three points: AlgoPy
+  is described as 15 strategies over ~22,000 instruments where the site says
+  16 screens over 8,111 companies; the AWS re/Start date reads Feb 2024 and
+  should be Nov 2023; and the 60-day notice period and relocation are stated
+  on the site but not in the document.
+- **EIGENN has no retrospective.** AgentCV and AlgoPy have one, and it is the
+  most credible writing on either page. Only the person who built it can write
+  that honestly.
+- **Google Search Console is not verified**, so nothing has asked Google to
+  crawl the site. Verification is one meta tag.
+
+And one open decision: the social card is lime on charcoal, which matches the
+light theme and not the violet dark one. Either is defensible.
