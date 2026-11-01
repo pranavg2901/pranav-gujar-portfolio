@@ -31,6 +31,7 @@ export const about: {
   facts: [
     { label: 'Based', value: 'Pune, India' },
     { label: 'Open to', value: 'Full-time roles' },
+    { label: 'Relocation', value: 'Anywhere in India' },
     { label: 'Experience', value: `${experienceLong()}, since ${experienceSince}` },
   ],
 }

@@ -13,7 +13,7 @@ export function Contact() {
         index="05"
         eyebrow="Contact"
         title="Get in touch"
-        note="I am looking for a full-time backend or applied AI role. Email is the fastest way to reach me."
+        note="I am looking for a full-time backend or applied AI role, and I am open to relocating anywhere in India. Email is the fastest way to reach me."
       />
 
       {/* Details across the top, form beneath — not side by side.
@@ -22,7 +22,7 @@ export function Contact() {
           was text written to fill a gap. Laid out as a strip, the same way
           the metrics read under the hero, there is no gap to fill. */}
       <Reveal>
-        <dl className="grid grid-cols-1 border-t border-line sm:grid-cols-2 lg:grid-cols-4">
+        <dl className="grid grid-cols-1 border-t border-line sm:grid-cols-2 lg:grid-cols-5">
           <Row label="Email" value={site.email} href={`mailto:${site.email}`} />
           {site.social.map((link) => (
             <Row
@@ -33,7 +33,11 @@ export function Contact() {
               external
             />
           ))}
-          <Row label="Location" value={site.location} />
+          {/* Two cells, not one. "Pune, India" on its own answers where I am
+              and leaves the question an HR screen actually filters on
+              unanswered. */}
+          <Row label="Based" value={site.location} />
+          <Row label="Relocation" value="Anywhere in India" />
         </dl>
       </Reveal>
 

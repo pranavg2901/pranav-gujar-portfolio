@@ -27,7 +27,7 @@ export const site = {
     title: 'Pranav Gujar — Python Backend & AI Engineer | Pune, India',
     // Rebuilt monthly by .github/workflows, so the figure here cannot drift
     // the way a typed one does.
-    description: `Pranav Gujar is a software engineer in Pune with ${experienceLong()} building production Python systems — FastAPI, Django, PostgreSQL, LangGraph and RAG pipelines on AWS. Open to full-time backend and applied AI roles.`,
+    description: `Pranav Gujar is a software engineer in Pune with ${experienceLong()} building production Python systems — FastAPI, Django, PostgreSQL, LangGraph and RAG pipelines on AWS. Open to full-time backend and applied AI roles, and to relocating anywhere in India.`,
     url: 'https://pranavg2901.github.io/',
 
     /** Used in the structured data a search engine reads. */
@@ -61,7 +61,7 @@ export const site = {
       'Temporal',
       'RabbitMQ',
     ],
-    seeking: 'Full-time backend engineering or applied AI role',
+    seeking: 'Full-time backend engineering or applied AI role, open to relocating anywhere in India',
   },
 
   /** Anchors in the one-page layout. Order here is the order in the header. */
@@ -105,7 +105,7 @@ export const site = {
   closing: {
     eyebrow: 'Open to opportunities',
     headline: 'Let’s talk',
-    note: 'I am looking for a full-time backend or applied AI role. If you are hiring, I am happy to walk you through any of the work above.',
+    note: 'I am looking for a full-time backend or applied AI role — based in Pune and open to relocating anywhere in India. If you are hiring, I am happy to walk you through any of the work above.',
   },
 
   /**
