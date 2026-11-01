@@ -77,7 +77,13 @@ export type Project = {
   /** URL segment under /projects. */
   slug: string
   name: string
+  /**
+   * The year work started. For anything still being worked on, set `ongoing`
+   * rather than writing a range — see projectYears() in content/projects.ts.
+   */
   year: string
+  /** Still being worked on, so the displayed period ends in "present". */
+  ongoing?: boolean
   /** The card blurb: what the thing does, in plain language. */
   summary: string
   /** Card bullets. Lead with the constraint, not the feature list. */

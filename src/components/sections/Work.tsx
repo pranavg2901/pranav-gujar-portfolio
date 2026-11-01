@@ -3,7 +3,7 @@ import { ArrowUpRight } from '@/components/ui/Icon'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { Reveal } from '@/components/ui/Reveal'
 import { Tag } from '@/components/ui/Tag'
-import { projects } from '@/content/projects'
+import { projects, projectYears } from '@/content/projects'
 import { emphasise } from '@/lib/emphasis'
 import { withBase } from '@/lib/paths'
 import type { Project } from '@/types/content'
@@ -94,7 +94,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         <div className="flex flex-col">
           <div className="flex items-start justify-between gap-6">
             <span className="font-mono text-[11.5px] tracking-[0.16em] text-faint">
-              {String(index).padStart(2, '0')} / {project.year}
+              {String(index).padStart(2, '0')} / {projectYears(project)}
             </span>
             {project.study && (
               <ArrowUpRight className="size-6 shrink-0 text-faint transition-colors duration-300 group-hover:text-accent lg:hidden" />

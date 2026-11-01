@@ -4,7 +4,7 @@ import { Container } from '@/components/ui/Container'
 import { Tag } from '@/components/ui/Tag'
 import { Reveal } from '@/components/ui/Reveal'
 import { NotFoundPage } from '@/pages/NotFoundPage'
-import { projects } from '@/content/projects'
+import { projects, projectYears } from '@/content/projects'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 import { withBase } from '@/lib/paths'
 
@@ -49,7 +49,7 @@ export function CaseStudyPage() {
 
             <p className="eyebrow mt-10 flex items-center gap-4">
               <span aria-hidden className="h-px w-11 bg-accent" />
-              Case study / {project.year}
+              Case study / {projectYears(project)}
             </p>
 
             <h1 className="mt-6 text-hero font-extrabold text-ink uppercase">{project.name}</h1>

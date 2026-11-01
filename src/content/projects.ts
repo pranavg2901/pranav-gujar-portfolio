@@ -213,7 +213,8 @@ export const projects: Project[] = [
   {
     slug: 'algopy',
     name: 'AlgoPy',
-    year: '2025–26',
+    year: '2025',
+    ongoing: true,
     summary:
       'Runs 16 independent screening strategies over 8,100 NSE and BSE companies every night, publishes each as a pre-computed snapshot, and prints the measured backtest result on the page — including when it shows no edge.',
     highlights: [
@@ -244,7 +245,7 @@ export const projects: Project[] = [
         'Sixteen screens over 8,100 companies, rebuilt every night and baked into the deployment — and every one of them prints what its backtest actually measured, including the ones with no edge.',
       facts: [
         { label: 'Role', value: 'Sole engineer' },
-        { label: 'Built', value: '2025–26 — 1,162 commits over 16 months' },
+        { label: 'Built', value: 'Since 2025 — 1,162 commits over 16 months' },
         { label: 'Scale', value: '16 screens, 187 routes, ~106,000 hand-written lines' },
         { label: 'Coverage', value: '8,111 companies from ~23,000 NSE and BSE instruments' },
         { label: 'Stack', value: 'Django 5, Playwright, GitHub Actions, Docker, Render' },
@@ -320,3 +321,14 @@ export const projects: Project[] = [
 
 export const projectBySlug = (slug: string): Project | undefined =>
   projects.find((project) => project.slug === slug)
+
+/**
+ * What the card and the case-study header print for a project's dates.
+ *
+ * AlgoPy used to be written as "2025–26", which would have quietly become
+ * wrong on 1 January — in the card, the page heading and the browser title at
+ * once, with nothing to catch it. "Present" cannot go stale, and it says the
+ * more useful thing anyway: the project is still alive.
+ */
+export const projectYears = (project: Project): string =>
+  project.ongoing ? `${project.year}–present` : project.year
