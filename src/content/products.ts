@@ -154,6 +154,21 @@ export const products: Product[] = [
           ],
         },
         {
+          heading: 'The other app, for the kitchen',
+          body: [
+            'Everything the finder shows has to come from somewhere, and that somewhere is a person running a mess who has no interest in software. So the manager app is deliberately the smaller of the two: it does the handful of things that keep a listing true, and nothing else.',
+            'The pairing is what makes the product work. A listing nobody maintains goes stale in a week, and a stale listing is worse than none — it sends somebody to a kitchen that closed an hour ago.',
+          ],
+          points: [
+            'The listing itself: name, address, photos — what a prospective eater sees first.',
+            'The menu and the prices, which change more often than anything else.',
+            'The plans on offer, daily or monthly, so the finder can show what it costs.',
+            'Open or closed, which is what drives the notification a subscriber gets.',
+            'Coupons redeemed at the counter against a subscriber’s Mess Pocket.',
+            'Ratings and feedback coming back in, which is what keeps the rankings honest.',
+          ],
+        },
+        {
           heading: 'Moving a live database without losing anyone',
           body: [
             'The production database was on a legacy schema that had stopped fitting the product. Changing it meant moving real records belonging to real users who would open the app the next morning either way.',
