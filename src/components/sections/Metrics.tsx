@@ -1,5 +1,6 @@
 import { Reveal } from '@/components/ui/Reveal'
 import { metrics } from '@/content/metrics'
+import { cn } from '@/lib/cn'
 
 /**
  * A hairline-ruled strip. The dividers are borders on the cells rather than a
@@ -27,7 +28,10 @@ export function Metrics() {
         {metrics.map((metric) => (
           <div
             key={metric.caption}
-            className="flex items-baseline gap-5 border-t border-line py-5 sm:block sm:border-r sm:px-6 sm:py-8 sm:first:pl-0 sm:last:border-r-0 sm:last:pr-0"
+            className={cn(
+              'flex items-baseline gap-5 border-t border-line py-5 sm:block sm:border-r sm:px-6 sm:py-8 sm:first:pl-0 sm:last:border-r-0 sm:last:pr-0',
+              metric.minorOnMobile && 'max-sm:hidden',
+            )}
           >
             <dt className="w-[5.5rem] shrink-0 text-[1.9rem] leading-none font-extrabold whitespace-nowrap text-accent sm:w-auto sm:text-stat">
               {metric.value}

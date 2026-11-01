@@ -10,6 +10,12 @@ export type Link = {
 export type Metric = {
   value: string
   caption: string
+  /**
+   * Dropped from the strip on a phone, where the list is one per row and
+   * every extra entry is another screen of scrolling before the work. Only
+   * for figures stated in full elsewhere on the page.
+   */
+  minorOnMobile?: boolean
 }
 
 export type SkillGroup = {

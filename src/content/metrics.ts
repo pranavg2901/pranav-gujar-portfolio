@@ -26,5 +26,8 @@ export const metrics: Metric[] = [
   { value: '10+', caption: 'Client applications delivered end to end' },
   { value: '5+', caption: 'Applications I run in production today' },
   { value: '3+', caption: 'Systems I designed, built and operate' },
-  { value: '2', caption: 'AWS certifications' },
+  // Hidden on a phone: the Credentials section lists both certifications in
+  // full, with a link to verify each badge, so the strip is the one place
+  // this figure can be dropped without losing anything.
+  { value: '2', caption: 'AWS certifications', minorOnMobile: true },
 ]
