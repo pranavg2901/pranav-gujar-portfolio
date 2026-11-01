@@ -7,9 +7,14 @@ type Variant = 'solid' | 'outline' | 'ghost'
 /**
  * Square, monospace, uppercase. Buttons sit flush against each other in a row
  * rather than being spaced, which is where the control-panel feel comes from.
+ *
+ * Lighter on a phone. At the desktop padding a pair of these filled the width
+ * and sat heavily under the hero, which is a lot of weight to give a control
+ * before the reader has seen any of the work. Still well past a 44px touch
+ * target at the smaller size.
  */
 const base =
-  'inline-flex items-center justify-center gap-2 border px-7 py-4 font-mono text-[12.5px] font-semibold tracking-[0.1em] uppercase transition-colors duration-200'
+  'inline-flex items-center justify-center gap-2 border px-5 py-3 font-mono text-[11.5px] font-semibold tracking-[0.1em] uppercase transition-colors duration-200 sm:px-7 sm:py-4 sm:text-[12.5px]'
 
 const variants: Record<Variant, string> = {
   solid: 'border-accent-bright bg-accent-bright text-on-accent hover:bg-transparent hover:text-accent',
