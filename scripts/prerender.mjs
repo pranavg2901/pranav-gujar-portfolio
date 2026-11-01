@@ -17,8 +17,9 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { projects } from '../src/content/projects.ts'
+import { products } from '../src/content/products.ts'
 import { site } from '../src/content/site.ts'
-import { caseStudyGraph, homeGraph } from './structured-data.mjs'
+import { caseStudyGraph, homeGraph, productGraph } from './structured-data.mjs'
 
 const dist = resolve(import.meta.dirname, '..', 'dist')
 
@@ -101,10 +102,30 @@ for (const project of studies) {
   await writeFile(resolve(directory, 'index.html'), html)
 }
 
+for (const product of products) {
+  const url = `${origin}work/${product.slug}/`
+  const title = `${product.name} — ${product.company} — Pranav Gujar`
+
+  let html = template
+  html = html.replace(/<title>[^<]*<\/title>/, `<title>${escape(title)}</title>`)
+  html = html.replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${url}$2`)
+  html = setMeta(html, 'name', 'description', product.study.premise)
+  html = setMeta(html, 'property', 'og:title', title)
+  html = setMeta(html, 'property', 'og:description', product.study.premise)
+  html = setMeta(html, 'property', 'og:url', url)
+  html = setMeta(html, 'property', 'og:type', 'article')
+  html = setStructuredData(html, productGraph(product, url))
+
+  const directory = resolve(dist, 'work', product.slug)
+  await mkdir(directory, { recursive: true })
+  await writeFile(resolve(directory, 'index.html'), html)
+}
+
 const today = new Date().toISOString().slice(0, 10)
 const urls = [
   { loc: origin, priority: '1.0' },
   ...studies.map((project) => ({ loc: `${origin}projects/${project.slug}/`, priority: '0.8' })),
+  ...products.map((product) => ({ loc: `${origin}work/${product.slug}/`, priority: '0.7' })),
 ]
 
 await writeFile(
@@ -127,5 +148,6 @@ await writeFile(
 )
 
 console.log(
-  `prerender: ${studies.length} case-study pages, structured data, sitemap.xml and robots.txt written`,
+  `prerender: ${studies.length} case studies, ${products.length} product pages, ` +
+    'structured data, sitemap.xml and robots.txt written',
 )

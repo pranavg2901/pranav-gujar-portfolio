@@ -5,6 +5,7 @@ import { SiteFooter } from '@/components/layout/SiteFooter'
 import { ScrollRestoration } from '@/components/layout/ScrollRestoration'
 import { HomePage } from '@/pages/HomePage'
 import { CaseStudyPage } from '@/pages/CaseStudyPage'
+import { ProductPage } from '@/pages/ProductPage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
 
 export function App() {
@@ -24,6 +25,9 @@ export function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/projects/:slug" element={<CaseStudyPage />} />
+          {/* Employer products live under /work, not /projects, so the URL
+              itself says these are not mine. */}
+          <Route path="/work/:slug" element={<ProductPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

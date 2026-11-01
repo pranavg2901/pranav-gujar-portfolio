@@ -17,14 +17,7 @@ export const experience: Role[] = [
       'Built a RAG pipeline that reads tender listings and shows each client only the ones in their own field.',
       'Run the VPS setup on Coolify — SSL/TLS, versioned releases, logging in one place. Automating the release steps took about 20 minutes off every deploy.',
     ],
-    product: {
-      name: 'Sutram',
-      description:
-        'Tender discovery and bid management for government contracts — finding matching tenders, reading their documents, and running the work through to payment.',
-      links: [
-        { label: 'Visit site', href: 'https://sutram.blueportsolutions.in/', external: true },
-      ],
-    },
+    product: 'sutram',
   },
   {
     company: 'Beginning Solutions',
@@ -38,22 +31,6 @@ export const experience: Role[] = [
       'Ran full Google Play release cycles — signing, staged rollouts, pre-release testing, and crash and ANR monitoring.',
       'Migrated a production database off a legacy schema with Python written for the job, keeping every existing user record intact.',
     ],
-    product: {
-      name: 'DMFU — Daily Mess For U',
-      description:
-        'Two apps, one product. Students and working professionals use the finder to search messes near them — menus, prices, ratings, veg or non-veg — subscribe to a meal plan, top up a Mess Pocket wallet and redeem coupons at the counter. The people running a mess manage their own listing from the second app. I owned the whole lifecycle: the interface in Figma, both Play Store releases, and the Ubuntu VPS behind them — Apache, SSL automation, domain routing, and shell scripts for backups and self-healing health checks.',
-      links: [
-        {
-          label: 'Mess Finder',
-          href: 'https://play.google.com/store/apps/details?id=com.dmfu',
-          external: true,
-        },
-        {
-          label: 'Mess Manager',
-          href: 'https://play.google.com/store/apps/details?id=com.dmfu_mess_manager',
-          external: true,
-        },
-      ],
-    },
+    product: 'dmfu',
   },
 ]

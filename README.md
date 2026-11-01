@@ -62,7 +62,8 @@ scripts/           favicon.py     — favicon set, from one font glyph
                    spa-fallback.mjs — writes dist/404.html after a build
                    prerender.mjs  — a real page per case study, + sitemap
 src/
-  content/         all copy and data (edit here)
+  content/         all copy and data (edit here) — projects/ own work,
+                   products/ an employer's, with ownership stated
   types/           shapes for everything in content/
   components/
     layout/        header, footer, theme toggle, scroll restoration
@@ -71,7 +72,7 @@ src/
     ui/            container, button, tag, reveal, icons, section heading
   hooks/           theme, active section, contact form, document title
   lib/             base-path helpers, class join, emphasis renderer
-  pages/           home, case study, 404
+  pages/           home, case study, product, 404
   styles/          tokens.css (palette), global.css
 ```
 

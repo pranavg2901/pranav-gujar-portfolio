@@ -5,12 +5,6 @@ export type Link = {
   href: string
   /** Leaves the site — renders an external-link marker and rel="noreferrer". */
   external?: boolean
-  /**
-   * Shown on the case-study page but not on the project card. The card is a
-   * summary and two or three links on it start competing with each other;
-   * secondary places to find the project belong on the dedicated page.
-   */
-  studyOnly?: boolean
 }
 
 export type Metric = {
@@ -31,21 +25,11 @@ export type Role = {
   period: string
   highlights: string[]
   /**
-   * The employer's product this role was spent on. Shown inside the
-   * experience entry, never as a project card — the company owns it.
+   * Slug of the employer product this role was spent on, from
+   * content/products.ts. Shown inside the experience entry and never as a
+   * project card — the company owns it.
    */
-  product?: {
-    name: string
-    /** A line or two on what it does, so the name is not left unexplained. */
-    description: string
-    /**
-     * Where to see it. A list rather than one URL because a product can ship
-     * as more than one thing — DMFU is two Play Store apps, one for the
-     * people eating and one for the people running the mess.
-     */
-    links?: Link[]
-    image?: { src: string; alt: string }
-  }
+  product?: string
 }
 
 export type Credential = {
@@ -76,6 +60,25 @@ export type CaseStudy = {
   sections: StudySection[]
   /** Written in the first person. The most useful part of any case study. */
   retrospective?: string[]
+}
+
+/**
+ * A product owned by an employer. Same long-form page as a case study, with
+ * the ownership stated rather than implied.
+ */
+export type Product = {
+  /** URL segment under /work. */
+  slug: string
+  name: string
+  /** Whose product it is. Printed on the page, not left to be inferred. */
+  company: string
+  period: string
+  /** The blurb shown in the experience panel. */
+  summary: string
+  tags: ProjectTag[]
+  /** Outbound links. These live on the product page, not on the home page. */
+  links: Link[]
+  study: CaseStudy
 }
 
 export type Project = {

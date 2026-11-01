@@ -1,7 +1,9 @@
-import { ArrowUpRight } from '@/components/ui/Icon'
+import { Link } from 'react-router-dom'
+import { ArrowRight } from '@/components/ui/Icon'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { Reveal } from '@/components/ui/Reveal'
 import { experience } from '@/content/experience'
+import { productBySlug } from '@/content/products'
 import { emphasise } from '@/lib/emphasis'
 
 export function Experience() {
@@ -10,7 +12,10 @@ export function Experience() {
       <SectionHeading index="03" eyebrow="Experience" title="Where I have worked" />
 
       <div className="border-t border-line">
-        {experience.map((role, index) => (
+        {experience.map((role, index) => {
+          const product = role.product ? productBySlug(role.product) : undefined
+
+          return (
           <Reveal key={role.company} delay={index * 60}>
             <article className="grid gap-6 border-b border-line py-10 md:grid-cols-[260px_1fr] md:gap-16 md:py-12">
               <div>
@@ -38,47 +43,37 @@ export function Experience() {
                   ))}
                 </ul>
 
-                {/* The employer's product, shown inside the role rather than
-                    as a project card — they own it, not me. The label follows
-                    the tense of the role: a finished job did not keep the
-                    present tense just because the panel was written for the
-                    current one. */}
-                {role.product && (
-                  <div className="mt-9 border border-line p-6">
+                {/* The product gets its own page, and the panel is the
+                    way in. No outbound link here on purpose: the home page
+                    sends a reader inward to the write-up, not straight out to
+                    a site they have been given no reason to care about yet. */}
+                {product && (
+                  <Link
+                    to={`/work/${product.slug}`}
+                    className="group mt-9 block border border-line p-6 transition-colors hover:border-accent-bright"
+                  >
                     <p className="font-mono text-[10.5px] tracking-[0.18em] text-accent uppercase">
                       The product I {role.period.includes('Present') ? 'work' : 'worked'} on
                     </p>
-                    <div className="mt-4 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3">
-                      <span className="text-[21px] font-extrabold tracking-[-0.03em] text-ink uppercase">
-                        {role.product.name}
+                    <div className="mt-4 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+                      <span className="text-[21px] font-extrabold tracking-[-0.03em] text-ink uppercase transition-colors group-hover:text-accent">
+                        {product.name}
                       </span>
-                      {/* A product can ship as more than one thing, so these
-                          are listed rather than assumed to be a single site. */}
-                      {role.product.links && role.product.links.length > 0 && (
-                        <span className="flex flex-wrap items-baseline gap-x-5 gap-y-2">
-                          {role.product.links.map((link) => (
-                            <a
-                              key={link.href}
-                              href={link.href}
-                              {...(link.external ? { target: '_blank', rel: 'noreferrer' } : {})}
-                              className="inline-flex items-center gap-1.5 font-mono text-[11.5px] font-semibold tracking-[0.12em] text-accent uppercase hover:underline"
-                            >
-                              {link.label}
-                              <ArrowUpRight className="size-3.5" />
-                            </a>
-                          ))}
-                        </span>
-                      )}
+                      <span className="inline-flex items-center gap-1.5 font-mono text-[11.5px] font-semibold tracking-[0.12em] text-accent uppercase">
+                        Read about it
+                        <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
+                      </span>
                     </div>
                     <p className="mt-3 max-w-[60ch] text-[14.5px] leading-relaxed text-muted">
-                      {role.product.description}
+                      {product.summary}
                     </p>
-                  </div>
+                  </Link>
                 )}
               </div>
             </article>
           </Reveal>
-        ))}
+          )
+        })}
       </div>
     </section>
   )

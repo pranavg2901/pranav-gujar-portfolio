@@ -243,7 +243,6 @@ const entries: Project[] = [
         label: 'Google Play',
         href: 'https://play.google.com/store/apps/details?id=com.onrender.algo_trading_lq8e.twa',
         external: true,
-        studyOnly: true,
       },
     ],
     study: {

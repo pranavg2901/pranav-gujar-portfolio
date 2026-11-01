@@ -70,6 +70,50 @@ export function homeGraph() {
   }
 }
 
+/**
+ * An employer's product. Authorship is split on purpose: I wrote the page,
+ * the company owns the software. Claiming `author` on something a company
+ * owns is the kind of overstatement a recruiter checks.
+ */
+export function productGraph(product, url) {
+  const stack = product.study.facts.find((fact) => fact.label === 'Stack')?.value
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'TechArticle',
+        '@id': url,
+        url,
+        headline: `${product.name} — ${product.company}`,
+        description: product.study.premise,
+        inLanguage: 'en',
+        author: { '@id': `${site.seo.url}#person` },
+        about: { '@id': `${url}#software` },
+      },
+      {
+        '@type': 'SoftwareApplication',
+        '@id': `${url}#software`,
+        name: product.name,
+        description: product.summary,
+        publisher: { '@type': 'Organization', name: product.company },
+        contributor: { '@id': `${site.seo.url}#person` },
+        ...(stack ? { programmingLanguage: stack.split(', ') } : {}),
+        ...(product.links[0] ? { url: product.links[0].href } : {}),
+      },
+      person(),
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: site.seo.url },
+          { '@type': 'ListItem', position: 2, name: 'Experience', item: `${site.seo.url}#experience` },
+          { '@type': 'ListItem', position: 3, name: product.name, item: url },
+        ],
+      },
+    ],
+  }
+}
+
 /** A case study: the write-up, the software it describes, and the trail. */
 export function caseStudyGraph(project, url) {
   const stack = project.study.facts.find((fact) => fact.label === 'Stack')?.value
