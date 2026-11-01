@@ -118,7 +118,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           </div>
         </div>
 
-        <div className="flex flex-col">
+        {/* Hidden on a phone. Four or five bullets under every card turned
+            the list of three projects into a page of its own, and the card
+            already leads somewhere that explains all of it properly. The
+            summary and the tags are enough to decide whether to tap. */}
+        <div className="hidden flex-col lg:flex">
           <div className="mb-5 hidden justify-end lg:flex">
             {project.study && (
               <ArrowUpRight className="size-7 text-faint transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-accent" />

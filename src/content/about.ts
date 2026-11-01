@@ -1,4 +1,4 @@
-import { experienceLong, experienceSince } from '@/lib/experience'
+import { experienceLong } from '@/lib/experience'
 
 /**
  * The one place on the site with a face on it. Kept small and placed after the
@@ -33,6 +33,8 @@ export const about: {
     { label: 'Open to', value: 'Full-time roles' },
     { label: 'Relocation', value: 'Anywhere in India' },
     { label: 'Notice period', value: '60 days' },
-    { label: 'Experience', value: `${experienceLong()}, since ${experienceSince}` },
+    // Just the duration. "2 years 9 months, since Feb 2024" said the same
+    // thing twice and was the only value in the panel that needed two lines.
+    { label: 'Experience', value: experienceLong() },
   ],
 }
