@@ -27,18 +27,25 @@ export function Hero() {
             {/* One line on a phone, two from 640px up.
                 
                 Stacked, a two-word name reads as two separate shouts rather
-                than as a name, and it cost a third of the first screen. The
-                line break is a <br> that is display:none below the
-                breakpoint — a break that does not exist cannot break — and
-                the type is sized in vw there so "PRANAV GUJAR" fills the
-                measure without reaching the edge, down to a 320px screen. */}
+                than as a name, and it cost a third of the first screen.
+
+                The break is the display mode of the two words — inline on a
+                phone, block above — rather than a <br>. A conditional <br>
+                broke hydration: the server serialises it as a void element
+                and the client re-renders around the whitespace beside it,
+                and React discarded the whole tree and drew it again. The
+                space lives inside the first word as a non-breaking space, so
+                there is no separate text node to disagree about.
+
+                The type is sized in vw below the breakpoint so "PRANAV
+                GUJAR" fills the measure without reaching the edge, down to a
+                320px screen. */}
             <h1 className="mt-6 text-[clamp(2.1rem,12.6vw,3.4rem)] leading-[0.95] font-extrabold tracking-[-0.045em] uppercase sm:text-hero sm:tracking-[inherit]">
               <span className="sr-only">{intro.headlineLabel}</span>
-              <span aria-hidden className="text-ink">
-                {intro.headline.lead}{' '}
+              <span aria-hidden className="inline text-ink sm:block">
+                {intro.headline.lead}&nbsp;
               </span>
-              <br aria-hidden className="hidden sm:inline" />
-              <span aria-hidden className="text-accent">
+              <span aria-hidden className="inline text-accent sm:block">
                 {intro.headline.accent}
               </span>
             </h1>

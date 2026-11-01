@@ -58,8 +58,12 @@ export function Contact() {
 
         {/* The questions an HR screen asks before it reads anything else.
             Left unanswered, each one is assumed — and the assumption is
-            always the one that rules a candidate out. */}
-        <dl className="grid grid-cols-1 border-t border-line sm:grid-cols-2 lg:grid-cols-4">
+            always the one that rules a candidate out.
+
+            Two across even on a phone. These values are short, unlike the
+            email above them, and one per row made the two strips together
+            eight rows of scrolling before the form came into view. */}
+        <dl className="grid grid-cols-2 border-t border-line lg:grid-cols-4">
           <Row label="Based" value={site.location} />
           <Row label="Relocation" value={site.availability.relocation} />
           <Row label="Notice period" value={site.availability.notice} />
@@ -68,7 +72,15 @@ export function Contact() {
       </Reveal>
 
       <Reveal delay={60}>
-        <div className="mt-14">
+        <div className="mt-12 sm:mt-14">
+          {/* A heading for the form, on small screens only. On a desktop the
+              form sits beside the section title and needs no label of its
+              own; on a phone it arrives two strips below it, by which point
+              "Get in touch" has scrolled away. */}
+          <p className="eyebrow mb-6 flex items-center gap-4 sm:hidden">
+            <span aria-hidden className="h-px w-6 bg-accent" />
+            Send a message
+          </p>
           <ContactForm />
         </div>
       </Reveal>
