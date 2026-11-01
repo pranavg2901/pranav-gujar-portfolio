@@ -25,7 +25,7 @@ export const certifications: Credential[] = [
   {
     title: 'AWS re/Start Graduate',
     issuer: 'Amazon Web Services',
-    period: 'February 2024',
+    period: 'November 2023',
     href: 'https://www.credly.com/badges/8b35541f-fb75-411c-a818-c595d3b5564f',
   },
 ]
