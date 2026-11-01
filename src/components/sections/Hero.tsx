@@ -24,12 +24,21 @@ export function Hero() {
 
             {/* Two display fragments read as one name visually but as noise to
                 a screen reader, so the accessible name is supplied once. */}
-            <h1 className="mt-6 text-hero font-extrabold uppercase">
+            {/* One line on a phone, two from 640px up.
+                
+                Stacked, a two-word name reads as two separate shouts rather
+                than as a name, and it cost a third of the first screen. The
+                line break is a <br> that is display:none below the
+                breakpoint — a break that does not exist cannot break — and
+                the type is sized in vw there so "PRANAV GUJAR" fills the
+                measure without reaching the edge, down to a 320px screen. */}
+            <h1 className="mt-6 text-[clamp(2.1rem,12.6vw,3.4rem)] leading-[0.95] font-extrabold tracking-[-0.045em] uppercase sm:text-hero sm:tracking-[inherit]">
               <span className="sr-only">{intro.headlineLabel}</span>
-              <span aria-hidden className="block text-ink">
-                {intro.headline.lead}
+              <span aria-hidden className="text-ink">
+                {intro.headline.lead}{' '}
               </span>
-              <span aria-hidden className="block text-accent">
+              <br aria-hidden className="hidden sm:inline" />
+              <span aria-hidden className="text-accent">
                 {intro.headline.accent}
               </span>
             </h1>
