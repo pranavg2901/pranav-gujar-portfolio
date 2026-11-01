@@ -134,7 +134,13 @@ export function CaseStudyPage() {
             )}
           </div>
 
-          <aside className="lg:sticky lg:top-28 lg:self-start">
+          {/* Deliberately not sticky. The fact lists are now six to eight
+              rows, and most values wrap to two lines in this column — about
+              750px, which is taller than a laptop viewport. A sticky element
+              taller than the space it sticks in has its bottom rows pinned
+              off-screen permanently, so the last two facts could never be
+              read. Letting it scroll with the page costs nothing. */}
+          <aside className="lg:self-start">
             {project.image && (
               <img
                 src={withBase(project.image.src)}
