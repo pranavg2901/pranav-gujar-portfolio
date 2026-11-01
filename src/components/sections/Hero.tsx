@@ -36,8 +36,15 @@ export function Hero() {
                 in vw to hold the longer word at about 88% of the column,
                 from 320px upwards. An earlier version was tuned to fill the
                 column exactly, which measured as "no overflow" and looked
-                like the name running off the edge of the phone. */}
-            <h1 className="mt-6 text-[clamp(2.6rem,19.5vw,5rem)] leading-[0.92] font-extrabold tracking-[-0.045em] uppercase sm:text-hero sm:leading-[inherit] sm:tracking-[inherit]">
+                like the name running off the edge of the phone.
+
+                Every override is scoped to max-sm. From 640px up this is
+                plain `text-hero` and nothing else, exactly as it was before
+                any of the mobile work — that token carries its own
+                line-height of 0.88 and letter-spacing of -0.055em, and an
+                earlier attempt at this reset both to `inherit` at the
+                breakpoint, which quietly loosened the desktop headline. */}
+            <h1 className="mt-6 text-[clamp(2.6rem,19.5vw,5rem)] font-extrabold uppercase max-sm:leading-[0.92] max-sm:tracking-[-0.045em] sm:text-hero">
               <span className="sr-only">{intro.headlineLabel}</span>
               <span aria-hidden className="block text-ink">
                 {intro.headline.lead}
