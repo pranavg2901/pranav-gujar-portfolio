@@ -22,12 +22,12 @@ import { experienceShort, experienceSince } from '@/lib/experience'
 export const metrics: Metric[] = [
   // "In production" was meant as shipping-production-systems and read as
   // something else entirely next to a figure in years.
-  { value: experienceShort(), caption: `Experience, since ${experienceSince}` },
-  { value: '10+', caption: 'Client applications delivered end to end' },
-  { value: '5+', caption: 'Applications I run in production today' },
-  { value: '3+', caption: 'Systems I designed, built and operate' },
+  { value: experienceShort(), caption: `Experience, since ${experienceSince}`, short: 'Experience' },
+  { value: '10+', caption: 'Client applications delivered end to end', short: 'Apps delivered' },
+  { value: '5+', caption: 'Applications I run in production today', short: 'Running today' },
+  { value: '3+', caption: 'Systems I designed, built and operate', short: 'Systems built' },
   // Hidden on a phone: the Credentials section lists both certifications in
   // full, with a link to verify each badge, so the strip is the one place
   // this figure can be dropped without losing anything.
-  { value: '2', caption: 'AWS certifications', minorOnMobile: true },
+  { value: '2', caption: 'AWS certifications', short: 'AWS certs', minorOnMobile: true },
 ]
