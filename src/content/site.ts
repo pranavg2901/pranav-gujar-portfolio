@@ -84,7 +84,15 @@ export const site = {
   ],
 
   resume: {
-    label: 'Download resume',
+    /**
+     * Two labels, because the same link does two different things. A desktop
+     * browser opens the PDF in its own viewer; a phone hands it to a download
+     * or to another app. "Download resume" on a machine that is about to show
+     * it on screen is simply wrong, and a button that misdescribes itself is
+     * a small thing a careful reader notices.
+     */
+    label: 'View resume',
+    mobileLabel: 'Download resume',
     /** Relative to the site base — resolved by withBase() in lib/paths.ts. */
     href: 'files/pranav-gujar-resume.pdf',
   },
@@ -105,7 +113,7 @@ export const site = {
    * kind of link, so every Resume button on the page says the same thing.
    */
   toasts: {
-    resume: 'Resume downloading — thanks for taking a look.',
+    resume: 'Opening the resume — thanks for taking a look.',
     github: 'Opening GitHub in a new tab.',
     linkedin: 'Opening LinkedIn in a new tab.',
     email: 'Opening your email app.',

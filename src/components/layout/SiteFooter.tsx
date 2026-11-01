@@ -45,16 +45,23 @@ export function SiteFooter() {
               Email me
             </ButtonLink>
             <ButtonLink href={withBase(site.resume.href)} external variant="outline">
-              {site.resume.label}
+              <span className="min-[480px]:hidden">{site.resume.mobileLabel}</span>
+              <span className="hidden min-[480px]:inline">{site.resume.label}</span>
             </ButtonLink>
           </div>
         </div>
 
-        {/* rel="me" on the profile links marks them as the same person's
+        {/* On a phone this was two wrapping rows of links and then two more
+            lines of small print, all left-aligned and all the same weight —
+            seven items with no shape to them. The navigation is a two-column
+            list at that width, which gives each link a whole line to itself
+            and the block an edge to sit against.
+
+            rel="me" on the profile links marks them as the same person's
             other accounts, which is what lets a search engine tie the
             identities together. */}
-        <div className="flex flex-wrap items-center justify-between gap-x-10 gap-y-5 border-t border-line py-7 font-mono text-[12px] tracking-[0.12em] uppercase">
-          <ul className="flex flex-wrap gap-7">
+        <div className="grid gap-8 border-t border-line py-8 font-mono text-[12px] tracking-[0.12em] uppercase sm:grid-cols-[auto_1fr] sm:items-start sm:gap-12">
+          <ul className="flex gap-7">
             {site.social.map((link) => (
               <li key={link.href}>
                 <a
@@ -69,7 +76,7 @@ export function SiteFooter() {
             ))}
           </ul>
 
-          <ul className="flex flex-wrap gap-7">
+          <ul className="grid grid-cols-2 gap-x-6 gap-y-3.5 sm:flex sm:flex-wrap sm:justify-end sm:gap-7">
             {site.nav.map((item) => (
               <li key={item.id}>
                 {isHome ? (
@@ -92,7 +99,7 @@ export function SiteFooter() {
           </ul>
         </div>
 
-        <div className="flex flex-wrap items-center justify-between gap-x-10 gap-y-3 border-t border-line py-7 font-mono text-[11.5px] tracking-[0.12em] text-faint uppercase">
+        <div className="flex flex-col gap-3 border-t border-line py-7 font-mono text-[11.5px] tracking-[0.12em] text-faint uppercase sm:flex-row sm:items-center sm:justify-between sm:gap-10">
           <p>
             &copy; {new Date().getFullYear()} {site.name} / {site.location}
           </p>

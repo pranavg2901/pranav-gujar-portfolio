@@ -20,7 +20,9 @@ import { experienceShort, experienceSince } from '@/lib/experience'
  * — at five across, anything longer collides with the next cell.
  */
 export const metrics: Metric[] = [
-  { value: experienceShort(), caption: `In production, since ${experienceSince}` },
+  // "In production" was meant as shipping-production-systems and read as
+  // something else entirely next to a figure in years.
+  { value: experienceShort(), caption: `Experience, since ${experienceSince}` },
   { value: '10+', caption: 'Client applications delivered end to end' },
   { value: '5+', caption: 'Applications I run in production today' },
   { value: '3+', caption: 'Systems I designed, built and operate' },
