@@ -10,6 +10,6 @@ export const metrics: Metric[] = [
   { value: '2.5+', caption: 'Years in production engineering' },
   { value: '70%', caption: 'API response time cut' },
   { value: '120K+', caption: 'Chunks indexed, CPU-only RAG' },
-  { value: '17', caption: 'Node LangGraph evaluation pipeline' },
-  { value: '150+', caption: 'Tests over failure states' },
+  { value: '8,100', caption: 'Companies screened nightly' },
+  { value: '2,341', caption: 'Automated tests on one platform' },
 ]

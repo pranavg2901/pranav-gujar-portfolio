@@ -8,11 +8,22 @@ export const skills: SkillGroup[] = [
   { label: 'Languages', items: ['Python', 'JavaScript', 'SQL'] },
   {
     label: 'Backend',
-    items: ['FastAPI', 'Flask', 'Django', 'Django REST Framework', 'Pytest'],
+    items: [
+      'FastAPI',
+      'Flask',
+      'Django',
+      'Django REST Framework',
+      'REST API design',
+      'Razorpay integrations',
+    ],
   },
   {
     label: 'Applied AI',
     items: ['LangGraph', 'RAG pipelines', 'Hugging Face', 'ChromaDB', 'Langfuse', 'ONNX INT8'],
+  },
+  {
+    label: 'Frontend',
+    items: ['React', 'TypeScript', 'Vanilla JS', 'Tailwind CSS', 'PWA / service workers'],
   },
   {
     label: 'Data',
