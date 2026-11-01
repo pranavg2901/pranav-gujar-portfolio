@@ -24,11 +24,12 @@ export function About() {
         <div className="lg:self-start">
           <SectionHeading index="02" eyebrow={about.eyebrow} title={about.title} />
 
-          {/* A panel, not a ruled list. Five facts with nothing around them
-              read as the bottom of a form; boxed and tinted they read as a
-              card, which is all anyone does with them — take them in at a
-              glance and move on. */}
-          <dl className="mt-9 grid grid-cols-2 border border-line bg-sunken/60">
+          {/* Ruled rather than boxed. The tinted panel made a card of
+              something that reads better as a plain register of facts, set
+              on the same hairline grid as the rest of the page.
+
+              Two across, so six facts are three clean rows. */}
+          <dl className="mt-9 grid grid-cols-2 border-t border-line">
             {about.facts.map((fact, index) => {
               const odd = about.facts.length % 2 === 1
               const last = index === about.facts.length - 1
@@ -37,17 +38,18 @@ export function About() {
                 <div
                   key={fact.label}
                   className={cn(
-                    'px-5 py-4',
-                    // Inner rules only, so the panel keeps a clean outline.
+                    'border-b border-line py-3.5 pr-5',
                     index % 2 === 0 && !(last && odd) && 'border-r border-line',
-                    index < about.facts.length - (odd ? 1 : 2) && 'border-b border-line',
-                    last && odd && 'col-span-2 border-t border-line',
+                    index % 2 === 1 && 'pl-5',
+                    // An odd count leaves the last one alone on its row; let
+                    // it take the width rather than sit beside a gap.
+                    last && odd && 'col-span-2 pr-0',
                   )}
                 >
                   <dt className="font-mono text-[10.5px] tracking-[0.16em] text-accent uppercase">
                     {fact.label}
                   </dt>
-                  <dd className="mt-1.5 text-[14.5px] leading-snug text-ink">{fact.value}</dd>
+                  <dd className="mt-1.5 text-[14.5px] leading-snug text-muted">{fact.value}</dd>
                 </div>
               )
             })}

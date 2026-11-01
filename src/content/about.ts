@@ -33,6 +33,7 @@ export const about: {
     { label: 'Open to', value: 'Full-time roles' },
     { label: 'Relocation', value: 'Anywhere in India' },
     { label: 'Notice period', value: '60 days' },
+    { label: 'Work mode', value: 'Onsite, hybrid or remote' },
     // Just the duration. "2 years 9 months, since Feb 2024" said the same
     // thing twice and was the only value in the panel that needed two lines.
     { label: 'Experience', value: experienceLong() },
