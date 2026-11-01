@@ -69,11 +69,14 @@ export function Hero() {
           <Portrait className="hidden lg:block" />
         </div>
 
-        {/* Label above the list on a phone. Beside it, a fixed 82px label
-            column left the values about half the screen, so every line
-            wrapped and the longest label ran past its own column — four rows
-            of ragged text where there should be four clean ones. */}
-        <dl className="grid gap-x-12 gap-y-5 border-t border-line py-8 font-mono text-[12.5px] sm:grid-cols-2 sm:gap-y-3">
+        {/* Not shown on a phone. The marquee immediately beneath it names the
+            same technologies, and the Skills section lists all of them
+            grouped — so at that width this was a third copy, costing roughly
+            300px of scrolling before the first project.
+
+            From 640px up the two columns sit beside the portrait and cost
+            nothing, so it stays. */}
+        <dl className="hidden gap-x-12 gap-y-5 border-t border-line py-8 font-mono text-[12.5px] sm:grid sm:grid-cols-2 sm:gap-y-3">
           {intro.stack.map((line) => (
             <div key={line.label} className="flex flex-col gap-1.5 sm:flex-row sm:gap-4">
               <dt className="tracking-wider text-accent uppercase sm:w-[82px] sm:shrink-0">
