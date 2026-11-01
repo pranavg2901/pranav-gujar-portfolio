@@ -57,24 +57,36 @@
   --grid-line: rgba(10, 10, 10, 0.055);
 }
 
+/* Dark is a charcoal, not an inverted white page.
+   
+   It used to be near-black with pure #f2f2f2 text and the accent at full
+   saturation, which is the maximum contrast available in every direction at
+   once: the lime vibrated against the background at display sizes, and a
+   long page of it was tiring to read.
+   
+   Lifting the surface off black and warming both the text and the accent
+   slightly keeps the character and takes the glare out. The bright lime is
+   retained for fills, where saturation is what makes a button read as a
+   button. */
 .dark {
-  --surface: #050505;
-  --surface-raised: #0c0c0c;
-  --surface-sunken: #121212;
+  --surface: #121211;
+  --surface-raised: #191917;
+  --surface-sunken: #1a1a18;
 
-  --ink: #f2f2f2;
-  --ink-strong: #ffffff;
-  --ink-muted: #8d8d8d;
-  --ink-faint: #6a6a6a;
+  --ink: #e8e6df;
+  --ink-strong: #f7f6f2;
+  --ink-muted: #9b998f;
+  --ink-faint: #74726a;
 
-  --accent: #c3f53c;
+  /* Text accent is dimmed; the fill accent is not. */
+  --accent: #b9e04a;
   --accent-bright: #c3f53c;
-  --accent-wash: rgba(195, 245, 60, 0.1);
-  --on-accent: #050505;
+  --accent-wash: rgba(185, 224, 74, 0.1);
+  --on-accent: #121211;
 
-  --line: #1f1f1f;
-  --line-strong: #333333;
-  --grid-line: rgba(195, 245, 60, 0.055);
+  --line: #2a2a26;
+  --line-strong: #3a3a34;
+  --grid-line: rgba(185, 224, 74, 0.05);
 }
 
 @theme inline {

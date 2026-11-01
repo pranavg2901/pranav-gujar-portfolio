@@ -37,10 +37,13 @@ export function Hero() {
                 space lives inside the first word as a non-breaking space, so
                 there is no separate text node to disagree about.
 
-                The type is sized in vw below the breakpoint so "PRANAV
-                GUJAR" fills the measure without reaching the edge, down to a
-                320px screen. */}
-            <h1 className="mt-6 text-[clamp(2.1rem,12.6vw,3.4rem)] leading-[0.95] font-extrabold tracking-[-0.045em] uppercase sm:text-hero sm:tracking-[inherit]">
+                The type is sized in vw below the breakpoint. It was tuned to
+                fill the measure exactly, which measured as "no overflow" and
+                looked like the name running into the edge of the phone —
+                a line needs air beside it, not a flush fit. It now takes
+                about five sixths of the column at every width down to
+                320px. */}
+            <h1 className="mt-6 text-[clamp(1.85rem,10.4vw,3rem)] leading-[0.95] font-extrabold tracking-[-0.045em] uppercase sm:text-hero sm:tracking-[inherit]">
               <span className="sr-only">{intro.headlineLabel}</span>
               <span aria-hidden className="inline text-ink sm:block">
                 {intro.headline.lead}&nbsp;
@@ -51,7 +54,7 @@ export function Hero() {
             </h1>
 
             {/* The job title, at a fraction of the name's size. */}
-            <p className="mt-5 font-mono text-[13px] font-medium tracking-[0.14em] text-muted uppercase md:text-[14.5px]">
+            <p className="mt-5 font-mono text-[11.5px] font-medium tracking-[0.1em] text-muted uppercase sm:text-[13px] sm:tracking-[0.14em] md:text-[14.5px]">
               {intro.role}
             </p>
 
