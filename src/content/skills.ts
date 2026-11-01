@@ -42,6 +42,17 @@ export const skills: SkillGroup[] = [
     items: ['Pytest', 'Playwright', 'Contract tests', 'Golden tests', 'Backtests'],
   },
   {
+    label: 'Web & distribution',
+    items: [
+      'Technical SEO',
+      'Structured data (schema.org)',
+      'Google Search Console',
+      'Google Tag Manager',
+      'Google Play Console',
+      'Core Web Vitals',
+    ],
+  },
+  {
     label: 'Operations',
     items: ['VPS', 'Coolify', 'Apache', 'SSL/TLS', 'Logging', 'Monitoring', 'Releases'],
   },
