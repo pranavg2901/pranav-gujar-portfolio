@@ -3,28 +3,32 @@ import { experienceLong } from '@/lib/experience'
 
 /** The hero. Plain statements of fact — no slogan, no pitch. */
 export const intro: {
-  kicker: { name: string; location: string }
+  kicker: string
   headline: { lead: string; accent: string }
-  /** Read by screen readers in place of the three display fragments. */
+  /** Sits under the name, at a fraction of its size. */
+  role: string
+  /** Read by screen readers in place of the two display fragments. */
   headlineLabel: string
   paragraph: TextRun[]
   stack: StackLine[]
   marquee: string[]
 } = {
-  // Split, because the whole string spans a phone edge to edge: with the
-  // rule in front of it, the line reads as a bar drawn across the screen.
-  // The name is already in the header and in the heading directly beneath,
-  // so the narrow layout keeps only what is not repeated.
-  kicker: { name: 'Pranav Gujar', location: 'Pune, India' },
+  // Just the location now. The name has moved into the heading, where it
+  // belongs on a personal site.
+  kicker: 'Pune, India',
 
   /**
-   * Two fragments, two treatments. Kept to two words so the headline is two
-   * clean lines at every width — a third fragment wrapped mid-phrase on
-   * phones and again on desktop once the portrait narrowed the column.
-   * The years figure leads the metrics strip immediately below instead, and
-   * is computed there rather than written.
+   * The name, set as the headline.
+   *
+   * It used to be "Software Engineer" at that size, with the name reduced to
+   * a line of small type above it — which is the arrangement a template
+   * ships with, because a template does not know whose site it is. A person
+   * does: the name leads, and the job title sits under it.
+   *
+   * Two words, two treatments, so it is two clean lines at every width.
    */
-  headline: { lead: 'Software', accent: 'Engineer' },
+  headline: { lead: 'Pranav', accent: 'Gujar' },
+  role: 'Software Engineer — Backend systems & applied AI',
   headlineLabel: `Pranav Gujar — Software Engineer, backend systems and applied AI, ${experienceLong()} in production, Pune, India`,
 
   paragraph: [

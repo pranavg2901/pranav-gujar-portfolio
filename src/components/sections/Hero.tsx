@@ -19,23 +19,11 @@ export function Hero() {
           <div>
             <p className="eyebrow flex items-center gap-4">
               <span aria-hidden className="h-px w-6 bg-accent sm:w-11" />
-              {/* The name always; the location only where there is room.
-                  It was the other way round, which left the hero on a phone
-                  introducing a job title belonging to nobody — the name
-                  appeared only as a 14px mark in the header. The location is
-                  in the About facts, the contact strip and the footer; the
-                  name has nowhere else to be.
-
-                  One flex item, so the row gap separates the rule from the
-                  text and nothing else. */}
-              <span>
-                {intro.kicker.name}
-                <span className="hidden sm:inline"> · {intro.kicker.location}</span>
-              </span>
+              {intro.kicker}
             </p>
 
-            {/* Three display fragments read as one phrase visually but as noise
-                to a screen reader, so the accessible name is supplied once. */}
+            {/* Two display fragments read as one name visually but as noise to
+                a screen reader, so the accessible name is supplied once. */}
             <h1 className="mt-6 text-hero font-extrabold uppercase">
               <span className="sr-only">{intro.headlineLabel}</span>
               <span aria-hidden className="block text-ink">
@@ -46,7 +34,12 @@ export function Hero() {
               </span>
             </h1>
 
-            <p className="mt-7 max-w-[52ch] text-[16px] leading-[1.7] text-muted md:mt-9 md:text-[17.5px]">
+            {/* The job title, at a fraction of the name's size. */}
+            <p className="mt-5 font-mono text-[13px] font-medium tracking-[0.14em] text-muted uppercase md:text-[14.5px]">
+              {intro.role}
+            </p>
+
+            <p className="mt-8 max-w-[52ch] text-[16px] leading-[1.7] text-muted md:mt-9 md:text-[17.5px]">
               {intro.paragraph.map((part, index) =>
                 part.strong ? (
                   <strong key={index} className="font-semibold text-ink">
