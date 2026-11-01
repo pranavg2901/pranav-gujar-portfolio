@@ -15,7 +15,7 @@ export function Work() {
         index="01"
         eyebrow="Selected work"
         title="Projects"
-        note="Three systems I built and run. In each one, the hard part was a limit to work within, not a feature to add."
+        note="Three systems I designed, built and operate. In each, the defining problem was a constraint to work within rather than a feature to add."
       />
 
       <div>

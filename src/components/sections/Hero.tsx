@@ -18,7 +18,8 @@ export function Hero() {
           <div>
             <p className="eyebrow flex items-center gap-4">
               <span aria-hidden className="h-px w-11 bg-accent" />
-              {intro.kicker}
+              <span className="hidden sm:inline">{intro.kicker.name} ·&nbsp;</span>
+              {intro.kicker.location}
             </p>
 
             {/* Three display fragments read as one phrase visually but as noise

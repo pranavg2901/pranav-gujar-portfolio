@@ -71,7 +71,7 @@ export function Experience() {
                         )}
                       </span>
                       <span className="inline-flex items-center gap-1.5 font-mono text-[11.5px] font-semibold tracking-[0.12em] text-accent uppercase">
-                        Read about it
+                        View details
                         <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
                       </span>
                     </div>

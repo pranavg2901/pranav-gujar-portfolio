@@ -3,7 +3,7 @@ import { experienceLong } from '@/lib/experience'
 
 /** The hero. Plain statements of fact — no slogan, no pitch. */
 export const intro: {
-  kicker: string
+  kicker: { name: string; location: string }
   headline: { lead: string; accent: string }
   /** Read by screen readers in place of the three display fragments. */
   headlineLabel: string
@@ -11,7 +11,11 @@ export const intro: {
   stack: StackLine[]
   marquee: string[]
 } = {
-  kicker: 'Pranav Gujar · Pune, India',
+  // Split, because the whole string spans a phone edge to edge: with the
+  // rule in front of it, the line reads as a bar drawn across the screen.
+  // The name is already in the header and in the heading directly beneath,
+  // so the narrow layout keeps only what is not repeated.
+  kicker: { name: 'Pranav Gujar', location: 'Pune, India' },
 
   /**
    * Two fragments, two treatments. Kept to two words so the headline is two
@@ -25,10 +29,10 @@ export const intro: {
 
   paragraph: [
     {
-      text: 'I build Python systems that run in production — APIs, data pipelines and AI workflows — and take them from the first requirement through to deployment and the support calls after. Currently at ',
+      text: 'I build production Python systems — APIs, data pipelines and AI workflows — and take them from initial requirements through to deployment and ongoing support. Currently at ',
     },
     { text: 'Blueport Solutions', strong: true },
-    { text: ', where I own a multi-tenant SaaS platform end to end.' },
+    { text: ', where I own the delivery of a multi-tenant SaaS platform end to end.' },
   ],
 
   stack: [

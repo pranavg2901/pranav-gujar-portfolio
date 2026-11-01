@@ -113,17 +113,17 @@ export const site = {
    * kind of link, so every Resume button on the page says the same thing.
    */
   toasts: {
-    resume: 'Opening the resume — thanks for taking a look.',
-    github: 'Opening GitHub in a new tab.',
-    linkedin: 'Opening LinkedIn in a new tab.',
-    email: 'Opening your email app.',
+    resume: 'Opening the resume.',
+    github: 'Opening the GitHub profile.',
+    linkedin: 'Opening the LinkedIn profile.',
+    email: 'Opening your email client.',
   },
 
   /** The closing band above the footer links. */
   closing: {
     eyebrow: 'Open to opportunities',
     headline: 'Let’s talk',
-    note: 'I am looking for a full-time backend or applied AI role — based in Pune and open to relocating anywhere in India. If you are hiring, I am happy to walk you through any of the work above.',
+    note: 'I am seeking a full-time backend engineering or applied AI role, based in Pune and open to relocation anywhere in India. I would welcome the opportunity to discuss any of the work above.',
   },
 
   /**

@@ -13,7 +13,7 @@ export function Contact() {
         index="05"
         eyebrow="Contact"
         title="Get in touch"
-        note="I am looking for a full-time backend or applied AI role, and I am open to relocating anywhere in India. Email is the fastest way to reach me."
+        note="I am seeking a full-time backend engineering or applied AI role and am open to relocation anywhere in India. Email is the quickest way to reach me."
       />
 
       {/* Details across the top, form beneath — not side by side.
@@ -107,7 +107,7 @@ function ContactForm() {
         open={status === 'sent'}
         onClose={reset}
         title="Message sent"
-        message="Thanks for writing. It is in my inbox and I will reply soon."
+        message="Your message has reached my inbox. I will respond shortly."
         action="Back to the site"
       />
 
@@ -141,7 +141,7 @@ function ContactForm() {
       <Field
         id="contact-message"
         label="Message"
-        placeholder="What would you like to talk about?"
+        placeholder="The role, the team, or anything you would like to discuss"
         value={fields.message}
         onChange={(value) => setField('message', value)}
         multiline
@@ -159,7 +159,7 @@ function ContactForm() {
         <p aria-live="polite" className="mr-auto font-mono text-[12px] tracking-[0.08em]">
           {busy && <span className="text-muted">Sending your message…</span>}
           {status === 'handoff' && (
-            <span className="text-muted">Opening your email app with the message ready.</span>
+            <span className="text-muted">Opening your email client with the message prepared.</span>
           )}
           {status === 'error' && <span className="text-muted">{error}</span>}
         </p>

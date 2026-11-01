@@ -121,7 +121,7 @@ export function useContactForm() {
         // Keep whatever they typed — losing a written message to a failed
         // request is the other outcome worth engineering against.
         await settle(startedAt)
-        setError(`Could not send that. Please email me directly at ${site.email}.`)
+        setError(`The message could not be sent. Please email me directly at ${site.email}.`)
         setStatus('error')
       } finally {
         clearTimeout(timer)
