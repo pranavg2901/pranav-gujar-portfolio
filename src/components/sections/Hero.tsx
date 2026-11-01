@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { Container } from '@/components/ui/Container'
 import { ButtonLink } from '@/components/ui/Button'
 import { site } from '@/content/site'
@@ -18,8 +19,13 @@ export function Hero() {
           <div>
             <p className="eyebrow flex items-center gap-4">
               <span aria-hidden className="h-px w-6 bg-accent sm:w-11" />
-              <span className="hidden sm:inline">{intro.kicker.name} ·&nbsp;</span>
-              {intro.kicker.location}
+              {/* One flex item, so the row gap separates the rule from the
+                  text and nothing else. Two items put that gap after the
+                  separator as well. */}
+              <span>
+                <span className="hidden sm:inline">{intro.kicker.name} · </span>
+                {intro.kicker.location}
+              </span>
             </p>
 
             {/* Three display fragments read as one phrase visually but as noise
@@ -131,10 +137,34 @@ function Portrait({ className }: { className?: string }) {
  */
 export function Marquee() {
   const items = [...intro.marquee, ...intro.marquee]
+  const strip = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(true)
+
+  // Pause it once it has scrolled away.
+  //
+  // A transform animation never stops asking the compositor for frames, and
+  // this one sits at the top of a page that is several screens long — so it
+  // ran the whole time a reader was down in the case studies, for something
+  // nobody could see. It was enough to make screenshots of the live page time
+  // out; on a phone it is battery.
+  useEffect(() => {
+    const element = strip.current
+    if (!element) return
+
+    const observer = new IntersectionObserver(
+      (entries) => setVisible(entries.some((entry) => entry.isIntersecting)),
+      { rootMargin: '120px 0px' },
+    )
+    observer.observe(element)
+    return () => observer.disconnect()
+  }, [])
 
   return (
-    <div className="overflow-hidden border-y border-line py-6">
-      <ul className="marquee-track flex w-max items-center">
+    <div ref={strip} className="overflow-hidden border-y border-line py-6">
+      <ul
+        className="marquee-track flex w-max items-center"
+        style={{ animationPlayState: visible ? 'running' : 'paused' }}
+      >
         {items.map((item, index) => (
           <li
             key={`${item}-${index}`}

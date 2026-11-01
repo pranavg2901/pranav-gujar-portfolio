@@ -111,7 +111,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             {project.summary}
           </p>
 
-          <div className="mt-auto flex flex-wrap gap-2 pt-8">
+          {/* Follows the summary rather than being pushed to the foot of the
+              column. The bullet column beside it is now five items tall, so
+              bottom-aligning these opened a gap of dead space under the
+              summary that read as a mistake. */}
+          <div className="mt-8 flex flex-wrap gap-2">
             {restTags.map((tag) => (
               <Tag key={tag.label} label={tag.label} />
             ))}
