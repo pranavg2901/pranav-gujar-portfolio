@@ -3,7 +3,6 @@ import { experienceLong } from '@/lib/experience'
 
 /** The hero. Plain statements of fact — no slogan, no pitch. */
 export const intro: {
-  kicker: string
   headline: { lead: string; accent: string }
   /** Sits under the name, at a fraction of its size. */
   role: string
@@ -13,10 +12,6 @@ export const intro: {
   stack: StackLine[]
   marquee: string[]
 } = {
-  // Just the location now. The name has moved into the heading, where it
-  // belongs on a personal site.
-  kicker: 'Pune, India',
-
   /**
    * The name, set as the headline.
    *

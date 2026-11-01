@@ -17,11 +17,6 @@ export function Hero() {
       <Container>
         <div className="grid items-center gap-14 pt-12 pb-16 md:pt-20 md:pb-24 lg:grid-cols-[1fr_300px] lg:gap-16">
           <div>
-            <p className="eyebrow flex items-center gap-4">
-              <span aria-hidden className="h-px w-6 bg-accent sm:w-11" />
-              {intro.kicker}
-            </p>
-
             {/* Two display fragments read as one name visually but as noise to
                 a screen reader, so the accessible name is supplied once. */}
             {/* Two lines at every width.
@@ -44,7 +39,7 @@ export function Hero() {
                 line-height of 0.88 and letter-spacing of -0.055em, and an
                 earlier attempt at this reset both to `inherit` at the
                 breakpoint, which quietly loosened the desktop headline. */}
-            <h1 className="mt-6 text-[clamp(2.6rem,19.5vw,5rem)] font-extrabold uppercase max-sm:leading-[0.92] max-sm:tracking-[-0.045em] sm:text-hero">
+            <h1 className="text-[clamp(2.6rem,19.5vw,5rem)] font-extrabold uppercase max-sm:leading-[0.92] max-sm:tracking-[-0.045em] sm:text-hero">
               <span className="sr-only">{intro.headlineLabel}</span>
               <span aria-hidden className="block text-ink">
                 {intro.headline.lead}
