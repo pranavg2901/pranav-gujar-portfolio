@@ -1,98 +1,73 @@
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { Reveal } from '@/components/ui/Reveal'
 import { about } from '@/content/about'
-import { site } from '@/content/site'
 import { cn } from '@/lib/cn'
-import { withBase } from '@/lib/paths'
 
 /**
- * Heading on the left, prose on the right.
+ * Heading and the hiring facts on the left, prose on the right.
  *
- * Previously the title and the paragraphs both ran down the left edge and the
- * right half of the section was empty, which read as unfinished. Splitting
- * them fills the width and gives the heading something to sit against, and
- * the heading sticks while the text scrolls past it.
+ * No portrait here any more. The hero carries one photo from large screens
+ * up, and the copy that used to sit below that width made the section lead
+ * with a face rather than with what the person does — on the narrow width
+ * where a reader has the least patience for scrolling past it.
+ *
+ * The prose used to run against a full-height accent rule, which drew a hard
+ * line down the whole section and made three paragraphs look like a pulled
+ * quotation. The lead carries the emphasis instead: a size up, full-contrast
+ * ink, and a short accent rule above it — the same device the section
+ * headings use, so the page keeps one vocabulary.
  */
 export function About() {
   return (
     <section id="about" className="py-16 md:py-24">
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,24rem)_1fr] lg:gap-20">
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,21rem)_1fr] lg:gap-20">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <SectionHeading index="02" eyebrow={about.eyebrow} title={about.title} />
 
-          {/* Two across, not five down — and shown at every width.
+          {/* A panel, not a ruled list. Five facts with nothing around them
+              read as the bottom of a form; boxed and tinted they read as a
+              card, which is all anyone does with them — take them in at a
+              glance and move on. */}
+          <dl className="mt-9 grid grid-cols-2 border border-line bg-sunken/60">
+            {about.facts.map((fact, index) => {
+              const odd = about.facts.length % 2 === 1
+              const last = index === about.facts.length - 1
 
-              These were lg-only, which meant the relocation and notice-period
-              answers simply did not exist on a phone. Most recruiters open a
-              portfolio on a phone.
-              
-              One per row turned the column into a long thin form — five
-              labels, five rules, and more vertical space than the prose
-              beside it, so the facts finished after the paragraphs they were
-              meant to sit against. Paired up they read as a block, and the
-              last one spans rather than leaving an orphan in a column of its
-              own. */}
-          <dl className="mt-9 grid grid-cols-2 border-t border-line">
-            {about.facts.map((fact, index) => (
-              <div
-                key={fact.label}
-                className={cn(
-                  'border-b border-line py-3.5 pr-5',
-                  index % 2 === 0 && index !== about.facts.length - 1 && 'border-r',
-                  index % 2 === 1 && 'pl-5',
-                  // An odd count leaves the last one alone on its row; let it
-                  // take the width rather than sit beside a gap.
-                  index === about.facts.length - 1 &&
-                    about.facts.length % 2 === 1 &&
-                    'col-span-2 pr-0',
-                )}
-              >
-                <dt className="font-mono text-[10.5px] tracking-[0.16em] text-accent uppercase">
-                  {fact.label}
-                </dt>
-                <dd className="mt-1.5 text-[14.5px] leading-snug text-muted">{fact.value}</dd>
-              </div>
-            ))}
+              return (
+                <div
+                  key={fact.label}
+                  className={cn(
+                    'px-5 py-4',
+                    // Inner rules only, so the panel keeps a clean outline.
+                    index % 2 === 0 && !(last && odd) && 'border-r border-line',
+                    index < about.facts.length - (odd ? 1 : 2) && 'border-b border-line',
+                    last && odd && 'col-span-2 border-t border-line',
+                  )}
+                >
+                  <dt className="font-mono text-[10.5px] tracking-[0.16em] text-accent uppercase">
+                    {fact.label}
+                  </dt>
+                  <dd className="mt-1.5 text-[14.5px] leading-snug text-ink">{fact.value}</dd>
+                </div>
+              )
+            })}
           </dl>
-
-          {/* The hero carries the portrait from lg up, so it appears here only
-              on the narrower layouts where the hero hides it.
-
-              The negative top margin it used to carry pulled it up under the
-              heading, which was free space until the facts moved in above it
-              — then the photo sat on top of the last row. It gets its own
-              space now, and the corner bracket needs the padding anyway. */}
-          <div className="relative mt-10 w-36 pt-2 pl-2 lg:hidden">
-            <span
-              aria-hidden
-              className="absolute -top-2 -left-2 size-14 border-t-2 border-l-2 border-accent-bright"
-            />
-            <picture>
-              <source srcSet={withBase(site.profileImage.webp)} type="image/webp" />
-              <img
-                src={withBase(site.profileImage.jpg)}
-                alt={site.profileImage.alt}
-                width={760}
-                height={950}
-                loading="lazy"
-                className="relative aspect-4/5 w-full object-cover object-[center_top] grayscale"
-              />
-            </picture>
-          </div>
         </div>
 
         <Reveal>
-          {/* The first paragraph is set larger and in full-contrast ink. Three
-              paragraphs at one size read as a wall; a lead gives the eye a
-              place to start and the rest somewhere to go. */}
-          <div className="max-w-[60ch] border-l-2 border-accent-bright pl-7 md:pl-9">
+          <div className="max-w-[62ch]">
+            <span aria-hidden className="mb-7 block h-0.5 w-12 bg-accent-bright" />
+
+            {/* The first paragraph is set larger and in full-contrast ink.
+                Three paragraphs at one size read as a wall; a lead gives the
+                eye a place to start and the rest somewhere to go. */}
             {about.paragraphs.map((paragraph, index) => (
               <p
                 key={paragraph.slice(0, 40)}
                 className={
                   index === 0
-                    ? 'mb-7 text-[19px] leading-[1.65] font-medium text-ink md:text-[21px]'
-                    : 'mb-6 text-[16px] leading-[1.75] text-muted last:mb-0 md:text-[16.5px]'
+                    ? 'mb-7 text-[20px] leading-[1.6] font-medium text-ink md:text-[23px] md:leading-[1.55]'
+                    : 'mb-6 text-[16px] leading-[1.8] text-muted last:mb-0 md:text-[16.5px]'
                 }
               >
                 {paragraph}
