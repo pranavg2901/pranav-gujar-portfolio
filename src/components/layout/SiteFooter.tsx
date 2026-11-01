@@ -39,8 +39,13 @@ export function SiteFooter() {
           {/* Equal halves, for the same reason as the hero pair. */}
           {/* Stacked on a phone: at half of 390px, "Download resume" wrapped
               to two lines while "Email me" stayed on one, and the pair read as
-              a mistake. Side by side from 480px, where both fit. */}
-          <div className="mx-auto mt-10 grid w-full max-w-[29rem] grid-cols-1 min-[480px]:grid-cols-2">
+              a mistake. Side by side from 480px, where both fit.
+
+              The gap only applies while they are stacked. Buttons sitting
+              flush in a row is the control-panel device the rest of the site
+              uses, but stacked and flush they fuse into one block with a line
+              through it. */}
+          <div className="mx-auto mt-10 grid w-full max-w-[29rem] grid-cols-1 gap-3 min-[480px]:grid-cols-2 min-[480px]:gap-0">
             <ButtonLink href={`mailto:${site.email}`} variant="solid">
               Email me
             </ButtonLink>
@@ -68,7 +73,10 @@ export function SiteFooter() {
             other accounts, which is what lets a search engine tie the
             identities together. */}
         <div className="grid gap-8 border-t border-line py-8 font-mono text-[12px] tracking-[0.12em] uppercase sm:grid-cols-[auto_1fr] sm:items-start sm:gap-12">
-          <ul className="flex gap-7">
+          {/* Centred on a phone, to sit under the centred band above it. Two
+              small links pushed to the left edge of an otherwise empty row
+              read as something left over rather than something placed. */}
+          <ul className="flex justify-center gap-8 text-[12.5px] sm:justify-start sm:gap-7 sm:text-[12px]">
             {site.social.map((link) => (
               <li key={link.href}>
                 <a
@@ -106,7 +114,7 @@ export function SiteFooter() {
           </ul>
         </div>
 
-        <div className="flex flex-col gap-3 border-t border-line py-7 font-mono text-[11.5px] tracking-[0.12em] text-faint uppercase sm:flex-row sm:items-center sm:justify-between sm:gap-10">
+        <div className="flex flex-col items-center gap-3 border-t border-line py-7 text-center font-mono text-[11.5px] tracking-[0.12em] text-faint uppercase sm:flex-row sm:items-center sm:justify-between sm:gap-10 sm:text-left">
           <p>
             &copy; {new Date().getFullYear()} {site.name} / {site.location}
           </p>
