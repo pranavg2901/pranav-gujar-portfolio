@@ -122,9 +122,10 @@ export const projects: Project[] = [
     name: 'EIGENN',
     year: '2026',
     summary:
-      'Multi-tenant platform that automates answer evaluation for competitive-exam institutes. A human reviewer approves every AI result before a student ever sees it.',
+      'A platform built for one domain: competitive-exam preparation. Coaching institutes enrol and give their students access; a student uploads a handwritten answer sheet and gets it evaluated in one step — with a human reviewer approving every AI result before the student sees it.',
     highlights: [
-      'Built a **17-node LangGraph pipeline** that reviews its own working, names every way it can fail, and resumes from any node instead of starting over — traced end to end in Langfuse.',
+      'Built a **multi-tenant platform serving two kinds of user at once** — coaching institutes who enrol and manage their own students, and the UPSC, state PSC, CA and CS aspirants those students are.',
+      'Built a **17-node LangGraph pipeline** that reads a scanned answer sheet, reviews its own working, names every way it can fail, and resumes from any node instead of starting over — traced end to end in Langfuse.',
       'Built search over **120K+ chunks** with BGE-M3 and cross-encoder reranking, quantised to ONNX INT8 so it runs on an ordinary CPU in 300MB — taking GPU cost out of the platform entirely.',
       'Architected the backend as **10+ containerised services** on a private IPv6 mesh behind a React and TypeScript front end, with long-running evaluations durable on Temporal.',
       'Built Razorpay payments on an append-only ledger where a retry never charges twice, backed by **150+ tests** including contract tests that catch the AI output changing shape.',
@@ -140,9 +141,11 @@ export const projects: Project[] = [
     links: [{ label: 'Live demo', href: 'https://demo.eigenn.in/', external: true }],
     study: {
       premise:
-        'Grading is a decision about a person. The pipeline does the reading; a human signs the result.',
+        'Everything an exam aspirant needs in one place, and grading is the hard part of it. The pipeline does the reading; a human signs the result.',
       facts: [
-        { label: 'Domain', value: 'Answer evaluation for competitive-exam institutes' },
+        { label: 'Domain', value: 'Competitive-exam preparation — a vertical AI platform' },
+        { label: 'Exams', value: 'UPSC, state PSC, CA, CS' },
+        { label: 'Users', value: 'Institutes enrol; their students get access' },
         { label: 'Built', value: '2026' },
         { label: 'Backend', value: 'FastAPI, LangGraph, Temporal, PostgreSQL with PgBouncer' },
         { label: 'Also', value: 'Redis, RabbitMQ, ONNX, React and TypeScript' },
@@ -150,6 +153,18 @@ export const projects: Project[] = [
         { label: 'Scale', value: '120K+ indexed chunks, 10+ services on a private IPv6 mesh' },
       ],
       sections: [
+        {
+          heading: 'One domain, done properly',
+          body: [
+            'An aspirant preparing for UPSC, a state PSC, CA or CS is not short of tools. They are short of one place that understands the exam they are actually sitting. General-purpose products treat an answer sheet as a document; this one treats it as an answer to a question with a known marking scheme.',
+            'The platform is multi-tenant and two-sided. A coaching institute enrols, brings its own students, and keeps its own content, cohorts and branding. The student signs in through their institute and gets the whole loop in one place: upload the handwritten sheet, have it read, get it evaluated, see the feedback against the marking scheme — rather than scanning in one tool, asking a model in another and never getting a mark anyone stands behind.',
+          ],
+          points: [
+            'Institutes manage their own students, content and cohorts; data stays separated by tenant.',
+            'A handwritten answer sheet is scanned and read on the way into the pipeline, so the input is paper, not typing.',
+            'One step for the student: upload, and the evaluation comes back reviewed.',
+          ],
+        },
         {
           heading: 'A human signs every result',
           body: [
