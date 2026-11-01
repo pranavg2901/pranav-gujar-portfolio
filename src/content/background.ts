@@ -20,10 +20,12 @@ export const certifications: Credential[] = [
     title: 'AWS Certified Cloud Practitioner',
     issuer: 'Amazon Web Services',
     period: 'March 2024',
+    href: 'https://www.credly.com/badges/179de487-3e4b-44f9-a490-68dfd34fbee5/public_url',
   },
   {
     title: 'AWS re/Start Graduate',
     issuer: 'Amazon Web Services',
     period: 'February 2024',
+    href: 'https://www.credly.com/badges/8b35541f-fb75-411c-a818-c595d3b5564f',
   },
 ]

@@ -16,7 +16,12 @@ export function Contact() {
         note="I am looking for a full-time backend or applied AI role. Email is the fastest way to reach me."
       />
 
-      <div className="grid gap-12 border-t border-line pt-12 lg:grid-cols-2 lg:gap-20">
+      {/* Not two equal columns. The details are four short rows and the form
+          is six fields tall, so splitting the width evenly left the whole
+          lower half of the left side empty and the form cramped into half a
+          page. The details column is narrower now and carries a note under
+          it; the form gets the room it needs. */}
+      <div className="grid gap-12 border-t border-line pt-12 lg:grid-cols-[minmax(0,20rem)_1fr] lg:gap-20">
         <Reveal>
           <dl className="flex flex-col">
             <Row label="Email" value={site.email} href={`mailto:${site.email}`} />
@@ -31,6 +36,18 @@ export function Contact() {
             ))}
             <Row label="Location" value={site.location} />
           </dl>
+
+          <div className="mt-8 border border-line p-6">
+            <p className="eyebrow">What happens next</p>
+            <p className="mt-4 text-[15px] leading-relaxed text-muted">
+              The form and the email address reach the same inbox, so use whichever is
+              easier. I read everything and reply, usually within a day.
+            </p>
+            <p className="mt-3 text-[15px] leading-relaxed text-muted">
+              If it is about a role, the resume has the full history — and I am happy to
+              walk through any of the work above.
+            </p>
+          </div>
         </Reveal>
 
         <Reveal delay={60}>

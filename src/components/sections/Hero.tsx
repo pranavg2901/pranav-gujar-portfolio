@@ -45,7 +45,15 @@ export function Hero() {
               )}
             </p>
 
-            <div className="mt-8 flex flex-wrap md:mt-10">
+            {/* A shared minimum width, so the pair reads as one control
+                rather than two buttons that happen to sit together. Without
+                it each is as wide as its own label, and "Resume" came out
+                noticeably smaller than "See the work". */}
+            {/* A two-column grid rather than a flex row, so both buttons are
+                exactly the same width. Sized to their own labels, "Resume"
+                came out visibly smaller than "See the work" and the pair read
+                as two unrelated controls. */}
+            <div className="mt-8 grid w-full max-w-[25rem] grid-cols-2 md:mt-10">
               <ButtonLink href="#work" variant="solid">
                 See the work
               </ButtonLink>

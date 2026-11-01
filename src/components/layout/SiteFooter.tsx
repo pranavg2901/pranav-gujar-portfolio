@@ -36,7 +36,8 @@ export function SiteFooter() {
             {site.closing.note}
           </p>
 
-          <div className="mt-10 flex flex-wrap justify-center">
+          {/* Equal halves, for the same reason as the hero pair. */}
+          <div className="mx-auto mt-10 grid w-full max-w-[29rem] grid-cols-2">
             <ButtonLink href={`mailto:${site.email}`} variant="solid">
               Email me
             </ButtonLink>

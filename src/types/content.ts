@@ -37,6 +37,11 @@ export type Credential = {
   issuer: string
   period: string
   note?: string
+  /**
+   * Where the credential can be checked. A certification nobody can verify is
+   * a line of text; one that links to the issuer's own badge is evidence.
+   */
+  href?: string
 }
 
 export type ProjectTag = {
