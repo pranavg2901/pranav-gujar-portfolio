@@ -19,12 +19,18 @@ export function Hero() {
           <div>
             <p className="eyebrow flex items-center gap-4">
               <span aria-hidden className="h-px w-6 bg-accent sm:w-11" />
-              {/* One flex item, so the row gap separates the rule from the
-                  text and nothing else. Two items put that gap after the
-                  separator as well. */}
+              {/* The name always; the location only where there is room.
+                  It was the other way round, which left the hero on a phone
+                  introducing a job title belonging to nobody — the name
+                  appeared only as a 14px mark in the header. The location is
+                  in the About facts, the contact strip and the footer; the
+                  name has nowhere else to be.
+
+                  One flex item, so the row gap separates the rule from the
+                  text and nothing else. */}
               <span>
-                <span className="hidden sm:inline">{intro.kicker.name} · </span>
-                {intro.kicker.location}
+                {intro.kicker.name}
+                <span className="hidden sm:inline"> · {intro.kicker.location}</span>
               </span>
             </p>
 
